@@ -1,0 +1,27 @@
+[
+  {
+    "label": "Logo (override de marca)",
+    "name": "logo",
+    "type": "image",
+    "help_text": "Sube el logo específico de este dominio. Reemplaza el logo predeterminado de la cuenta HubSpot.",
+    "default": {
+      "src": "",
+      "alt": "Real Madeira",
+      "loading": "eager"
+    }
+  },
+  {
+    "label": "Enlace del logo",
+    "name": "logo_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT"],
+    "default": {
+      "url": {
+        "href": "/",
+        "type": "EXTERNAL"
+      },
+      "no_follow": false,
+      "open_in_new_tab": false
+    }
+  }
+]

@@ -1,21 +1,15 @@
 (function () {
   // Variables
+  var header = document.getElementById('site-header');
   var nav = document.querySelector('.header__navigation');
-  var langSwitcher = document.querySelector('.header__language-switcher');
-  var search = document.querySelector('.header__search');
   var allToggles = document.querySelectorAll('.header--toggle');
   var navToggle = document.querySelector('.header__navigation--toggle');
-  var langToggle = document.querySelector('.header__language-switcher--toggle');
-  var searchToggle = document.querySelector('.header__search--toggle');
   var closeToggle = document.querySelector('.header__close--toggle');
-  var allElements = document.querySelectorAll(
-    '.header--element, .header--toggle'
-  );
+  var allElements = document.querySelectorAll('.header--element, .header--toggle');
   var emailGlobalUnsub = document.querySelector('input[name="globalunsub"]');
 
   // Functions
 
-  // Function for executing code on document ready
   function domReady(callback) {
     if (['interactive', 'complete'].indexOf(document.readyState) >= 0) {
       callback();
@@ -24,7 +18,17 @@
     }
   }
 
-  // Function for toggling mobile navigation
+  // Sticky header: añade clase cuando el usuario hace scroll
+  function handleScroll() {
+    if (!header) return;
+    if (window.scrollY > 10) {
+      header.classList.add('is-scrolled');
+    } else {
+      header.classList.remove('is-scrolled');
+    }
+  }
+
+  // Abrir/cerrar menú de navegación móvil
   function toggleNav() {
     allToggles.forEach(function (toggle) {
       toggle.classList.toggle('hide');
@@ -32,44 +36,38 @@
 
     nav.classList.toggle('open');
     navToggle.classList.toggle('open');
-
     closeToggle.classList.toggle('show');
+
+    var isOpen = nav.classList.contains('open');
+    if (navToggle) navToggle.setAttribute('aria-expanded', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   }
 
-  // Function for toggling mobile language selector
-  function toggleLang() {
-    allToggles.forEach(function (toggle) {
-      toggle.classList.toggle('hide');
-    });
-
-    langSwitcher.classList.toggle('open');
-    langToggle.classList.toggle('open');
-
-    closeToggle.classList.toggle('show');
-  }
-
-  // Function for toggling mobile search field
-  function toggleSearch() {
-    allToggles.forEach(function (toggle) {
-      toggle.classList.toggle('hide');
-    });
-
-    search.classList.toggle('open');
-    searchToggle.classList.toggle('open');
-
-    closeToggle.classList.toggle('show');
-  }
-
-  // Function for the header close option on mobile
+  // Cerrar todo en móvil
   function closeAll() {
     allElements.forEach(function (element) {
       element.classList.remove('hide', 'open');
     });
 
     closeToggle.classList.remove('show');
+    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
-  // Function to disable the other checkbox inputs on the email subscription system page template
+  // Cerrar nav al hacer click en un enlace del menú (móvil)
+  function bindNavLinks() {
+    if (!nav) return;
+    var links = nav.querySelectorAll('.menu__link');
+    links.forEach(function (link) {
+      link.addEventListener('click', function () {
+        if (nav.classList.contains('open')) {
+          closeAll();
+        }
+      });
+    });
+  }
+
+  // Disable email subscription checkboxes when "unsubscribe all" is checked
   function toggleDisabled() {
     var emailSubItem = document.querySelectorAll('#email-prefs-form .item');
 
@@ -87,35 +85,48 @@
     });
   }
 
-  // Execute JavaScript on document ready
+  // Execute on document ready
   domReady(function () {
-    if (!document.body) {
-      return;
-    } else {
-      // Function dependent on language switcher
-      if (langSwitcher) {
-        langToggle.addEventListener('click', toggleLang);
-      }
+    if (!document.body) return;
 
-      // Function dependent on navigation
-      if (navToggle) {
-        navToggle.addEventListener('click', toggleNav);
-      }
+    // Scroll listener para el header sticky
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // evaluar estado inicial
 
-      // Function dependent on search field
-      if (searchToggle) {
-        searchToggle.addEventListener('click', toggleSearch);
-      }
+    // Toggle de navegación móvil
+    if (navToggle) {
+      navToggle.addEventListener('click', toggleNav);
+      navToggle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleNav();
+        }
+      });
+    }
 
-      // Function dependent on close toggle
-      if (closeToggle) {
-        closeToggle.addEventListener('click', closeAll);
-      }
+    // Botón cerrar
+    if (closeToggle) {
+      closeToggle.addEventListener('click', closeAll);
+      closeToggle.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          closeAll();
+        }
+      });
+    }
 
-      // Function dependent on email unsubscribe from all input
-      if (emailGlobalUnsub) {
-        emailGlobalUnsub.addEventListener('change', toggleDisabled);
+    // Cerrar nav al presionar Escape
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && nav && nav.classList.contains('open')) {
+        closeAll();
       }
+    });
+
+    bindNavLinks();
+
+    // Email unsubscribe
+    if (emailGlobalUnsub) {
+      emailGlobalUnsub.addEventListener('change', toggleDisabled);
     }
   });
 })();

@@ -1,0 +1,74 @@
+[
+  {
+    "label": "Imagen de fondo",
+    "name": "background_image",
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "",
+      "loading": "eager"
+    }
+  },
+  {
+    "label": "Título principal",
+    "name": "title",
+    "type": "text",
+    "default": "Casas en venta en Pachuca diseñadas para generar plusvalía año con año"
+  },
+  {
+    "label": "Subtítulo",
+    "name": "subtitle",
+    "type": "text",
+    "default": "Vive en una comunidad planeada con el respaldo de Vinte. Tranquilidad, exclusividad y el espacio que tu familia merece."
+  },
+  {
+    "label": "Texto del botón CTA",
+    "name": "button_text",
+    "type": "text",
+    "default": "Ver Modelos de Casa"
+  },
+  {
+    "label": "Enlace del botón CTA",
+    "name": "button_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT", "FILE"],
+    "default": {
+      "url": {
+        "href": "/modelos",
+        "type": "EXTERNAL"
+      },
+      "no_follow": false,
+      "open_in_new_tab": false
+    }
+  },
+  {
+    "label": "Thumbnail (columna derecha)",
+    "name": "thumbnail",
+    "type": "image",
+    "default": {
+      "src": "",
+      "alt": "Real Madeira — Vista de la comunidad",
+      "loading": "lazy"
+    }
+  },
+  {
+    "label": "Texto del Tour Virtual",
+    "name": "tour_text",
+    "type": "text",
+    "default": "Explora el Tour Virtual de nuestras propiedades."
+  },
+  {
+    "label": "Enlace del Tour Virtual",
+    "name": "tour_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT"],
+    "default": {
+      "url": {
+        "href": "#tour-virtual",
+        "type": "EXTERNAL"
+      },
+      "no_follow": false,
+      "open_in_new_tab": true
+    }
+  }
+]
