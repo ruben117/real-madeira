@@ -1,8 +1,8 @@
 {
-  "label": "CMS theme boilerplate",
+  "label": "Real Madeira Theme",
   "author": {
-    "name": "HubSpot",
-    "email": "hs-content-assets@hubspot.com",
+    "name": "TouchPoint Marketing",
+    "email": "dev@touchpointmarketing.mx",
     "url": "https://www.hubspot.com/"
 	},
   "documentation_url": "https://developers.hubspot.com/docs/cms/building-blocks/themes/hubspot-cms-boilerplate",

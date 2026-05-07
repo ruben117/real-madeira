@@ -40,8 +40,8 @@
 
 /* 1c. Typography */
 
-{% set primary_font = theme.global_fonts.primary %}
-{% set secondary_font = theme.global_fonts.secondary %}
+{% set primary_font = "'BwModelica', 'Roboto', sans-serif" %}
+{% set secondary_font = "'BwModelica', 'Roboto', sans-serif" %}
 
 {% set h1_font = theme.text.h1.font %}
 {% set h1_text_transform = theme.text.h1.transform %}
@@ -197,11 +197,13 @@ a:hover,
 a:focus {
   {{ anchor_font.style }};
   color: {{ color_variant(anchor_font.color, -40) }};
+  text-decoration: none;
 }
 
 a:active {
   {{ anchor_font.style }};
   color: {{ color_variant(anchor_font.color, 40) }};
+  text-decoration: none;
 }
 
 /* Headings */

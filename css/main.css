@@ -4,11 +4,31 @@
 Any animations, or functions used throughout the project.
 Note: _macros.css needs to be imported into each stylesheet where macros are used and not included here
 */
+:root {
+  --primary-color: #F18F04;
+  --secondary-color: #1F140F;
+  --accent-color: #F18F04;
+  --text-color: #1F140F;
+  --heading-color: #171717;
+  --font-family-base: 'BwModelica', 'Roboto', sans-serif;
+  --font-size-base: 16px;
+  --font-size-disclaimer:10px;
+  --font-size-heading: clamp(30px, 2.5vw, 52px);
+  --font-size-heading-big: clamp(1.75rem, 2.5vw, 2.2rem);
+  --font-size-subheading: 40px;
+  --letter-spacing-base: 5px;
+  --font-weight-base: 400;
+  --font-weight-thin: 200;
+  --font-weight-heading: 500;
+  --font-weight-heading-black: 700;
+  --padding-btn: 10px 20px;
+}
 
 /* Generic
 This is where reset, normalize & box-sizing styles go.
 */
 
+{% include './generic/_fonts.css' %}
 {% include './generic/_reset.css' %}
 {% include './generic/_normalize.css' %}
 
@@ -33,6 +53,7 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 */
 
 {% include './components/_header.css' %}
+{% include './components/_footer.css' %}
 {% include './components/_default-modules.css' %}
 
 /* Utilities

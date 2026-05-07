@@ -1,15 +1,5 @@
 [
   {
-    "label": "Imagen de fondo",
-    "name": "background_image",
-    "type": "image",
-    "default": {
-      "src": "",
-      "alt": "",
-      "loading": "eager"
-    }
-  },
-  {
     "label": "Título principal",
     "name": "title",
     "type": "text",
@@ -33,16 +23,13 @@
     "type": "link",
     "supported_types": ["EXTERNAL", "CONTENT", "FILE"],
     "default": {
-      "url": {
-        "href": "/modelos",
-        "type": "EXTERNAL"
-      },
+      "url": { "href": "/modelos", "type": "EXTERNAL" },
       "no_follow": false,
       "open_in_new_tab": false
     }
   },
   {
-    "label": "Thumbnail (columna derecha)",
+    "label": "Thumbnail (foto principal derecha)",
     "name": "thumbnail",
     "type": "image",
     "default": {
@@ -52,23 +39,90 @@
     }
   },
   {
-    "label": "Texto del Tour Virtual",
+    "label": "Texto del botón Tour Virtual",
     "name": "tour_text",
     "type": "text",
     "default": "Explora el Tour Virtual de nuestras propiedades."
   },
   {
-    "label": "Enlace del Tour Virtual",
-    "name": "tour_link",
-    "type": "link",
-    "supported_types": ["EXTERNAL", "CONTENT"],
-    "default": {
-      "url": {
-        "href": "#tour-virtual",
-        "type": "EXTERNAL"
+    "label": "Título del lightbox",
+    "name": "lightbox_title",
+    "type": "text",
+    "default": "Tour Virtual 360° — Nuestros modelos"
+  },
+  {
+    "label": "Propiedades del Tour Virtual",
+    "name": "tour_properties",
+    "type": "group",
+    "occurrence": {
+      "default": 4,
+      "min": 1,
+      "max": 4,
+      "sorting_label_field": "tour_properties.titulo"
+    },
+    "children": [
+      {
+        "label": "Nombre del modelo",
+        "name": "titulo",
+        "type": "text",
+        "default": "Modelo de Casa"
       },
-      "no_follow": false,
-      "open_in_new_tab": true
-    }
+      {
+        "label": "Imagen",
+        "name": "imagen",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "src": "",
+          "alt": "",
+          "loading": "lazy"
+        }
+      },
+      {
+        "label": "Enlace al recorrido 360°",
+        "name": "tour_link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT"],
+        "default": {
+          "url": { "href": "", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": true
+        }
+      },
+      {
+        "label": "Texto del botón",
+        "name": "btn_text",
+        "type": "text",
+        "default": "Ver recorrido 360°"
+      }
+    ],
+    "default": [
+      {
+        "titulo": "Málaga",
+        "imagen": { "src": "", "alt": "Málaga", "loading": "lazy" },
+        "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
+        "btn_text": "Ver recorrido 360°"
+      },
+      {
+        "titulo": "Montesino",
+        "imagen": { "src": "", "alt": "Montesino", "loading": "lazy" },
+        "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
+        "btn_text": "Ver recorrido 360°"
+      },
+      {
+        "titulo": "Pontevel / Plus",
+        "imagen": { "src": "", "alt": "Pontevel / Plus", "loading": "lazy" },
+        "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
+        "btn_text": "Ver recorrido 360°"
+      },
+      {
+        "titulo": "Castelo",
+        "imagen": { "src": "", "alt": "Castelo", "loading": "lazy" },
+        "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
+        "btn_text": "Ver recorrido 360°"
+      }
+    ]
   }
 ]

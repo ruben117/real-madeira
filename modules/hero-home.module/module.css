@@ -1,45 +1,28 @@
-/* ============================================
+/* ============================================================
    Hero Home Module
-   ============================================ */
+   Fondo definido en dnd_section — este módulo maneja layout.
+   ============================================================ */
 
 .hero-home {
-  background-color: #1F140F;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   position: relative;
   width: 100%;
 }
 
-/* Dark overlay sobre la imagen de fondo */
-.hero-home__overlay {
-  background: linear-gradient(
-    to right,
-    rgba(31, 20, 15, 0.88) 0%,
-    rgba(31, 20, 15, 0.60) 55%,
-    rgba(31, 20, 15, 0.20) 100%
-  );
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
-
-/* Inner wrapper — centra el contenido verticalmente */
+/* Inner wrapper */
 .hero-home__inner {
   align-items: center;
   display: flex;
   gap: 3rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 100px);
   padding-bottom: 4rem;
-  padding-top: 140px; /* compensa el header fixed (topbar ~35px + header ~70px + holgura) */
+  padding-top: 2rem;
   position: relative;
   z-index: 1;
 }
 
-/* ---- Columna izquierda ---- */
+/* ── Columna izquierda ─────────────────────────────────── */
+
 .hero-home__left {
   flex: 0 0 55%;
   max-width: 55%;
@@ -47,8 +30,8 @@
 
 .hero-home__title {
   color: #ffffff;
-  font-size: clamp(1.75rem, 3.5vw, 3rem);
-  font-weight: 700;
+  font-size: var(--font-size-heading-big);
+  font-weight: var(--font-weight-heading);
   line-height: 1.15;
   margin-bottom: 1.25rem;
   margin-top: 0;
@@ -56,100 +39,275 @@
 
 .hero-home__subtitle {
   color: rgba(255, 255, 255, 0.85);
-  font-size: 1rem;
+  font-size: 17px;
   line-height: 1.65;
   margin-bottom: 2rem;
   max-width: 500px;
 }
 
 .hero-home__btn {
-  background-color: #F18F04;
-  border: 2px solid #F18F04;
-  border-radius: 4px;
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
   color: #ffffff;
   display: inline-block;
-  font-size: 0.9375rem;
+  font-size: var(--font-size-base);
   font-weight: 700;
   letter-spacing: 0.04em;
-  padding: 0.8rem 2.25rem;
+  padding: var(--padding-btn);
   text-decoration: none;
-  text-transform: uppercase;
-  transition: background-color 0.25s, color 0.25s;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
 }
 
 .hero-home__btn:hover,
 .hero-home__btn:focus {
-  background-color: transparent;
-  color: #F18F04;
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: var(--primary-color);
   outline: none;
 }
 
-/* ---- Columna derecha (thumbnail) ---- */
+/* ── Columna derecha ───────────────────────────────────── */
+
 .hero-home__right {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   flex: 0 0 45%;
   justify-content: flex-end;
   max-width: 45%;
+  /* Espacio para que la imagen con margin-top negativo sea visible */
+  padding-top: 80px;
 }
+
+/* ── Thumbnail card ────────────────────────────────────── */
 
 .hero-home__thumbnail {
-  border-radius: 4px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
-  overflow: hidden;
+  background-color: #1F140F;
+  border-radius: 0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  max-width: 390px;
+  overflow: visible; /* la imagen sangra por arriba */
   position: relative;
   width: 100%;
-  max-width: 390px;
+  padding: 0px 20px;
 }
 
+/* La imagen sube ~25% fuera del contenedor */
 .hero-home__thumbnail-img {
   display: block;
   height: auto;
+  margin-top: -15%;
+  position: relative;
   width: 100%;
+  z-index: 1;
 }
 
-/* Barra inferior del thumbnail — Tour Virtual */
+/* ── Botón Tour Virtual (trigger del lightbox) ─────────── */
+
 .hero-home__tour {
   align-items: center;
-  background-color: rgba(31, 20, 15, 0.92);
-  bottom: 0;
+  background: none;
+  border: none;
   color: #ffffff;
+  cursor: pointer;
   display: flex;
   gap: 1rem;
-  left: 0;
-  padding: 0.875rem 1.25rem;
-  position: absolute;
-  right: 0;
-  text-decoration: none;
+  padding: 15px 0px;
+  text-align: left;
   transition: background-color 0.2s;
+  width: 100%;
 }
 
 .hero-home__tour:hover,
 .hero-home__tour:focus {
-  background-color: rgba(31, 20, 15, 1);
+  background-color: transparent;
   outline: none;
+  border: none;
 }
 
 .hero-home__tour-icon {
   align-items: center;
-  background-color: #F18F04;
+  background-color: var(--primary-color);
   color: #ffffff;
   display: flex;
   flex-shrink: 0;
-  height: 48px;
+  height: 52px;
   justify-content: center;
-  width: 48px;
+  width: 52px;
 }
 
 .hero-home__tour-text {
-  font-size: 0.875rem;
+  font-size: 17px;
   font-weight: 500;
   line-height: 1.4;
 }
 
-/* ============================================
+/* ============================================================
+   Lightbox
+   ============================================================ */
+
+.hero-lightbox {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  transition: opacity 0.28s ease;
+  z-index: 2000;
+}
+
+.hero-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Fondo oscuro */
+.hero-lightbox__backdrop {
+  background: rgba(0, 0, 0, 0.82);
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Panel central */
+.hero-lightbox__panel {
+  background: #ffffff;
+  border-radius: 4px;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+  max-height: 90vh;
+  max-width: 1200px;
+  overflow-y: auto;
+  padding: 2.5rem 2rem 2rem;
+  position: relative;
+  transform: translateY(16px);
+  transition: transform 0.28s ease;
+  width: 92%;
+  z-index: 1;
+}
+
+.hero-lightbox.is-open .hero-lightbox__panel {
+  transform: translateY(0);
+}
+
+/* Botón cerrar */
+.hero-lightbox__close {
+  align-items: center;
+  background: transparent;
+  border: 1px solid rgba(31, 20, 15, 0.2);
+  border-radius: 50%;
+  color: #1F140F;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  position: absolute;
+  right: 1.25rem;
+  top: 1.25rem;
+  transition: background-color 0.2s;
+  width: 36px;
+  padding:0;
+}
+
+.hero-lightbox__close:hover,
+.hero-lightbox__close:focus {
+  background-color: #1F140F;
+  border-color: #1F140F;
+  color: #ffffff;
+  outline: none;
+}
+
+/* Título del lightbox */
+.hero-lightbox__title {
+  color: #1F140F;
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin-bottom: 1.75rem;
+  margin-top: 0;
+  padding-right: 3rem;
+}
+
+/* Grid de 4 propiedades */
+.hero-lightbox__grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/* Tarjeta de propiedad */
+.hero-lightbox__card {
+  border: 1px solid rgba(31, 20, 15, 0.1);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.hero-lightbox__card-img-wrap {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.hero-lightbox__card-img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  width: 100%;
+}
+
+.hero-lightbox__card:hover .hero-lightbox__card-img {
+  transform: scale(1.04);
+}
+
+.hero-lightbox__card-body {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem 1.25rem;
+}
+
+.hero-lightbox__card-title {
+  color: #1F140F;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.hero-lightbox__card-btn {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 0;
+  color: #ffffff;
+  display: inline-block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+  padding: 0.55rem 1.25rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.hero-lightbox__card-btn:hover,
+.hero-lightbox__card-btn:focus {
+  background-color: transparent;
+  color: var(--primary-color);
+  outline: none;
+}
+
+/* ============================================================
    Responsive
-   ============================================ */
+   ============================================================ */
 
 @media (max-width: 1024px) {
   .hero-home__left {
@@ -164,12 +322,17 @@
 }
 
 @media (max-width: 767px) {
+  .hero-home,
   .hero-home__inner {
+    min-height: auto;
+  }
+
+  .hero-home__inner {
+    align-items: flex-start;
     flex-direction: column;
     gap: 2rem;
-    padding-top: 130px;
     padding-bottom: 3rem;
-    align-items: flex-start;
+    padding-top: 1.5rem;
   }
 
   .hero-home__left,
@@ -181,6 +344,7 @@
 
   .hero-home__right {
     justify-content: center;
+    padding-top: 60px;
   }
 
   .hero-home__thumbnail {
@@ -193,5 +357,22 @@
 
   .hero-home__overlay {
     background: rgba(31, 20, 15, 0.72);
+  }
+
+  /* Lightbox en móvil */
+  .hero-lightbox__panel {
+    max-height: 95vh;
+    padding: 2rem 1rem 1.5rem;
+    width: 96%;
+  }
+
+  .hero-lightbox__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hero-lightbox__grid {
+    gap: 1rem;
   }
 }

@@ -1,102 +1,97 @@
 (function () {
-  // Variables
-  var header = document.getElementById('site-header');
-  var nav = document.querySelector('.header__navigation');
-  var allToggles = document.querySelectorAll('.header--toggle');
-  var navToggle = document.querySelector('.header__navigation--toggle');
-  var closeToggle = document.querySelector('.header__close--toggle');
-  var allElements = document.querySelectorAll('.header--element, .header--toggle');
+  'use strict';
+
+  /* ── Selectores ─────────────────────────────────────────── */
+  var siteHeader  = document.getElementById('site-header');
+  var headerNav   = document.getElementById('header-nav');
+  var hamburger   = document.getElementById('header-hamburger');
   var emailGlobalUnsub = document.querySelector('input[name="globalunsub"]');
 
-  // Functions
-
-  function domReady(callback) {
+  /* ── Helpers ─────────────────────────────────────────────── */
+  function domReady(cb) {
     if (['interactive', 'complete'].indexOf(document.readyState) >= 0) {
-      callback();
+      cb();
     } else {
-      document.addEventListener('DOMContentLoaded', callback);
+      document.addEventListener('DOMContentLoaded', cb);
     }
   }
 
-  // Sticky header: añade clase cuando el usuario hace scroll
+  /* ── Scroll → .is-scrolled ───────────────────────────────── */
   function handleScroll() {
-    if (!header) return;
+    if (!siteHeader) return;
     if (window.scrollY > 10) {
-      header.classList.add('is-scrolled');
+      siteHeader.classList.add('is-scrolled');
     } else {
-      header.classList.remove('is-scrolled');
+      siteHeader.classList.remove('is-scrolled');
     }
   }
 
-  // Abrir/cerrar menú de navegación móvil
-  function toggleNav() {
-    allToggles.forEach(function (toggle) {
-      toggle.classList.toggle('hide');
-    });
-
-    nav.classList.toggle('open');
-    navToggle.classList.toggle('open');
-    closeToggle.classList.toggle('show');
-
-    var isOpen = nav.classList.contains('open');
-    if (navToggle) navToggle.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
+  /* ── Menú móvil ──────────────────────────────────────────── */
+  function openNav() {
+    if (!headerNav || !hamburger) return;
+    headerNav.classList.add('is-open');
+    hamburger.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
   }
 
-  // Cerrar todo en móvil
-  function closeAll() {
-    allElements.forEach(function (element) {
-      element.classList.remove('hide', 'open');
-    });
-
-    closeToggle.classList.remove('show');
-    if (navToggle) navToggle.setAttribute('aria-expanded', 'false');
+  function closeNav() {
+    if (!headerNav || !hamburger) return;
+    headerNav.classList.remove('is-open');
+    hamburger.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
 
-  // Cerrar nav al hacer click en un enlace del menú (móvil)
-  function bindNavLinks() {
-    if (!nav) return;
-    var links = nav.querySelectorAll('.menu__link');
-    links.forEach(function (link) {
-      link.addEventListener('click', function () {
-        if (nav.classList.contains('open')) {
-          closeAll();
-        }
-      });
-    });
+  function toggleNav() {
+    if (headerNav && headerNav.classList.contains('is-open')) {
+      closeNav();
+    } else {
+      openNav();
+    }
   }
 
-  // Disable email subscription checkboxes when "unsubscribe all" is checked
+  /* ── Cerrar nav al hacer click fuera del header ──────────── */
+  function handleOutsideClick(e) {
+    if (!siteHeader || !headerNav) return;
+    if (headerNav.classList.contains('is-open') && !siteHeader.contains(e.target)) {
+      closeNav();
+    }
+  }
+
+  /* ── Cerrar nav al pasar a viewport desktop ──────────────── */
+  function handleResize() {
+    if (window.innerWidth >= 768 && headerNav && headerNav.classList.contains('is-open')) {
+      closeNav();
+    }
+  }
+
+  /* ── Deshabilitar checkboxes en página de email unsub ────── */
   function toggleDisabled() {
-    var emailSubItem = document.querySelectorAll('#email-prefs-form .item');
-
-    emailSubItem.forEach(function (item) {
-      var emailSubItemInput = item.querySelector('input');
-
+    var items = document.querySelectorAll('#email-prefs-form .item');
+    items.forEach(function (item) {
+      var input = item.querySelector('input');
       if (emailGlobalUnsub.checked) {
         item.classList.add('disabled');
-        emailSubItemInput.setAttribute('disabled', 'disabled');
-        emailSubItemInput.checked = false;
+        input.setAttribute('disabled', 'disabled');
+        input.checked = false;
       } else {
         item.classList.remove('disabled');
-        emailSubItemInput.removeAttribute('disabled');
+        input.removeAttribute('disabled');
       }
     });
   }
 
-  // Execute on document ready
+  /* ── Init ────────────────────────────────────────────────── */
   domReady(function () {
     if (!document.body) return;
 
-    // Scroll listener para el header sticky
+    /* Scroll sticky */
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // evaluar estado inicial
+    handleScroll();
 
-    // Toggle de navegación móvil
-    if (navToggle) {
-      navToggle.addEventListener('click', toggleNav);
-      navToggle.addEventListener('keydown', function (e) {
+    /* Hamburger: click + teclado */
+    if (hamburger) {
+      hamburger.addEventListener('click', toggleNav);
+      hamburger.addEventListener('keydown', function (e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           toggleNav();
@@ -104,29 +99,34 @@
       });
     }
 
-    // Botón cerrar
-    if (closeToggle) {
-      closeToggle.addEventListener('click', closeAll);
-      closeToggle.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          closeAll();
-        }
+    /* Cerrar al hacer click en un link del nav (móvil) */
+    if (headerNav) {
+      var navLinks = headerNav.querySelectorAll('.menu__link');
+      navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+          if (headerNav.classList.contains('is-open')) closeNav();
+        });
       });
     }
 
-    // Cerrar nav al presionar Escape
+    /* Cerrar con Escape */
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && nav && nav.classList.contains('open')) {
-        closeAll();
+      if (e.key === 'Escape' && headerNav && headerNav.classList.contains('is-open')) {
+        closeNav();
+        if (hamburger) hamburger.focus();
       }
     });
 
-    bindNavLinks();
+    /* Cerrar al click fuera del header */
+    document.addEventListener('click', handleOutsideClick);
 
-    // Email unsubscribe
+    /* Cerrar al redimensionar a desktop */
+    window.addEventListener('resize', handleResize);
+
+    /* Email unsubscribe */
     if (emailGlobalUnsub) {
       emailGlobalUnsub.addEventListener('change', toggleDisabled);
     }
   });
+
 })();

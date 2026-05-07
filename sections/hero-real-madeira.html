@@ -6,8 +6,13 @@
   description: "Sección hero de pantalla completa con título, subtítulo, botón CTA y thumbnail con tour virtual."
 -->
 {% dnd_section
+  background_image={
+    "backgroundSize": "cover",
+    "backgroundPosition": "MIDDLE_CENTER",
+    "imageUrl": get_asset_url("../images/bgk-hero-home.jpg")
+  },
   padding={
-    "top": 0,
+    "top": 100,
     "bottom": 0,
     "left": 0,
     "right": 0
@@ -16,11 +21,6 @@
   {% dnd_module
     path="../modules/hero-home",
     label="Hero — contenido principal",
-    background_image={
-      "src": get_asset_url("../images/bgk-hero-home.jpg"),
-      "alt": "",
-      "loading": "eager"
-    },
     title="Casas en venta en Pachuca diseñadas para generar plusvalía año con año",
     subtitle="Vive en una comunidad planeada con el respaldo de Vinte. Tranquilidad, exclusividad y el espacio que tu familia merece.",
     button_text="Ver Modelos de Casa",

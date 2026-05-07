@@ -1,0 +1,133 @@
+/* ============================================================
+   BwModelica — Custom font family
+   Pesos: Hairline(100) Thin(200) Light(300) Regular(400)
+          Medium(500) Bold(700) ExtraBold(800) Black(900)
+   ============================================================ */
+
+/* ── Hairline ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 100;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Hairline.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 100;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-HairlineItalic.otf") }}') format('opentype');
+}
+
+/* ── Thin ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 200;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Thin.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 200;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-ThinItalic.otf") }}') format('opentype');
+}
+
+/* ── Light ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 300;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Light.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 300;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-LightItalic.otf") }}') format('opentype');
+}
+
+/* ── Regular ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 400;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Regular.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 400;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-RegularItalic.otf") }}') format('opentype');
+}
+
+/* ── Medium ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 500;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Medium.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 500;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-MediumItalic.otf") }}') format('opentype');
+}
+
+/* ── Bold ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 700;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Bold.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 700;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-BoldItalic.otf") }}') format('opentype');
+}
+
+/* ── ExtraBold ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 800;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-ExtraBold.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 800;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-ExtraBoldItalic.otf") }}') format('opentype');
+}
+
+/* ── Black ── */
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: normal;
+  font-weight: 900;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-Black.otf") }}') format('opentype');
+}
+@font-face {
+  font-display: swap;
+  font-family: 'BwModelica';
+  font-style: italic;
+  font-weight: 900;
+  src: url('{{ get_asset_url("../../fonts/BwModelica-BlackItalic.otf") }}') format('opentype');
+}

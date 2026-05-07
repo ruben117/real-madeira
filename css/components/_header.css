@@ -1,319 +1,390 @@
-/* ============================================
-   Header — Real Madeira
-   ============================================ */
+/* ============================================================
+   SITE HEADER
+   Estructura: topbar (rojo) + header__main (transparente/blur)
+   Comportamiento: fixed, sticky al hacer scroll agrega .is-scrolled
+   ============================================================ */
 
-/* Header fixed sobre el hero */
-.header {
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-}
+/* ── Accesibilidad: skip link ────────────────────────────── */
 
-/* Navigation skipper (accesibilidad) */
 .header__skip {
   height: 1px;
-  left: -1000px;
+  left: -9999px;
   overflow: hidden;
   position: absolute;
-  text-align: left;
-  top: -1000px;
+  top: -9999px;
   width: 1px;
 }
 
-.header__skip:hover,
-.header__skip:focus,
-.header__skip:active {
+.header__skip:focus {
+  background: #E0001A;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 600;
   height: auto;
   left: 0;
   overflow: visible;
+  padding: 0.5rem 1rem;
   top: 0;
   width: auto;
   z-index: 9999;
 }
 
-/* ============================================
-   Topbar
-   ============================================ */
+/* ── Wrapper principal fijo ──────────────────────────────── */
 
-.header__topbar {
-  background-color: #1F140F;
-  padding: 0.45rem 0;
+.site-header {
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.header__topbar-inner {
+/* ── Topbar ──────────────────────────────────────────────── */
+
+.topbar {
+  background-color: var(--primary-color);
+}
+
+.topbar__container {
   align-items: center;
   display: flex;
   justify-content: center;
+  max-width: 1280px;
+  padding-bottom: 0.2rem;
+  padding-top: 0.2rem;
 }
 
-.header__topbar-link {
+/* Módulo rich_text dentro del topbar */
+.topbar p,
+.topbar .hs_cos_wrapper p {
   align-items: center;
-  color: #ffffff;
-  display: inline-flex;
-  font-size: 0.8125rem;
+  color: var(--secondary-color);
+  display: flex;
+  font-size: 14px;
   font-weight: 400;
-  gap: 0.5rem;
+  gap: 0.4rem;
   letter-spacing: 0.01em;
-  text-decoration: none;
-  transition: color 0.2s;
+  margin: 0;
 }
 
-.header__topbar-link:hover {
-  color: #F18F04;
-}
-
-.header__topbar-icon {
+.topbar svg {
   flex-shrink: 0;
-  line-height: 1;
 }
 
-/* ============================================
-   Barra principal del header
-   ============================================ */
+.topbar a {
+  color: #ffffff;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.topbar a:hover {
+  text-decoration: underline;
+}
+
+/* ── Header main ─────────────────────────────────────────── */
 
 .header__main {
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background-color: rgba(31, 20, 15, 0.82);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  transition: background-color 0.3s;
+  background-color: rgba(21, 38, 56, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Cuando el usuario ha hecho scroll — ligeramente más opaco */
-.header.is-scrolled .header__main {
-  background-color: rgba(31, 20, 15, 0.96);
+/* Estado scrolled: fondo sólido */
+.site-header.is-scrolled .header__main {
+  background-color: #152638;
+  border-bottom-color: rgba(255, 255, 255, 0.12);
 }
+
+/* ── Contenedor principal del header ────────────────────── */
 
 .header__container {
   align-items: center;
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
-  padding-bottom: 0.875rem;
-  padding-top: 0.875rem;
+  max-width: 1280px;
+  min-height: 70px;
+  padding-bottom: 0;
+  padding-top: 0;
 }
 
-/* ============================================
-   Logo
-   ============================================ */
+/* ── Logo ────────────────────────────────────────────────── */
 
 .header__logo {
   align-items: center;
   display: flex;
   flex-shrink: 0;
-  max-width: 170px;
+  max-width: 115px;
 }
 
-.header__logo-link {
-  display: block;
-  line-height: 0;
-}
-
-.header__logo-img,
 .header__logo img {
   display: block;
   height: auto;
   max-width: 100%;
+  padding: 5px;
 }
 
-/* Fallback: nombre de empresa si no hay logo */
+/* Texto del logo si no hay imagen */
 .header__logo .logo-company-name {
   color: #ffffff;
   font-size: 1.1rem;
   font-weight: 700;
 }
 
-/* ============================================
-   Columna de navegación
-   ============================================ */
+.menu .menu__link:hover, .menu .menu__link:focus, .header__language-switcher-label-current:hover, .header__language-switcher-label-current:focus, .header__language-switcher .lang_list_class li:hover a, .header__language-switcher .lang_list_class li a:focus,
+.menu .menu__link:active, .header__language-switcher-label-current:active, .header__language-switcher .lang_list_class li a:active {
+    color: #ffffff !important;
+}
 
-.header__column {
-  align-items: center;
-  display: flex;
+/* ── Navegación ──────────────────────────────────────────── */
+
+.header__nav {
   flex: 1;
-  justify-content: flex-end;
 }
 
-.header__row-2 {
+/* Ocultar nav mobile en desktop, mostrar desktop nav */
+.header__nav .menu--mobile {
+  display: none;
+}
+
+/* Estilos de los links del menú en el header */
+.header__nav .menu__wrapper {
   align-items: center;
   display: flex;
-  gap: 1.75rem;
+  gap: 0;
   justify-content: flex-end;
-  width: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-/* ============================================
-   Menú de navegación
-   ============================================ */
-
-.header__navigation {
-  align-items: center;
-  display: flex;
+.header__nav .menu__item {
+  position: relative;
 }
 
-/* Colores de los links del menú sobre fondo oscuro */
-.header__navigation .menu__link,
-.header__navigation .menu__link:visited {
-  color: #ffffff;
-  font-size: 0.9375rem;
+.header__nav .menu__link {
+  color: rgb(255 255 255 / 79%);
+  display: block;
+  font-size: 14px;
   font-weight: 500;
-  transition: color 0.2s;
+  padding: 0px 10px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
-.header__navigation .menu__link:hover,
-.header__navigation .menu__item--active_branch > .menu__link,
-.header__navigation .menu__item--active > .menu__link {
-  color: #F18F04;
+.header__nav .menu__link:hover,
+.header__nav .menu__link:focus {
+  color: #FFEC01;
 }
 
-/* Submenú */
-.header__navigation .menu__submenu {
-  background-color: rgba(31, 20, 15, 0.97);
-  border-top: 2px solid #F18F04;
+.header__nav .menu__link--active-link {
+  color: #FFEC01;
 }
 
-.header__navigation .menu__submenu .menu__link {
-  color: rgba(255, 255, 255, 0.85);
+
+.header__cta .button{
+  background-color: var(--primary-color);
+  border-radius: 0px;
+  color: #ffffff !important;
+  display: inline-block;
+  font-size: var(--font-size-base);
+  letter-spacing: 0.01em;
+  padding: 8px 30px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  border: none;
 }
 
-.header__navigation .menu__submenu .menu__link:hover {
-  color: #F18F04;
+.header__cta .button:hover {
+  background-color: #b5001a;
+  transform: translateY(-1px);
+  border: none;
+}
+.header__cta .button:focus {
+  background-color: #b5001a;
+  transform: translateY(-1px);
+  border: none;
 }
 
-/* ============================================
-   Botón CTA
-   ============================================ */
+
+/* Submenú dropdown */
+.header__nav .menu__submenu {
+  background-color: transparent !important;
+  border: none !important;
+  border-top: 2px solid #E0001A;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  left: 0;
+  list-style: none;
+  min-width: 200px;
+  opacity: 0;
+  padding: 0.5rem 0 0;
+  pointer-events: none;
+  position: absolute;
+  top: 100%;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  transform: translateY(-4px);
+  z-index: 100;
+}
+.menu__submenu .menu__link:hover, .menu__submenu .menu__link:focus, .header__language-switcher .lang_list_class li:hover, .menu__submenu--level-2 > .menu__item:first-child:hover:before, .menu__submenu--level-2 > .menu__item:first-child.focus:before {
+    background-color: var(--secondary-color) !important;
+}
+
+.header__nav .menu__item--has-submenu:hover > .menu__submenu,
+.header__nav .menu__item--has-submenu:focus-within > .menu__submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.header__nav .menu__submenu .menu__link {
+  font-size: 14px;
+  padding: 0px 9px;
+}
+
+/* ── CTA del header ──────────────────────────────────────── */
 
 .header__cta {
   flex-shrink: 0;
 }
 
-.header__cta-btn {
-  background-color: #ffffff;
-  border: 2px solid #ffffff;
-  border-radius: 4px;
-  color: #1F140F;
-  display: inline-block;
-  font-size: 0.875rem;
+.header__cta .button-wrapper {
+  text-align: right;
+}
+
+.header__cta .button {
   font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 0.55rem 1.5rem;
-  text-decoration: none;
-  transition: background-color 0.22s, color 0.22s, border-color 0.22s;
-  white-space: nowrap;
 }
 
-.header__cta-btn:hover,
-.header__cta-btn:focus {
-  background-color: #F18F04;
-  border-color: #F18F04;
-  color: #ffffff;
-  outline: none;
-}
 
-/* ============================================
-   Toggles móvil — ocultos en desktop
-   ============================================ */
+/* ── Hamburger (solo mobile) ─────────────────────────────── */
 
-#nav-toggle {
+.header__hamburger {
+  align-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
   display: none;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: center;
+  padding: 0.5rem;
 }
 
-.header__navigation--toggle,
-.header__close--toggle {
-  display: none;
+.hamburger__line {
+  background-color: #ffffff;
+  border-radius: 2px;
+  display: block;
+  height: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  width: 24px;
 }
 
-/* ============================================
-   Responsive — móvil (≤ 767px)
-   ============================================ */
+/* Estado abierto: animación X */
+.header__hamburger[aria-expanded="true"] .hamburger__line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.header__hamburger[aria-expanded="true"] .hamburger__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.header__hamburger[aria-expanded="true"] .hamburger__line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ── Responsive – Mobile (≤ 767px) ──────────────────────── */
 
 @media (max-width: 767px) {
-  .header__container {
-    gap: 0.75rem;
-    padding-bottom: 0.75rem;
-    padding-top: 0.75rem;
-  }
-
-  .header__logo {
-    max-width: 130px;
-  }
-
-  .header__row-2 {
-    gap: 0.75rem;
-  }
-
-  /* ---- Hamburger ---- */
-  .header__navigation--toggle {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='19' viewBox='0 0 24 19'%3E%3Cg stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round'%3E%3Cline x1='2' y1='2' x2='22' y2='2'/%3E%3Cline x1='2' y1='9.5' x2='22' y2='9.5'/%3E%3Cline x1='2' y1='17' x2='22' y2='17'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    display: block;
-    height: 24px;
-    width: 24px;
-  }
-
-  .header__navigation--toggle.hide {
-    display: none;
-  }
-
-  /* ---- Botón cerrar ---- */
-  .header__close--toggle {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg stroke='%23ffffff' stroke-width='2.5' fill='none' stroke-linecap='round'%3E%3Cline x1='3' y1='3' x2='21' y2='21'/%3E%3Cline x1='21' y1='3' x2='3' y2='21'/%3E%3C/g%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    display: none;
-    height: 24px;
-    width: 24px;
-  }
-
-  .header__close--toggle.show {
-    display: block;
-  }
-
-  /* ---- CTA: visible siempre en móvil en la barra ---- */
-  .header__cta {
+  .header__hamburger {
     display: flex;
   }
 
-  .header__cta-btn {
-    font-size: 0.75rem;
-    padding: 0.45rem 0.9rem;
+  .header__cta {
+    display: none;
   }
 
-  /* ---- Overlay de navegación móvil ---- */
-  .header__navigation {
-    display: none;
+  .header__nav {
+    background-color: #152638;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    left: 0;
+    max-height: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 100%; /* debajo del site-header completo (topbar + main) */
+    transition: max-height 0.35s ease;
     width: 100%;
   }
 
-  .header__navigation.open {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    background-color: rgba(31, 20, 15, 0.97);
+  .header__nav.is-open {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  /* En mobile mostrar solo el nav mobile */
+  .header__nav .menu--desktop {
+    display: none;
+  }
+
+  .header__nav .menu--mobile {
     display: block;
-    left: 0;
-    min-height: calc(100vh - 96px);
-    padding: 1.5rem 0;
-    position: absolute;
-    right: 0;
-    top: 100%;
-    z-index: 500;
   }
 
-  /* Links del menú en overlay móvil */
-  .header__navigation.open .menu__link {
-    font-size: 1.125rem;
-    padding: 0.75rem 1.5rem;
+  .header__nav .menu__wrapper {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
   }
 
-  /* Ocultar CTA dentro de header--element en móvil cuando el nav está cerrado */
-  .header__cta.header--element {
-    display: flex;
+  .header__nav .menu__link {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    font-size: 14px;
+    padding: 0.75rem 1.25rem;
+  }
+
+  .header__nav .menu__submenu {
+    border-top: none;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    position: static;
+    transform: none;
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  .header__nav .menu__submenu .menu__link {
+    padding-left: 2.25rem;
+  }
+
+  .header__container {
+    min-height: 60px;
+    gap: 1rem;
+  }
+
+  .header__logo {
+    max-width: 100px;
+  }
+}
+
+/* ── Responsive – Tablet (768px – 1023px) ───────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .header__nav .menu__link {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.65rem;
+  }
+
+  .header__cta .button {
+    font-size: 0.875rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .header__logo {
+    max-width: 140px;
   }
 }
