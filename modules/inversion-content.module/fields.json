@@ -1,0 +1,44 @@
+[
+  {
+    "label": "Título (H2)",
+    "name": "titulo",
+    "type": "text",
+    "default": "Más que una casa, una inversión que crece contigo"
+  },
+  {
+    "label": "Texto del cuerpo",
+    "name": "cuerpo",
+    "type": "richtext",
+    "default": "<p>Con 22 años de solidez en el mercado mexicano, Vinte es la empresa pública líder que garantiza que tu patrimonio aumente su valor año tras año.</p>"
+  },
+  {
+    "label": "Texto del botón CTA",
+    "name": "cta_texto",
+    "type": "text",
+    "default": "Te asesoramos con tu inversión"
+  },
+  {
+    "label": "Enlace del botón CTA",
+    "name": "cta_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+    "default": {
+      "url": { "href": "#contacto", "type": "EXTERNAL" },
+      "no_follow": false,
+      "open_in_new_tab": false
+    }
+  },
+  {
+    "label": "Infografía",
+    "name": "infografia",
+    "type": "image",
+    "responsive": true,
+    "resizable": true,
+    "show_loading": true,
+    "default": {
+      "src": "",
+      "alt": "Infografía: comparativa de plusvalía Real Madeira vs otras opciones",
+      "loading": "lazy"
+    }
+  }
+]

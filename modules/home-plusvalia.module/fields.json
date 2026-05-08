@@ -1,0 +1,78 @@
+[
+  {
+    "label": "Zona 1 — Columna izquierda",
+    "name": "zona_izquierda",
+    "type": "group",
+    "children": [
+      {
+        "label": "Título (H2)",
+        "name": "titulo",
+        "type": "text",
+        "default": "Más que una casa, una inversión que crece contigo"
+      },
+      {
+        "label": "Texto del cuerpo",
+        "name": "cuerpo",
+        "type": "richtext",
+        "default": "<p>Con 22 años de solidez en el mercado mexicano, Vinte es la empresa pública líder que garantiza que tu patrimonio aumente su valor año tras año.</p>"
+      },
+      {
+        "label": "Texto del botón CTA",
+        "name": "cta_texto",
+        "type": "text",
+        "default": "Te asesoramos con tu inversión"
+      },
+      {
+        "label": "Enlace del botón CTA",
+        "name": "cta_link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+        "default": {
+          "url": { "href": "#contacto", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        }
+      }
+    ]
+  },
+  {
+    "label": "Zona 1 — Columna derecha",
+    "name": "zona_derecha",
+    "type": "group",
+    "children": [
+      {
+        "label": "Infografía (imagen)",
+        "name": "infografia",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": {
+          "src": "",
+          "alt": "Infografía: comparativa de plusvalía Real Madeira vs otras opciones",
+          "loading": "lazy"
+        }
+      }
+    ]
+  },
+  {
+    "label": "Zona 2 — Párrafo inferior",
+    "name": "zona_inferior",
+    "type": "group",
+    "children": [
+      {
+        "label": "Mostrar zona inferior",
+        "name": "visible",
+        "type": "boolean",
+        "display": "toggle",
+        "default": true
+      },
+      {
+        "label": "Texto",
+        "name": "texto",
+        "type": "richtext",
+        "default": "<p>Tu patrimonio aumenta su valor porque no solo compras una casa, sino un entorno diseñado para durar. Con el respaldo de Vinte, aseguras una comunidad con mantenimiento constante y servicios integrados que protegen tu calidad de vida y tu dinero.</p>"
+      }
+    ]
+  }
+]

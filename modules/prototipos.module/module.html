@@ -1,0 +1,88 @@
+{% set fallback_bg = get_asset_url("../../images/bgk-home-prototipos-montesino.jpg") %}
+{% set icon_cta = get_asset_url("../../images/icon-button-hero-ligthbox.png") %}
+
+<div class="prototipos-slider" data-prototipos>
+
+  {# ── Contenido ── #}
+  <div class="prototipos-slider__content">
+
+    {# ── Columna izquierda ── #}
+    <div class="prototipos-slider__left">
+
+      {% if module.titulo %}
+        <h2 class="prototipos-slider__titulo">{{ module.titulo | escape_html }}</h2>
+      {% endif %}
+
+      {# Paneles dinámicos: precio + descripción — data-bg para el fondo de la sección #}
+      <div class="prototipos-slider__left-panels">
+        {% for item in module.prototipos %}
+          {% set bg = item.fondo.src if item.fondo.src else fallback_bg %}
+          <div class="prototipos-panel{% if loop.index == 1 %} is-active{% endif %}"
+               data-panel="{{ loop.index0 }}"
+               data-bg="{{ bg }}">
+            {% if item.precio %}
+              <p class="prototipos-panel__precio">{{ item.precio | escape_html }}</p>
+            {% endif %}
+            {% if item.descripcion %}
+              <div class="prototipos-panel__descripcion">{{ item.descripcion }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      {# Navs prev / next #}
+      <div class="prototipos-slider__nav">
+        <button class="prototipos-slider__btn" aria-label="Prototipo anterior" data-proto-prev>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M11 14L6 9L11 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="prototipos-slider__btn" aria-label="Siguiente prototipo" data-proto-next>
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path d="M7 4L12 9L7 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    {# ── Columna derecha: tarjeta prototipo ── #}
+    <div class="prototipos-slider__right">
+      {% for item in module.prototipos %}
+        {% set cover = item.cover.src if item.cover.src else fallback_bg %}
+        <div class="prototipos-card{% if loop.index == 1 %} is-active{% endif %}" data-card="{{ loop.index0 }}">
+
+          <h3 class="prototipos-card__nombre">{{ item.nombre | escape_html }}</h3>
+
+          <div class="prototipos-card__img-wrap">
+            <img src="{{ cover }}"
+                 alt="{{ item.nombre | escape_attr }}"
+                 loading="{% if loop.index == 1 %}eager{% else %}lazy{% endif %}">
+          </div>
+
+          <div class="prototipos-card__footer">
+            <div class="prototipos-card__info">
+              {% if item.caracteristica %}
+                <p class="prototipos-card__caracteristica">{{ item.caracteristica | escape_html }}</p>
+              {% endif %}
+              {% if item.detalle %}
+                <div class="prototipos-card__detalle">{{ item.detalle }}</div>
+              {% endif %}
+            </div>
+            {% if item.cta_link.url.href %}
+              <a class="prototipos-card__cta"
+                 href="{{ item.cta_link.url.href }}"
+                 aria-label="Ver más sobre {{ item.nombre | escape_attr }}"
+                 {% if item.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                 {% if item.cta_link.no_follow %}rel="nofollow"{% endif %}>
+                <img src="{{ icon_cta }}" alt="" aria-hidden="true" loading="lazy">
+              </a>
+            {% endif %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</div>

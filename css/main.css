@@ -13,7 +13,7 @@ Note: _macros.css needs to be imported into each stylesheet where macros are use
   --font-family-base: 'BwModelica', 'Roboto', sans-serif;
   --font-size-base: 16px;
   --font-size-disclaimer:10px;
-  --font-size-heading: clamp(30px, 2.5vw, 52px);
+  --font-size-heading: clamp(30px, 1.9vw, 40px);
   --font-size-heading-big: clamp(1.75rem, 2.5vw, 2.2rem);
   --font-size-subheading: 40px;
   --letter-spacing-base: 5px;
@@ -55,6 +55,12 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 {% include './components/_header.css' %}
 {% include './components/_footer.css' %}
 {% include './components/_default-modules.css' %}
+{% include './components/_inversion.css' %}
+{% include './components/_amenidades.css' %}
+{% include './components/_prototipos.css' %}
+{% include './components/_ubicacion.css' %}
+{% include './components/_card-icono.css' %}
+{% include './components/_certificacion.css' %}
 
 /* Utilities
 Helper classes with ability to override anything that comes before it

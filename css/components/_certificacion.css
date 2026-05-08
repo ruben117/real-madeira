@@ -1,0 +1,108 @@
+/* ============================================================
+   Certificación EDGE + Oportunidades
+   Valores exactos: Figma node 5988:2
+   ============================================================ */
+
+/* ── EDGE: título H3 (en @hubspot/rich_text) ──────────── */
+
+.certif-edge-titulo {
+  color: #f5f3ef;
+  font-size: clamp(26px, 2.9vw, 42px);
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1.2;
+  margin: 0 auto 2.5rem;
+  max-width: 860px;
+  text-align: center;
+}
+
+/* ── Oportunidades: efecto dos colores ─────────────────── */
+
+/*
+  La sección oportunidades (bg cream #f5f3ef) contiene un .row-fluid
+  con bg blanco que sube 166px hacia la zona oscura de arriba.
+  Se aplica al dnd-section que contiene .oportunidades-grid
+  (extra_class del card-icono.module).
+*/
+.dnd-section:has(.oportunidades-grid) {
+  position: relative;
+  z-index: 2;
+}
+
+.dnd-section:has(.oportunidades-grid) > .row-fluid {
+  background: #ffffff;
+  margin-top: -166px;
+  padding: 40px 20px;
+}
+
+/* ── Columna izquierda (via @hubspot/rich_text) ─────────── */
+
+/* Logo ya manejado por @hubspot/image */
+
+/* H3: 42px Regular */
+.oportunidades-titulo {
+  color: var(--text-color);
+  font-size: clamp(26px, 2.9vw, 42px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.1;
+  margin: 0 0 1rem;
+}
+
+/* Descripción */
+.oportunidades-cuerpo {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+  margin: 0 0 1.75rem;
+}
+
+/* CTA botón naranja (link estilizado en rich_text) */
+.oportunidades-cta {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1;
+  padding: 14px 24px;
+  text-decoration: none;
+  transition: background-color 0.22s;
+}
+
+.oportunidades-cta:hover,
+.oportunidades-cta:focus {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  outline: none;
+}
+
+/* ── Tablet (768px – 1023px) ───────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .certif-edge-titulo {
+    font-size: 28px;
+  }
+
+  .oportunidades-titulo {
+    font-size: 28px;
+  }
+
+  .oportunidades-cuerpo {
+    font-size: 17px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-section:has(.oportunidades-grid) > .row-fluid {
+    margin-top: -80px;
+    padding: 30px 16px;
+  }
+
+  .oportunidades-cta {
+    display: block;
+    text-align: center;
+    width: 100%;
+  }
+}

@@ -1,0 +1,75 @@
+[
+  {
+    "label": "Título de sección (H2)",
+    "name": "titulo",
+    "type": "text",
+    "default": "Nuestros prototipos"
+  },
+  {
+    "label": "Prototipos",
+    "name": "prototipos",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 10, "default": 4 },
+    "children": [
+      {
+        "label": "Nombre del prototipo",
+        "name": "nombre",
+        "type": "text",
+        "default": "Montesino"
+      },
+      {
+        "label": "Precio (ej: Desde $2,300,000)",
+        "name": "precio",
+        "type": "text",
+        "default": "Desde $2,300,000"
+      },
+      {
+        "label": "Descripción",
+        "name": "descripcion",
+        "type": "richtext",
+        "default": "<p>Encuentra el modelo ideal, totalmente independiente, con pasillo de separación o terraza lateral que se ajusta a tu estilo de vida.</p>"
+      },
+      {
+        "label": "Imagen de fondo (sección)",
+        "name": "fondo",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "label": "Imagen de la tarjeta (cover)",
+        "name": "cover",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "label": "Característica / Diferenciador",
+        "name": "caracteristica",
+        "type": "text",
+        "default": "Espacios funcionales con terraza lateral"
+      },
+      {
+        "label": "Detalle (m², descripción adicional)",
+        "name": "detalle",
+        "type": "richtext",
+        "default": "<p>(107.49 m² de construcción).</p>"
+      },
+      {
+        "label": "Enlace del prototipo",
+        "name": "cta_link",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT"],
+        "default": {
+          "url": { "href": "#", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        }
+      }
+    ]
+  }
+]

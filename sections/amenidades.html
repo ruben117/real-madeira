@@ -1,0 +1,77 @@
+<!--
+  templateType: section
+  label: Amenidades
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/home-amenidades.jpg
+  description: "Slider de imágenes + grid interactivo de amenidades con íconos."
+-->
+{% dnd_section
+  background_color="#1F140F",
+  padding={
+    "default": { "top": 100, "bottom": 80 },
+    "mobile":  { "top": 60,  "bottom": 60 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/amenidades",
+        label="Amenidades — Slider + Grid",
+        offset=0,
+        width=12,
+        titulo="El fraccionamiento Real Madeira es la comunidad que tiene todo para que no tengas que salir de casa.",
+        cta_texto="Cotización rápida",
+        cta_link={
+          "url": { "href": "#contacto", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        },
+        amenidades=[
+          {
+            "nombre": "Control de acceso",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-control-acceso.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Control de acceso" }
+          },
+          {
+            "nombre": "Casa club con alberca",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-casa-club-alberca.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Casa club con alberca" }
+          },
+          {
+            "nombre": "Gimnasio",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-gimnasio.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Gimnasio" }
+          },
+          {
+            "nombre": "Área verdes recreativas",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-areas-verdes.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Áreas verdes recreativas" }
+          },
+          {
+            "nombre": "Canchas de fut 7",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-cancha-fut-7.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Canchas de fut 7" }
+          },
+          {
+            "nombre": "Dog Park",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-dog-park.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Dog Park" }
+          },
+          {
+            "nombre": "Canchas de Pádel",
+            "subtitulo": "¡Proximamente!",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-padel.png"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/amenidades-parque.jpg"), "alt": "Canchas de Pádel" }
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

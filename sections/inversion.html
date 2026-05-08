@@ -1,0 +1,55 @@
+<!--
+  templateType: section
+  label: Inversión — Plusvalía
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/hero-banner.png
+  description: "Dos filas: columna texto+CTA / infografía, y párrafo inferior centrado."
+-->
+{% dnd_section
+  background_color="#f5f3ef",
+  padding={
+    "default": { "top": 100, "bottom": 80 },
+    "mobile":  { "top": 60,  "bottom": 50 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+
+    {# ── Fila 1: módulo dos columnas (texto + infografía) ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/inversion-content",
+        label="Inversión — Texto e infografía",
+        offset=0,
+        width=12,
+        titulo="Más que una casa, una inversión que crece contigo",
+        cuerpo="<p>Con 22 años de solidez en el mercado mexicano, Vinte es la empresa pública líder que garantiza que tu patrimonio aumente su valor año tras año.</p>",
+        cta_texto="Te asesoramos con tu inversión",
+        cta_link={
+          "url": { "href": "#contacto", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        },
+        infografia={
+          "src": get_asset_url("../images/infografia-inversion.png"),
+          "alt": "Infografía: comparativa de plusvalía Real Madeira vs otras opciones",
+          "loading": "lazy"
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# ── Fila 2: h3 centrado, max-width 900px ─────────────── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Inversión — Párrafo inferior",
+        extra_classes="inversion__footer",
+        offset=0,
+        width=12,
+        html="<h3>Tu patrimonio aumenta su valor porque no solo compras una casa, sino un entorno diseñado para durar. Con el respaldo de Vinte, aseguras una comunidad con mantenimiento constante y servicios integrados que protegen tu calidad de vida y tu dinero.</h3>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+{% end_dnd_section %}

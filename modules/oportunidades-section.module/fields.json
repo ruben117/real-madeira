@@ -1,0 +1,77 @@
+[
+  {
+    "label": "Logo (izquierda)",
+    "name": "logo",
+    "type": "image",
+    "responsive": false,
+    "resizable": false,
+    "show_loading": false,
+    "default": { "src": "", "alt": "Real Madeira" }
+  },
+  {
+    "label": "Título (H3)",
+    "name": "titulo",
+    "type": "text",
+    "default": "Queremos que la casa de tus sueños sea una realidad"
+  },
+  {
+    "label": "Texto descriptivo",
+    "name": "cuerpo",
+    "type": "richtext",
+    "default": "<p>Explora las oportunidades que te ofrecemos para la compra de tu nueva casa en Pachuca.</p>"
+  },
+  {
+    "label": "Texto del botón",
+    "name": "cta_texto",
+    "type": "text",
+    "default": "Estamos listos para asesorarte"
+  },
+  {
+    "label": "Enlace del botón",
+    "name": "cta_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+    "default": {
+      "url": { "href": "#contacto", "type": "EXTERNAL" },
+      "no_follow": false,
+      "open_in_new_tab": false
+    }
+  },
+  {
+    "label": "Columnas del grid",
+    "name": "cols",
+    "type": "number",
+    "min": 1,
+    "max": 4,
+    "default": 2
+  },
+  {
+    "label": "Oportunidades",
+    "name": "items",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 12, "default": 4 },
+    "children": [
+      {
+        "label": "Título",
+        "name": "titulo",
+        "type": "text",
+        "default": "Oportunidad"
+      },
+      {
+        "label": "Descripción",
+        "name": "cuerpo",
+        "type": "richtext",
+        "default": ""
+      },
+      {
+        "label": "Ícono",
+        "name": "icono",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "" }
+      }
+    ]
+  }
+]

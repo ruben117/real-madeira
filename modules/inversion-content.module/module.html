@@ -1,0 +1,36 @@
+{% set fallback_img = get_asset_url("../../images/large-placeholder-image.png") %}
+{% set img_src = module.infografia.src if module.infografia.src else fallback_img %}
+{% set img_alt = module.infografia.alt | default("Infografía de plusvalía") %}
+{% set has_cta = module.cta_link.url.href and module.cta_texto %}
+
+<div class="inversion-content">
+
+  {# ── Columna izquierda: texto + CTA (flujo normal) ── #}
+  <div class="inversion-content__left">
+
+    {% if module.titulo %}
+      <h2 class="inversion-content__titulo">{{ module.titulo | escape_html }}</h2>
+    {% endif %}
+
+    {% if module.cuerpo %}
+      <div class="inversion-content__cuerpo">{{ module.cuerpo }}</div>
+    {% endif %}
+
+    {% if has_cta %}
+      <a class="inversion-content__cta"
+         href="{{ module.cta_link.url.href }}"
+         {% if module.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+         {% if module.cta_link.no_follow %}rel="nofollow"{% endif %}>
+        {{ module.cta_texto | escape_html }}
+      </a>
+    {% endif %}
+
+  </div>
+
+  {# ── Infografía: absolute bottom-right ── #}
+  <img class="inversion-content__infografia"
+       src="{{ img_src }}"
+       alt="{{ img_alt | escape_attr }}"
+       loading="lazy">
+
+</div>

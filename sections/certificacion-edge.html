@@ -1,0 +1,96 @@
+<!--
+  templateType: section
+  label: Certificación EDGE
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/hero-banner.png
+  description: "Logo EDGE + título + grid 3 cards con bordes de colores."
+-->
+{% dnd_section
+  background_color="#1F140F",
+  padding={
+    "default": { "top": 80, "bottom": 360 },
+    "mobile":  { "top": 60, "bottom": 120 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+
+    {# ── Logo EDGE (módulo nativo @hubspot/image) ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/image",
+        label="Logo EDGE",
+        img={
+          "src": get_asset_url("../images/certificacion-logo-certifado-edge.png"),
+          "alt": "EDGE — Excellence in Design for Greater Efficiencies",
+          "loading": "eager"
+        },
+        style_max_width={ "type": "PIXELS", "value": 299 },
+        horizontal_alignment="CENTER"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# ── Título H3 (módulo nativo @hubspot/rich_text) ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="EDGE — Título",
+        offset=0,
+        width=12,
+        html="<h3 class='certif-edge-titulo'>Vive el futuro hoy con casas sustentables</h3>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# ── Grid 3 cards (módulo reutilizable card-icono) ── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/card-icono",
+        label="EDGE — Beneficios",
+        offset=0,
+        width=12,
+        cols=3,
+        gap=24,
+        card_bg_color={ "color": "#FFFFFF", "opacity": 0 },
+        card_borde_color={ "color": "#FFFFFF", "opacity": 0 },
+        card_borde_tamano=2,
+        card_borde_radio=0,
+        card_padding="16px 16px 20px",
+        card_alineacion="left",
+        icono_bg_color={ "color": "#D9D9D9", "opacity": 100 },
+        icono_bg_alpha=20,
+        icono_tamano=36,
+        icono_padding=13,
+        icono_posicion="inline-left",
+        titulo_size=30,
+        titulo_color={ "color": "#F5F3EF", "opacity": 100 },
+        titulo_alineacion="left",
+        cuerpo_size=18,
+        cuerpo_color={ "color": "#F5F3EF", "opacity": 100 },
+        cuerpo_alineacion="left",
+        items=[
+          {
+            "titulo": "Ahorro Garantizado",
+            "cuerpo": "<p>Tecnología aplicada para reducir el consumo de luz, agua y gas.</p>",
+            "icono": { "src": get_asset_url("../images/icon-certificacion-energia.svg"), "alt": "" },
+            "borde_color_override": { "color": "#FFB04E", "opacity": 100 }
+          },
+          {
+            "titulo": "Bienestar Ambiental",
+            "cuerpo": "<p>Diseños que maximizan la iluminación natural y ventilación.</p>",
+            "icono": { "src": get_asset_url("../images/icon-certificacion-agua.svg"), "alt": "" },
+            "borde_color_override": { "color": "#36A0DE", "opacity": 100 }
+          },
+          {
+            "titulo": "Plusvalía Verde",
+            "cuerpo": "<p>Una casa sustentable mantiene un valor de reventa superior en el mercado actual.</p>",
+            "icono": { "src": get_asset_url("../images/icon-certificacion-co2.svg"), "alt": "" },
+            "borde_color_override": { "color": "#94BA5A", "opacity": 100 }
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+{% end_dnd_section %}

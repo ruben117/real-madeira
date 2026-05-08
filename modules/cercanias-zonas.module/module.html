@@ -1,0 +1,23 @@
+<div class="cercanias-grid" style="--cercanias-cols: {{ module.cols | default(2) }};">
+  {% for zona in module.zonas %}
+    <div class="cercanias-card">
+      <div class="cercanias-card__icon">
+        {% if zona.icono.src %}
+          <img src="{{ zona.icono.src }}" alt="" aria-hidden="true" loading="lazy">
+        {% endif %}
+      </div>
+      <div class="cercanias-card__body">
+        <div class="cercanias-card__info">
+          <span class="cercanias-card__nombre">{{ zona.nombre | escape_html }}</span>
+          {% if zona.subtitulo %}
+            <span class="cercanias-card__subtitulo">{{ zona.subtitulo | escape_html }}</span>
+          {% endif %}
+        </div>
+        <div class="cercanias-card__tiempo">
+          <span class="cercanias-card__num">{{ zona.tiempo | escape_html }}</span>
+          <span class="cercanias-card__unidad">{{ zona.unidad | default("min") | escape_html }}</span>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

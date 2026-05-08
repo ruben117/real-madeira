@@ -1,0 +1,13 @@
+{% set logo_src = module.logo_edge.src if module.logo_edge.src
+                  else get_asset_url("../../images/certificacion-logo-certifado-edge.png") %}
+
+<div class="certif-edge-heading">
+  <img class="certif-edge-heading__logo"
+       src="{{ logo_src }}"
+       alt="{{ module.logo_edge.alt | default('EDGE — Excellence in Design for Greater Efficiencies') | escape_attr }}"
+       loading="eager">
+
+  {% if module.titulo %}
+    <h3 class="certif-edge-heading__titulo">{{ module.titulo | escape_html }}</h3>
+  {% endif %}
+</div>

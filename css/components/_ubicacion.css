@@ -1,0 +1,323 @@
+/* ============================================================
+   Ubicación privilegiada — Mapa + Cercanías
+   Valores exactos: Figma node 5972:2
+   ============================================================ */
+
+/* ── Layout dos columnas ───────────────────────────────── */
+
+.ubicacion-content {
+  align-items: center;
+  display: flex;
+  gap: 80px;
+}
+
+/* ── Columna izquierda: mapa ───────────────────────────── */
+
+.ubicacion-content__left {
+  flex: 0 0 41%;
+  max-width: 41%;
+}
+
+.ubicacion-mapa__trigger {
+  background: none;
+  border: none;
+  cursor: zoom-in;
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+/* Animación fade-in + slide desde abajo */
+.ubicacion-mapa__img {
+  display: block;
+  height: auto;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 100%;
+  will-change: opacity, transform;
+}
+
+.ubicacion-mapa__img.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Columna derecha ───────────────────────────────────── */
+
+.ubicacion-content__right {
+  flex: 1;
+  min-width: 0;
+}
+
+.ubicacion-content__titulo {
+  color: var(--text-color);
+  font-size: clamp(30px, 2.9vw, 42px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.ubicacion-content__cuerpo {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.ubicacion-content__cuerpo p {
+  margin: 0;
+}
+
+/* ── Grid cercanías (compartido con cercanias-zonas.module) */
+
+.cercanias-grid {
+  column-gap: 16px;
+  display: grid;
+  grid-template-columns: repeat(var(--cercanias-cols, 2), 1fr);
+  margin-bottom: 2rem;
+  row-gap: 0;
+}
+
+/* Zona card: ícono oscuro + cuerpo claro */
+.cercanias-card {
+  align-items: stretch;
+  display: flex;
+}
+
+/* Caja del ícono: 47×47 fondo #1f140f */
+.cercanias-card__icon {
+  align-items: center;
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-shrink: 0;
+  height: 47px;
+  justify-content: center;
+  width: 47px;
+}
+
+.cercanias-card__icon img {
+  display: block;
+  height: 24px;
+  object-fit: contain;
+  width: 24px;
+}
+
+/* Cuerpo: bg #f5f3ef con borde sutil */
+.cercanias-card__body {
+  align-items: center;
+  background-color: #f5f3ef;
+  border: 0.2px solid rgba(31, 20, 15, 0.3);
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 4px 12px;
+}
+
+.cercanias-card__info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Nombre: 15px Regular #1f140f */
+.cercanias-card__nombre {
+  color: var(--text-color);
+  display: block;
+  font-size: 15px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+}
+
+/* Subtítulo: 10px Regular #1f140f */
+.cercanias-card__subtitulo {
+  color: var(--text-color);
+  display: block;
+  font-size: 10px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* Tiempo: número 25px #95785e + unidad 11px */
+.cercanias-card__tiempo {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.cercanias-card__num {
+  color: #95785e;
+  display: block;
+  font-size: 25px;
+  font-weight: var(--font-weight-base);
+  line-height: 1;
+}
+
+.cercanias-card__unidad {
+  color: var(--text-color);
+  display: block;
+  font-size: 11px;
+  font-weight: var(--font-weight-base);
+  line-height: 1;
+}
+
+/* ── CTA con ícono pin ─────────────────────────────────── */
+
+.ubicacion-cta {
+  align-items: center;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: inline-flex;
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  gap: 10px;
+  min-width: 231px;
+  padding: 12px 20px;
+  text-decoration: none;
+  transition: background-color 0.22s;
+}
+
+.ubicacion-cta img {
+  display: block;
+  flex-shrink: 0;
+  height: 23px;
+  object-fit: contain;
+  width: 23px;
+}
+
+.ubicacion-cta:hover,
+.ubicacion-cta:focus {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  outline: none;
+}
+
+/* ── Lightbox ──────────────────────────────────────────── */
+
+.ubicacion-lightbox {
+  align-items: center;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2000;
+}
+
+.ubicacion-lightbox[hidden] {
+  display: none !important;
+}
+
+.ubicacion-lightbox__backdrop {
+  background-color: rgba(0, 0, 0, 0.88);
+  cursor: pointer;
+  inset: 0;
+  position: absolute;
+}
+
+.ubicacion-lightbox__panel {
+  max-height: 90vh;
+  max-width: 960px;
+  overflow: auto;
+  position: relative;
+  width: 90vw;
+}
+
+.ubicacion-lightbox__panel img {
+  display: block;
+  height: auto;
+  width: 100%;
+}
+
+.ubicacion-lightbox__close {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.55);
+  border: none;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  transition: background-color 0.2s;
+  width: 36px;
+  z-index: 1;
+}
+
+.ubicacion-lightbox__close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* ── Tablet (768px – 1023px) ───────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ubicacion-content {
+    gap: 40px;
+  }
+
+  .ubicacion-content__left {
+    flex: 0 0 46%;
+    max-width: 46%;
+  }
+
+  .ubicacion-content__titulo {
+    font-size: 28px;
+  }
+
+  .ubicacion-content__cuerpo {
+    font-size: 17px;
+  }
+
+  .cercanias-card__nombre {
+    font-size: 13px;
+  }
+
+  .cercanias-card__num {
+    font-size: 20px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .ubicacion-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .ubicacion-content__left {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .ubicacion-content__titulo {
+    font-size: 26px;
+  }
+
+  .ubicacion-content__cuerpo {
+    font-size: 17px;
+  }
+
+  /* En móvil el grid pasa a 1 columna independientemente del campo cols */
+  .cercanias-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .ubicacion-cta {
+    justify-content: center;
+    width: 100%;
+  }
+}

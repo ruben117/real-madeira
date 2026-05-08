@@ -16,42 +16,23 @@
   {# Hero Real Madeira — pantalla completa con header overlay #}
   {% include_dnd_partial path="../sections/hero-real-madeira.html" %}
 
-  {# Two column image right #}
-  {% include_dnd_partial path="../sections/multi-row-content.html" %}
+  {# Inversión — Plusvalía #}
+  {% include_dnd_partial path="../sections/inversion.html" %}
 
-  {# Two column image left #}
-  {% dnd_section
-    background_color="#f8fafc",
-    vertical_alignment="MIDDLE"
-  %}
-    {% dnd_module
-      path="@hubspot/linked_image",
-      img={
-        "alt": "Stock placeholder image with grayscale geometrical mountain landscape",
-        "loading": "lazy",
-        "max_height": 451,
-        "max_width": 605,
-        "size_type": "auto_custom_max",
-        "src": get_asset_url("../images/grayscale-mountain.png")
-      },
-      offset=0,
-      width=6
-    %}
-    {% end_dnd_module %}
-    {% dnd_module
-      path="@hubspot/rich_text",
-      html="<h2>Provide more details here.</h2><p>Use text and images to tell your company's story. Explain what makes your product or service extraordinary.</p>"
-      offset=6,
-      width=6
-    %}
-    {% end_dnd_module %}
-  {% end_dnd_section %}
+  {# Amenidades #}
+  {% include_dnd_partial path="../sections/amenidades.html" %}
 
-  {# Call to action #}
-  {% include_dnd_partial path="../sections/call-to-action.html" %}
+  {# Prototipos #}
+  {% include_dnd_partial path="../sections/prototipos.html" %}
 
-  {# Three column image with text #}
-  {% include_dnd_partial path="../sections/multi-column-content.html" %}
+  {# Ubicación privilegiada #}
+  {% include_dnd_partial path="../sections/ubicacion.html" %}
+
+  {# Certificación EDGE #}
+  {% include_dnd_partial path="../sections/certificacion-edge.html" %}
+
+  {# Oportunidades #}
+  {% include_dnd_partial path="../sections/oportunidades.html" %}
 
 {% end_dnd_area %}
 {% endblock body %}

@@ -1,0 +1,170 @@
+/* ============================================================
+   Inversión — Sección plusvalía
+   Valores exactos: Figma node 5895:2
+   ============================================================ */
+
+/* ── Wrapper: reference para el absolute de la imagen ─── */
+
+.inversion-content {
+  min-height:620px;    /* acomoda la imagen absolute en bottom */
+  position: relative;
+}
+
+/* ── Columna izquierda: flujo normal, ≈ 45% ────────────── */
+
+.inversion-content__left {
+  max-width: 45%;
+  position: relative;
+  width: 45%;
+  z-index: 1;           /* encima de la imagen */
+}
+
+.inversion-content__titulo {
+  color: var(--secondary-color);
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  margin-top: 0;
+}
+
+.inversion-content__cuerpo {
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+  margin-bottom: 1.875rem;
+}
+
+.inversion-content__cuerpo p {
+  margin: 0;
+}
+
+/* CTA — Figma: #f18f04, blanco, 277px ancho, ~46px alto */
+.inversion-content__cta {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1;
+  min-width: 277px;
+  padding: 14px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.22s, color 0.22s;
+}
+
+.inversion-content__cta:hover,
+.inversion-content__cta:focus {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  outline: none;
+}
+
+/* ── Infografía: absolute bottom-right + fade right→left ── */
+
+.inversion-content__infografia {
+  bottom: 0;
+  display: block;
+  height: auto;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  transform: translateX(60px);
+  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 80%;
+  will-change: opacity, transform;
+}
+
+.inversion-content__infografia.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ── Fila 2: rich_text con extra_classes="inversion__footer"
+   Figma: 20px Regular centrado, max-width 900px, lh 1.5
+   ─────────────────────────────────────────────────────── */
+
+.dnd-module:has(.inversion__footer) {
+  border-top: 1px solid rgba(31, 20, 15, 0.12);
+  margin-top: 2.75rem;
+  padding-top: 2.5rem;
+}
+
+.dnd-module:has(.inversion__footer) h3 {
+  color: var(--text-color);
+  font-size: 20px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+}
+
+/* ── Tablet (768px – 1023px) ───────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .inversion-content {
+    min-height: 420px;
+  }
+
+  .inversion-content__left {
+    max-width: 50%;
+    width: 50%;
+  }
+
+  .inversion-content__titulo {
+    font-size: 30px;
+  }
+
+  .inversion-content__cuerpo {
+    font-size: 17px;
+  }
+
+  .inversion-content__infografia {
+    width: 72%;
+  }
+}
+
+/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .inversion-content {
+    min-height: 0;
+  }
+
+  .inversion-content__left {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .inversion-content__titulo {
+    font-size: 28px;
+  }
+
+  .inversion-content__cuerpo {
+    font-size: 17px;
+  }
+
+  .inversion-content__cta {
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* En móvil: imagen sale del absolute, flujo normal, animación desactivada */
+  .inversion-content__infografia {
+    display: block;
+    margin-top: 2rem;
+    opacity: 1;
+    transform: none;
+    transition: none;
+    position: static;
+    width: 100%;
+  }
+
+  .dnd-module:has(.inversion__footer) h3 {
+    font-size: 17px;
+    text-align: left;
+  }
+}

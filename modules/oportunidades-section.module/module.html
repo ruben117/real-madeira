@@ -1,0 +1,64 @@
+{% set logo_src  = module.logo.src if module.logo.src
+                   else get_asset_url("../../images/logo-real-madeira-cafe.png") %}
+{% set cta_href  = module.cta_link.url.href if module.cta_link.url.href else "#contacto" %}
+{% set grid_cols = module.cols | default(2) %}
+
+<div class="oportunidades-section-content">
+  <div class="oportunidades-section__card">
+
+    {# ── Columna izquierda ── #}
+    <div class="oportunidades-section__left">
+
+      <img class="oportunidades-section__logo"
+           src="{{ logo_src }}"
+           alt="{{ module.logo.alt | default('Real Madeira') | escape_attr }}"
+           loading="lazy">
+
+      {% if module.titulo %}
+        <h3 class="oportunidades-section__titulo">{{ module.titulo | escape_html }}</h3>
+      {% endif %}
+
+      {% if module.cuerpo %}
+        <div class="oportunidades-section__cuerpo">{{ module.cuerpo }}</div>
+      {% endif %}
+
+      {% if module.cta_texto %}
+        <a class="oportunidades-section__cta"
+           href="{{ cta_href }}"
+           {% if module.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+           {% if module.cta_link.no_follow %}rel="nofollow"{% endif %}>
+          {{ module.cta_texto | escape_html }}
+        </a>
+      {% endif %}
+
+    </div>
+
+    {# ── Columna derecha: grid de oportunidades ── #}
+    <div class="oportunidades-section__right">
+      <div class="oportunidades-grid" style="--op-cols:{{ grid_cols }};">
+
+        {% for item in module.items %}
+          <div class="oportunidades-card">
+            {# Fila superior: ícono + título inline #}
+            <div class="oportunidades-card__top">
+              <div class="oportunidades-card__icon-box">
+                {% if item.icono.src %}
+                  <img src="{{ item.icono.src }}" alt="" aria-hidden="true" loading="lazy">
+                {% endif %}
+              </div>
+              {% if item.titulo %}
+                <h4 class="oportunidades-card__titulo">{{ item.titulo | escape_html }}</h4>
+              {% endif %}
+            </div>
+            {# Cuerpo: debajo del ícono + título #}
+            {% if item.cuerpo %}
+              <div class="oportunidades-card__cuerpo">{{ item.cuerpo }}</div>
+            {% endif %}
+          </div>
+        {% endfor %}
+
+      </div>
+    </div>
+
+  </div>
+</div>

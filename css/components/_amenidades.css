@@ -1,0 +1,261 @@
+/* ============================================================
+   Amenidades — Slider + Grid de íconos
+   Valores exactos: Figma node 5930:3
+   ============================================================ */
+
+/* ── Layout: dos columnas ──────────────────────────────── */
+
+.amenidades-content {
+  align-items: flex-start;
+  display: flex;
+  gap: 80px;
+}
+
+/* ── Columna izquierda ─────────────────────────────────── */
+
+.amenidades-content__left {
+  flex: 0 0 56%;
+  max-width: 56%;
+}
+
+.amenidades-content__titulo {
+  color: #f5f3ef;
+  font-size: 24px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+/* ── Slider ────────────────────────────────────────────── */
+
+.amenidades-slider {
+  margin-bottom: 1.5rem;
+}
+
+.amenidades-slider__track {
+  aspect-ratio: 670 / 378;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.amenidades-slider__slide {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transition: opacity 0.5s ease;
+  width: 100%;
+}
+
+.amenidades-slider__slide.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.amenidades-slider__slide img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Nav: botones circulares prev/next */
+
+.amenidades-slider__nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 1.125rem;
+}
+
+.amenidades-slider__btn {
+  align-items: center;
+  background: transparent;
+  border: 1.5px solid rgba(245, 243, 239, 0.5);
+  border-radius: 50%;
+  color: #f5f3ef;
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  transition: border-color 0.22s, color 0.22s;
+  width: 44px;
+  padding:0;
+}
+
+.amenidades-slider__btn:hover,
+.amenidades-slider__btn:focus {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  outline: none;
+}
+
+/* CTA */
+
+.amenidades-content__cta {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1;
+  margin-top: 1.5rem;
+  min-width: 182px;
+  padding: 14px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.22s, color 0.22s;
+}
+
+.amenidades-content__cta:hover,
+.amenidades-content__cta:focus {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  outline: none;
+}
+
+/* ── Grid de amenidades (columna derecha) ──────────────── */
+
+.amenidades-grid {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.amenidades-grid__item {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  gap: 20px;
+  padding: 11px 0;
+}
+
+.amenidades-grid__item:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Ícono: caja 67×67 */
+
+.amenidades-grid__icon {
+  align-items: center;
+  background-color: #352b25;
+  display: flex;
+  flex-shrink: 0;
+  height: 67px;
+  justify-content: center;
+  transition: background-color 0.25s ease;
+  width: 67px;
+}
+
+.amenidades-grid__icon img {
+  display: block;
+  height: 34px;
+  object-fit: contain;
+  width: 34px;
+}
+
+/* Texto */
+
+.amenidades-grid__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.amenidades-grid__nombre {
+  color: #f5f3ef;
+  display: block;
+  font-size: 22px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  transition: color 0.25s ease;
+}
+
+.amenidades-grid__subtitulo {
+  color: #8b929f;
+  display: block;
+  font-size: 20px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin-top: 3px;
+}
+
+/* Estado activo */
+
+.amenidades-grid__item.is-active .amenidades-grid__icon {
+  background-color: var(--primary-color);
+}
+
+.amenidades-grid__item.is-active .amenidades-grid__nombre {
+  color: #f3b762;
+}
+
+/* ── Tablet (768px – 1023px) ───────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .amenidades-content {
+    gap: 40px;
+  }
+
+  .amenidades-content__left {
+    flex: 0 0 52%;
+    max-width: 52%;
+  }
+
+  .amenidades-content__titulo {
+    font-size: 21px;
+  }
+
+  .amenidades-grid__nombre {
+    font-size: 18px;
+  }
+
+  .amenidades-grid__subtitulo {
+    font-size: 16px;
+  }
+
+  .amenidades-grid__icon {
+    height: 56px;
+    width: 56px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .amenidades-content {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .amenidades-content__left {
+    flex: none;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .amenidades-content__titulo {
+    font-size: 20px;
+  }
+
+  .amenidades-content__cta {
+    display: block;
+    min-width: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  .amenidades-grid__nombre {
+    font-size: 18px;
+  }
+
+  .amenidades-grid__subtitulo {
+    font-size: 16px;
+  }
+}

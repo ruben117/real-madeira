@@ -1,0 +1,78 @@
+{% set ci_cols       = module.cols | default(3) %}
+{% set ci_gap        = module.gap | default(16) %}
+{% set ci_extra      = module.extra_class | default('') %}
+
+{# Card bg: respeta opacidad del color field #}
+{% set ci_card_bg    = 'transparent' if module.card_bg_color.opacity == 0
+                       else module.card_bg_color.color | default('transparent') %}
+
+{% set ci_borde_px   = module.card_borde_tamano | default(0) %}
+{% set ci_borde_r    = module.card_borde_radio | default(0) %}
+{% set ci_padding    = module.card_padding | default('16px') %}
+{% set ci_align      = module.card_alineacion | default('left') %}
+{% set ci_icono_bg   = module.icono_bg_color.color | default('#F18F04') %}
+{% set ci_icono_a    = (module.icono_bg_alpha | default(100)) / 100 %}
+{% set ci_icono_sz   = module.icono_tamano | default(32) %}
+{% set ci_icono_pad  = module.icono_padding | default(16) %}
+{% set ci_icono_pos  = module.icono_posicion | default('inline-left') %}
+{% set ci_t_size     = module.titulo_size | default(20) %}
+{% set ci_t_color    = module.titulo_color.color | default('#1F140F') %}
+{% set ci_t_align    = module.titulo_alineacion | default('left') %}
+{% set ci_t_pad      = module.titulo_padding | default('0') %}
+{% set ci_c_size     = module.cuerpo_size | default(16) %}
+{% set ci_c_color    = module.cuerpo_color.color | default('#1F140F') %}
+{% set ci_c_align    = module.cuerpo_alineacion | default('left') %}
+{% set ci_c_pad      = module.cuerpo_padding | default('0') %}
+
+<div class="card-icono-grid ci-pos--{{ ci_icono_pos }}{% if ci_extra %} {{ ci_extra }}{% endif %}"
+     style="
+       --ci-cols:{{ ci_cols }};
+       --ci-gap:{{ ci_gap }}px;
+       --ci-card-bg:{{ ci_card_bg }};
+       --ci-borde-px:{{ ci_borde_px }}px;
+       --ci-borde-r:{{ ci_borde_r }}px;
+       --ci-card-pad:{{ ci_padding }};
+       --ci-icono-bg:{{ ci_icono_bg }};
+       --ci-icono-a:{{ ci_icono_a }};
+       --ci-icono-sz:{{ ci_icono_sz }}px;
+       --ci-icono-pad:{{ ci_icono_pad }}px;
+       --ci-t-size:{{ ci_t_size }}px;
+       --ci-t-color:{{ ci_t_color }};
+       --ci-c-size:{{ ci_c_size }}px;
+       --ci-c-color:{{ ci_c_color }};
+       text-align:{{ ci_align }};
+     ">
+
+  {% for item in module.items %}
+    {% set borde_color = item.borde_color_override.color if item.borde_color_override.color
+                         else module.card_borde_color.color | default('transparent') %}
+
+    <div class="card-icono-item" style="--ci-borde-color:{{ borde_color }};">
+
+      {# ── Fila superior: ícono + título ── #}
+      <div class="card-icono-item__top">
+        <div class="card-icono-item__icon-box">
+          {% if item.icono.src %}
+            <img src="{{ item.icono.src }}" alt="" aria-hidden="true" loading="lazy">
+          {% endif %}
+        </div>
+        {% if item.titulo %}
+          <h3 class="card-icono-item__titulo"
+              style="text-align:{{ ci_t_align }};padding:{{ ci_t_pad }};">
+            {{ item.titulo | escape_html }}
+          </h3>
+        {% endif %}
+      </div>
+
+      {# ── Richtext ── #}
+      {% if item.cuerpo %}
+        <div class="card-icono-item__cuerpo"
+             style="text-align:{{ ci_c_align }};padding:{{ ci_c_pad }};">
+          {{ item.cuerpo }}
+        </div>
+      {% endif %}
+
+    </div>
+  {% endfor %}
+
+</div>

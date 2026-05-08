@@ -1,0 +1,63 @@
+[
+  {
+    "label": "Título (H2)",
+    "name": "titulo",
+    "type": "text",
+    "default": "El fraccionamiento Real Madeira es la comunidad que tiene todo para que no tengas que salir de casa."
+  },
+  {
+    "label": "Texto del botón CTA",
+    "name": "cta_texto",
+    "type": "text",
+    "default": "Cotización rápida"
+  },
+  {
+    "label": "Enlace del botón CTA",
+    "name": "cta_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+    "default": {
+      "url": { "href": "#contacto", "type": "EXTERNAL" },
+      "no_follow": false,
+      "open_in_new_tab": false
+    }
+  },
+  {
+    "label": "Amenidades",
+    "name": "amenidades",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 20, "default": 7 },
+    "children": [
+      {
+        "label": "Nombre",
+        "name": "nombre",
+        "type": "text",
+        "default": "Amenidad"
+      },
+      {
+        "label": "Subtítulo (opcional, ej: ¡Proximamente!)",
+        "name": "subtitulo",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "label": "Ícono",
+        "name": "icono",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "label": "Imagen del slider",
+        "name": "imagen",
+        "type": "image",
+        "responsive": true,
+        "resizable": true,
+        "show_loading": true,
+        "default": { "src": "", "alt": "" }
+      }
+    ]
+  }
+]

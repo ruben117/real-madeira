@@ -1,0 +1,274 @@
+/* ============================================================
+   Prototipos — Slider con fondo dinámico
+   Valores exactos: Figma node 5952:2
+   ============================================================ */
+
+/* ── Wrapper principal ─────────────────────────────────── */
+
+.prototipos-slider {
+  min-height: 815px;
+  position: relative;
+}
+
+/* ── Layout: dos columnas ──────────────────────────────── */
+
+.prototipos-slider__content {
+  align-items: flex-start;
+  display: flex;
+  gap: 80px;
+  padding: 100px 0 80px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Columna izquierda ─────────────────────────────────── */
+
+.prototipos-slider__left {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Título estático: 92px BwModelica Light */
+.prototipos-slider__titulo {
+  color: #f5f3ef;
+  font-size: clamp(48px, 6.4vw, 92px);
+  font-weight: 300;
+  line-height: 0.9;
+  margin-bottom: 46px;
+  margin-top: 0;
+}
+
+/* Paneles apilados con CSS Grid */
+.prototipos-slider__left-panels {
+  display: grid;
+  flex: 1;
+  min-height: 140px;
+}
+
+.prototipos-panel {
+  grid-area: 1 / 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.prototipos-panel.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.prototipos-panel__precio {
+  color: var(--primary-color);
+  font-size: 22px;
+  font-weight: var(--font-weight-heading);
+  line-height: 1.5;
+  margin: 0 0 8px;
+}
+
+.prototipos-panel__descripcion {
+  color: #f5f3ef;
+  font-size: 20px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+  max-width: 570px;
+}
+
+.prototipos-panel__descripcion p {
+  margin: 0;
+}
+
+/* Nav: botones circulares */
+.prototipos-slider__nav {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.prototipos-slider__btn {
+  align-items: center;
+  background: transparent;
+  border: 1.5px solid rgba(245, 243, 239, 0.5);
+  border-radius: 50%;
+  color: #f5f3ef;
+  cursor: pointer;
+  display: flex;
+  height: 44px;
+  justify-content: center;
+  padding: 0;
+  transition: border-color 0.22s, color 0.22s;
+  width: 44px;
+}
+
+.prototipos-slider__btn:hover,
+.prototipos-slider__btn:focus {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  outline: none;
+}
+
+/* ── Columna derecha: tarjetas apiladas ────────────────── */
+
+.prototipos-slider__right {
+  display: grid;
+  flex: 0 0 570px;
+  width: 570px;
+}
+
+/* Tarjeta prototipo */
+.prototipos-card {
+  background-color: #f6f5f0;
+  display: flex;
+  flex-direction: column;
+  grid-area: 1 / 1;
+  opacity: 0;
+  padding: 20px 20px 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.prototipos-card.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Nombre del prototipo: 49px Regular */
+.prototipos-card__nombre {
+  color: #3a3a3a;
+  font-size: clamp(32px, 3.4vw, 49px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin: 0 0 18px;
+}
+
+/* Imagen cover */
+.prototipos-card__img-wrap {
+  aspect-ratio: 528 / 336;
+  overflow: hidden;
+  width: 100%;
+}
+
+.prototipos-card__img-wrap img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Footer: feature + detalle + botón */
+.prototipos-card__footer {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 18px 0 20px;
+}
+
+.prototipos-card__info {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Característica: 23px Regular #3a3a3a */
+.prototipos-card__caracteristica {
+  color: #3a3a3a;
+  font-size: 23px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin: 0 0 4px;
+}
+
+/* Detalle: 20px Regular #95785e */
+.prototipos-card__detalle {
+  color: #95785e;
+  font-size: 20px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+}
+
+.prototipos-card__detalle p {
+  margin: 0;
+}
+
+/* Botón CTA: 67×67 */
+.prototipos-card__cta {
+  display: block;
+  flex-shrink: 0;
+  height: 67px;
+  width: 67px;
+}
+
+.prototipos-card__cta img {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+/* ── Tablet (768px – 1023px) ───────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .prototipos-slider {
+    min-height: 640px;
+  }
+
+  .prototipos-slider__content {
+    gap: 40px;
+  }
+
+  .prototipos-slider__right {
+    flex: 0 0 380px;
+    width: 380px;
+  }
+
+  .prototipos-panel__descripcion {
+    font-size: 18px;
+  }
+
+  .prototipos-card__caracteristica {
+    font-size: 19px;
+  }
+
+  .prototipos-card__detalle {
+    font-size: 17px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .prototipos-slider {
+    min-height: 0;
+  }
+
+  .prototipos-slider__content {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 60px 0 50px;
+  }
+
+  .prototipos-slider__left {
+    width: 100%;
+  }
+
+  .prototipos-slider__right {
+    flex: none;
+    width: 100%;
+  }
+
+  .prototipos-panel__descripcion {
+    font-size: 17px;
+  }
+
+  .prototipos-card__nombre {
+    font-size: 32px;
+  }
+
+  .prototipos-card__caracteristica {
+    font-size: 18px;
+  }
+
+  .prototipos-card__detalle {
+    font-size: 16px;
+  }
+}

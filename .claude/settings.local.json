@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:www.figma.com)",
+      "mcp__9892e79c-a56f-4da4-967b-6b51326598b4__get_design_context",
+      "mcp__9892e79c-a56f-4da4-967b-6b51326598b4__get_screenshot"
+    ]
+  }
+}

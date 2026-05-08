@@ -1,0 +1,17 @@
+[
+  {
+    "label": "Logo EDGE",
+    "name": "logo_edge",
+    "type": "image",
+    "responsive": true,
+    "resizable": true,
+    "show_loading": false,
+    "default": { "src": "", "alt": "EDGE — Excellence in Design for Greater Efficiencies" }
+  },
+  {
+    "label": "Título (H3)",
+    "name": "titulo",
+    "type": "text",
+    "default": "Vive el futuro hoy con casas sustentables"
+  }
+]

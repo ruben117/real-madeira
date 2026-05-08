@@ -4,8 +4,6 @@
 
 <section class="hero-home" aria-label="Hero principal">
 
-  <div class="hero-home__overlay" aria-hidden="true"></div>
-
   <div class="hero-home__inner content-wrapper">
 
     {# ── Columna izquierda: contenido ───────────────── #}
@@ -35,10 +33,22 @@
       <div class="hero-home__thumbnail">
 
         {% if module.thumbnail.src %}
-          <img class="hero-home__thumbnail-img"
-               src="{{ module.thumbnail.src }}"
-               alt="{{ module.thumbnail.alt or '' }}"
-               loading="{{ module.thumbnail.loading or 'lazy' }}">
+          <button class="hero-home__thumbnail-trigger"
+                  type="button"
+                  aria-haspopup="dialog"
+                  aria-controls="{{ lightbox_id }}"
+                  aria-label="Ver Tour Virtual 360°"
+                  data-hero-lb-open="{{ lightbox_id }}">
+            <img class="hero-home__thumbnail-img"
+                 src="{{ module.thumbnail.src }}"
+                 alt="{{ module.thumbnail.alt or '' }}"
+                 loading="{{ module.thumbnail.loading or 'lazy' }}">
+            <span class="hero-home__thumbnail-overlay" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="36" height="36">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </span>
+          </button>
         {% endif %}
 
         {# Botón que abre el lightbox #}
@@ -60,7 +70,7 @@
 
   </div>
 
-  {# ── Lightbox ────────────────────────────────────────── #}
+  {# ── Lightbox ─────────────────────────────────────────── #}
   <div class="hero-lightbox"
        id="{{ lightbox_id }}"
        role="dialog"
@@ -68,30 +78,37 @@
        aria-label="{{ module.lightbox_title or 'Tour Virtual 360°' }}"
        aria-hidden="true">
 
-    <div class="hero-lightbox__backdrop" data-hero-lb-close="{{ lightbox_id }}" aria-hidden="true"></div>
+    <div class="hero-lightbox__backdrop"
+         data-hero-lb-close="{{ lightbox_id }}"
+         aria-hidden="true"></div>
 
     <div class="hero-lightbox__panel">
 
-      <button class="hero-lightbox__close"
-              type="button"
-              aria-label="Cerrar"
-              data-hero-lb-close="{{ lightbox_id }}">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true">
-          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-        </svg>
-      </button>
+      {# Header del lightbox #}
+      <div class="hero-lightbox__header">
+        <div class="hero-lightbox__header-text">
+          <span class="hero-lightbox__eyebrow">Tour Virtual</span>
+          {% if module.lightbox_title %}
+            <h2 class="hero-lightbox__title">{{ module.lightbox_title }}</h2>
+          {% endif %}
+        </div>
+        <button class="hero-lightbox__close"
+                type="button"
+                aria-label="Cerrar"
+                data-hero-lb-close="{{ lightbox_id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true">
+            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+          </svg>
+        </button>
+      </div>
 
-      {% if module.lightbox_title %}
-        <h2 class="hero-lightbox__title">{{ module.lightbox_title }}</h2>
-      {% endif %}
-
+      {# Grid de propiedades #}
       <div class="hero-lightbox__grid">
         {% for prop in module.tour_properties %}
           {% set img_src = prop.imagen.src if prop.imagen.src else fallback_img %}
           {% set img_alt = prop.imagen.alt if prop.imagen.alt else prop.titulo %}
-          {% set has_link = prop.tour_link.url.href %}
           <div class="hero-lightbox__card">
-            <div class="hero-lightbox__card-img-wrap">
+            <div class="hero-lightbox__card-media">
               <img class="hero-lightbox__card-img"
                    src="{{ img_src }}"
                    alt="{{ img_alt }}"
@@ -99,11 +116,14 @@
             </div>
             <div class="hero-lightbox__card-body">
               <h3 class="hero-lightbox__card-title">{{ prop.titulo }}</h3>
-              {% if has_link %}
+              {% if prop.tour_link.url.href %}
                 <a class="hero-lightbox__card-btn"
                    href="{{ prop.tour_link.url.href }}"
                    {% if prop.tour_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
                    {% if prop.tour_link.no_follow %}rel="nofollow"{% endif %}>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true">
+                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
+                  </svg>
                   {{ prop.btn_text or 'Ver recorrido 360°' }}
                 </a>
               {% endif %}

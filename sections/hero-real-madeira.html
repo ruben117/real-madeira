@@ -3,7 +3,7 @@
   label: Hero Real Madeira
   isAvailableForNewContent: true
   screenshotPath: ../images/section-previews/hero-banner.png
-  description: "Sección hero de pantalla completa con título, subtítulo, botón CTA y thumbnail con tour virtual."
+  description: "Sección hero de pantalla completa con header overlay, título, subtítulo, CTA y thumbnail con tour virtual."
 -->
 {% dnd_section
   background_image={
@@ -12,36 +12,38 @@
     "imageUrl": get_asset_url("../images/bgk-hero-home.jpg")
   },
   padding={
-    "top": 100,
-    "bottom": 0,
-    "left": 0,
-    "right": 0
+    "default": { "top": 100, "bottom": 0 },
+    "mobile":  { "top": 80,  "bottom": 0 }
   }
 %}
-  {% dnd_module
-    path="../modules/hero-home",
-    label="Hero — contenido principal",
-    title="Casas en venta en Pachuca diseñadas para generar plusvalía año con año",
-    subtitle="Vive en una comunidad planeada con el respaldo de Vinte. Tranquilidad, exclusividad y el espacio que tu familia merece.",
-    button_text="Ver Modelos de Casa",
-    button_link={
-      "url": { "href": "/modelos", "type": "EXTERNAL" },
-      "no_follow": false,
-      "open_in_new_tab": false
-    },
-    thumbnail={
-      "src": get_asset_url("../images/hero-thumbnail-lightbox.jpg"),
-      "alt": "Real Madeira — Vista de la comunidad",
-      "loading": "lazy"
-    },
-    tour_text="Explora el Tour Virtual de nuestras propiedades.",
-    tour_link={
-      "url": { "href": "#tour-virtual", "type": "EXTERNAL" },
-      "no_follow": false,
-      "open_in_new_tab": true
-    },
-    offset=0,
-    width=12
-  %}
-  {% end_dnd_module %}
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/hero-home",
+        label="Hero — contenido principal",
+        offset=0,
+        width=12,
+        title="Casas en venta en Pachuca diseñadas para generar plusvalía año con año",
+        subtitle="Vive en una comunidad planeada con el respaldo de Vinte. Tranquilidad, exclusividad y el espacio que tu familia merece.",
+        button_text="Ver Modelos de Casa",
+        button_link={
+          "url": { "href": "/modelos", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        },
+        thumbnail={
+          "src": get_asset_url("../images/hero-thumbnail-lightbox.jpg"),
+          "alt": "Real Madeira — Vista de la comunidad",
+          "loading": "lazy"
+        },
+        tour_text="Explora el Tour Virtual de nuestras propiedades.",
+        tour_link={
+          "url": { "href": "#tour-virtual", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": true
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
 {% end_dnd_section %}

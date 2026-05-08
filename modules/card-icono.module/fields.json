@@ -1,0 +1,200 @@
+[
+  {
+    "label": "Columnas",
+    "name": "cols",
+    "type": "number",
+    "min": 1,
+    "max": 6,
+    "default": 3
+  },
+  {
+    "label": "Espacio entre items (px)",
+    "name": "gap",
+    "type": "number",
+    "min": 0,
+    "max": 120,
+    "default": 16
+  },
+  {
+    "label": "Clase CSS extra (para targeting)",
+    "name": "extra_class",
+    "type": "text",
+    "default": ""
+  },
+
+  {
+    "label": "Card — Color de fondo",
+    "name": "card_bg_color",
+    "type": "color",
+    "default": { "color": "#FFFFFF", "opacity": 0 }
+  },
+  {
+    "label": "Card — Color del borde",
+    "name": "card_borde_color",
+    "type": "color",
+    "default": { "color": "#1F140F", "opacity": 100 }
+  },
+  {
+    "label": "Card — Grosor del borde (px)",
+    "name": "card_borde_tamano",
+    "type": "number",
+    "min": 0,
+    "max": 20,
+    "default": 0
+  },
+  {
+    "label": "Card — Radio del borde (px)",
+    "name": "card_borde_radio",
+    "type": "number",
+    "min": 0,
+    "max": 50,
+    "default": 0
+  },
+  {
+    "label": "Card — Padding (ej: 16px o 12px 20px)",
+    "name": "card_padding",
+    "type": "text",
+    "default": "16px"
+  },
+  {
+    "label": "Card — Alineación del contenido",
+    "name": "card_alineacion",
+    "type": "choice",
+    "choices": [["left","Izquierda"],["center","Centro"],["right","Derecha"]],
+    "default": "left"
+  },
+
+  {
+    "label": "Ícono — Color de fondo",
+    "name": "icono_bg_color",
+    "type": "color",
+    "default": { "color": "#F18F04", "opacity": 100 }
+  },
+  {
+    "label": "Ícono — Transparencia del fondo (0 = transparente, 100 = sólido)",
+    "name": "icono_bg_alpha",
+    "type": "number",
+    "min": 0,
+    "max": 100,
+    "default": 100
+  },
+  {
+    "label": "Ícono — Tamaño (px)",
+    "name": "icono_tamano",
+    "type": "number",
+    "min": 10,
+    "max": 120,
+    "default": 32
+  },
+  {
+    "label": "Ícono — Padding del contenedor (px)",
+    "name": "icono_padding",
+    "type": "number",
+    "min": 0,
+    "max": 60,
+    "default": 16
+  },
+  {
+    "label": "Ícono — Posición",
+    "name": "icono_posicion",
+    "type": "choice",
+    "choices": [
+      ["inline-left", "Inline izquierda (junto al título)"],
+      ["top-left",    "Bloque separado — arriba izquierda"],
+      ["top-center",  "Bloque separado — arriba centro"]
+    ],
+    "default": "inline-left"
+  },
+
+  {
+    "label": "Título — Tamaño (px)",
+    "name": "titulo_size",
+    "type": "number",
+    "min": 10,
+    "max": 80,
+    "default": 20
+  },
+  {
+    "label": "Título — Color",
+    "name": "titulo_color",
+    "type": "color",
+    "default": { "color": "#1F140F", "opacity": 100 }
+  },
+  {
+    "label": "Título — Alineación",
+    "name": "titulo_alineacion",
+    "type": "choice",
+    "choices": [["left","Izquierda"],["center","Centro"],["right","Derecha"]],
+    "default": "left"
+  },
+  {
+    "label": "Título — Padding",
+    "name": "titulo_padding",
+    "type": "text",
+    "default": "0"
+  },
+
+  {
+    "label": "Texto — Tamaño (px)",
+    "name": "cuerpo_size",
+    "type": "number",
+    "min": 10,
+    "max": 40,
+    "default": 16
+  },
+  {
+    "label": "Texto — Color",
+    "name": "cuerpo_color",
+    "type": "color",
+    "default": { "color": "#1F140F", "opacity": 100 }
+  },
+  {
+    "label": "Texto — Alineación",
+    "name": "cuerpo_alineacion",
+    "type": "choice",
+    "choices": [["left","Izquierda"],["center","Centro"],["right","Derecha"]],
+    "default": "left"
+  },
+  {
+    "label": "Texto — Padding",
+    "name": "cuerpo_padding",
+    "type": "text",
+    "default": "0"
+  },
+
+  {
+    "label": "Items",
+    "name": "items",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 20, "default": 3 },
+    "children": [
+      {
+        "label": "Título",
+        "name": "titulo",
+        "type": "text",
+        "default": "Elemento"
+      },
+      {
+        "label": "Texto",
+        "name": "cuerpo",
+        "type": "richtext",
+        "default": ""
+      },
+      {
+        "label": "Ícono",
+        "name": "icono",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "label": "Color de borde (override por item)",
+        "name": "borde_color_override",
+        "type": "color",
+        "default": { "color": "", "opacity": 100 }
+      }
+    ]
+  }
+]

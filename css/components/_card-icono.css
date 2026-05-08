@@ -1,0 +1,97 @@
+/* ============================================================
+   Card — Ícono + Título + Texto (módulo reutilizable)
+   ============================================================ */
+
+.card-icono-grid {
+  display: grid;
+  gap: var(--ci-gap, 16px);
+  grid-template-columns: repeat(var(--ci-cols, 3), 1fr);
+}
+
+.card-icono-item {
+  background-color: var(--ci-card-bg, transparent);
+  border: var(--ci-borde-px, 0px) solid var(--ci-borde-color, transparent);
+  border-radius: var(--ci-borde-r, 0px);
+  display: flex;
+  flex-direction: column;
+  padding: var(--ci-card-pad, 16px);
+}
+
+/* Fila superior: ícono + título */
+.card-icono-item__top {
+  align-items: flex-start;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+/* Contenedor del ícono con pseudo-element para opacidad del fondo */
+.card-icono-item__icon-box {
+  align-items: center;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  padding: var(--ci-icono-pad, 16px);
+  position: relative;
+}
+
+.card-icono-item__icon-box::before {
+  background-color: var(--ci-icono-bg, #F18F04);
+  content: '';
+  inset: 0;
+  opacity: var(--ci-icono-a, 1);
+  position: absolute;
+}
+
+.card-icono-item__icon-box img {
+  display: block;
+  height: var(--ci-icono-sz, 32px);
+  object-fit: contain;
+  position: relative;
+  width: var(--ci-icono-sz, 32px);
+  z-index: 1;
+}
+
+.card-icono-item__titulo {
+  color: var(--ci-t-color, #1F140F);
+  flex: 1;
+  font-size: var(--ci-t-size, 20px);
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.card-icono-item__cuerpo {
+  color: var(--ci-c-color, #1F140F);
+  font-size: var(--ci-c-size, 16px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+}
+
+.card-icono-item__cuerpo p {
+  margin: 0;
+}
+
+/* ── Variantes de posición del ícono ──────────────────── */
+
+/* top-left: ícono encima del título como bloque */
+.ci-pos--top-left .card-icono-item__top {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+/* top-center: ícono centrado encima */
+.ci-pos--top-center .card-icono-item__top {
+  align-items: center;
+  flex-direction: column;
+}
+
+/* inline-left (default): ya es row, no override necesario */
+
+/* ── Responsive ────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .card-icono-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

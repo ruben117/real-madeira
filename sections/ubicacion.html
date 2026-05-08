@@ -1,0 +1,72 @@
+<!--
+  templateType: section
+  label: Ubicación privilegiada
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/hero-banner.png
+  description: "Mapa con lightbox (col. izquierda) + heading, cercanías y CTA (col. derecha)."
+-->
+{% dnd_section
+  background_color="#f8f5f1",
+  padding={
+    "default": { "top": 100, "bottom": 100 },
+    "mobile":  { "top": 60,  "bottom": 60 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/ubicacion",
+        label="Ubicación — Contenido",
+        offset=0,
+        width=12,
+        titulo="Ubicación privilegiada al norte de Pachuca.",
+        cuerpo="<p>Con 22 años de solidez en el mercado mexicano, Vinte es la empresa pública líder que garantiza que tu patrimonio aumente su valor año tras año.</p>",
+        cols=2,
+        cta_texto="Descubre cómo llegar",
+        cta_link={
+          "url": { "href": "#", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        },
+        zonas=[
+          {
+            "nombre": "Plaza Explanada",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-ubicacion-cercanias-plaza.png"), "alt": "" },
+            "tiempo": "5",
+            "unidad": "min"
+          },
+          {
+            "nombre": "Zona Bancaria",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-ubicacion-cercanias-zona-bancaria.png"), "alt": "" },
+            "tiempo": "10",
+            "unidad": "min"
+          },
+          {
+            "nombre": "Zona Plateada",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-ubicacion-cercanias-zona-plateada.png"), "alt": "" },
+            "tiempo": "10",
+            "unidad": "min"
+          },
+          {
+            "nombre": "Conexión",
+            "subtitulo": "Acceso rápido a balnearios y pueblos",
+            "icono": { "src": get_asset_url("../images/icon-ubicacion-cercanias-conexion.png"), "alt": "" },
+            "tiempo": "5",
+            "unidad": "min"
+          },
+          {
+            "nombre": "Escuelas de prestigio",
+            "subtitulo": "Para la comodidad de tus hijos.",
+            "icono": { "src": get_asset_url("../images/icon-ubicacion-cercanias-escuelas.png"), "alt": "" },
+            "tiempo": "5",
+            "unidad": "min"
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

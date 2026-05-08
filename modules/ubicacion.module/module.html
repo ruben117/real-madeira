@@ -1,0 +1,91 @@
+{% set map_src    = module.mapa.src if module.mapa.src else get_asset_url("../../images/mapa-negocios-ceranos.jpg") %}
+{% set map_lb_src = module.mapa_lightbox.src if module.mapa_lightbox.src else map_src %}
+{% set cta_href   = module.cta_link.url.href if module.cta_link.url.href else "#" %}
+{% set lb_id      = "ubicacion-lb-" ~ module.unique_id %}
+
+<div class="ubicacion-content" data-ubicacion>
+
+  {# ── Columna izquierda: mapa con animación fade-up ── #}
+  <div class="ubicacion-content__left">
+    <button class="ubicacion-mapa__trigger"
+            aria-label="Ver mapa ampliado"
+            data-ub-map-open="{{ lb_id }}">
+      <img class="ubicacion-mapa__img"
+           src="{{ map_src }}"
+           alt="{{ module.mapa.alt | default('Mapa de ubicación de Real Madeira') | escape_attr }}"
+           loading="lazy">
+    </button>
+  </div>
+
+  {# ── Columna derecha ── #}
+  <div class="ubicacion-content__right">
+
+    {% if module.titulo %}
+      <h2 class="ubicacion-content__titulo">{{ module.titulo | escape_html }}</h2>
+    {% endif %}
+
+    {% if module.cuerpo %}
+      <div class="ubicacion-content__cuerpo">{{ module.cuerpo }}</div>
+    {% endif %}
+
+    {# ── Grid cercanías ── #}
+    {% if module.zonas %}
+      <div class="cercanias-grid" style="--cercanias-cols: {{ module.cols | default(2) }};">
+        {% for zona in module.zonas %}
+          <div class="cercanias-card">
+            <div class="cercanias-card__icon">
+              {% if zona.icono.src %}
+                <img src="{{ zona.icono.src }}" alt="" aria-hidden="true" loading="lazy">
+              {% endif %}
+            </div>
+            <div class="cercanias-card__body">
+              <div class="cercanias-card__info">
+                <span class="cercanias-card__nombre">{{ zona.nombre | escape_html }}</span>
+                {% if zona.subtitulo %}
+                  <span class="cercanias-card__subtitulo">{{ zona.subtitulo | escape_html }}</span>
+                {% endif %}
+              </div>
+              <div class="cercanias-card__tiempo">
+                <span class="cercanias-card__num">{{ zona.tiempo | escape_html }}</span>
+                <span class="cercanias-card__unidad">{{ zona.unidad | default("min") | escape_html }}</span>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# ── CTA con ícono pin ── #}
+    {% if module.cta_texto %}
+      <a class="ubicacion-cta"
+         href="{{ cta_href }}"
+         {% if module.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+         {% if module.cta_link.no_follow %}rel="nofollow"{% endif %}>
+        <img src="{{ get_asset_url('../../images/icon-button-ubicacion-pin.png') }}" alt="" aria-hidden="true" loading="lazy">
+        {{ module.cta_texto | escape_html }}
+      </a>
+    {% endif %}
+
+  </div>
+</div>
+
+{# ── Lightbox del mapa ── #}
+<div class="ubicacion-lightbox"
+     id="{{ lb_id }}"
+     role="dialog"
+     aria-modal="true"
+     aria-label="Mapa de ubicación ampliado"
+     tabindex="-1"
+     hidden>
+  <div class="ubicacion-lightbox__backdrop" data-ub-map-close aria-hidden="true"></div>
+  <div class="ubicacion-lightbox__panel">
+    <button class="ubicacion-lightbox__close" aria-label="Cerrar" data-ub-map-close>
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <img src="{{ map_lb_src }}"
+         alt="{{ module.mapa.alt | default('Mapa de ubicación Real Madeira') | escape_attr }}"
+         loading="lazy">
+  </div>
+</div>

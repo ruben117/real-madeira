@@ -1,0 +1,98 @@
+[
+  {
+    "label": "Imagen del mapa (miniatura)",
+    "name": "mapa",
+    "type": "image",
+    "responsive": true,
+    "resizable": true,
+    "show_loading": true,
+    "default": { "src": "", "alt": "Mapa de ubicación de Real Madeira" }
+  },
+  {
+    "label": "Imagen del mapa (lightbox, alta resolución)",
+    "name": "mapa_lightbox",
+    "type": "image",
+    "responsive": false,
+    "resizable": false,
+    "show_loading": false,
+    "default": { "src": "", "alt": "" }
+  },
+  {
+    "label": "Título (H2)",
+    "name": "titulo",
+    "type": "text",
+    "default": "Ubicación privilegiada al norte de Pachuca."
+  },
+  {
+    "label": "Texto descriptivo",
+    "name": "cuerpo",
+    "type": "richtext",
+    "default": "<p>Con 22 años de solidez en el mercado mexicano, Vinte es la empresa pública líder que garantiza que tu patrimonio aumente su valor año tras año.</p>"
+  },
+  {
+    "label": "Columnas del grid",
+    "name": "cols",
+    "type": "number",
+    "min": 1,
+    "max": 4,
+    "default": 2
+  },
+  {
+    "label": "Zonas cercanas",
+    "name": "zonas",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 20, "default": 5 },
+    "children": [
+      {
+        "label": "Nombre",
+        "name": "nombre",
+        "type": "text",
+        "default": "Zona"
+      },
+      {
+        "label": "Subtítulo (opcional)",
+        "name": "subtitulo",
+        "type": "text",
+        "default": ""
+      },
+      {
+        "label": "Ícono",
+        "name": "icono",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "label": "Tiempo",
+        "name": "tiempo",
+        "type": "text",
+        "default": "5"
+      },
+      {
+        "label": "Unidad (ej: min, km)",
+        "name": "unidad",
+        "type": "text",
+        "default": "min"
+      }
+    ]
+  },
+  {
+    "label": "Texto del botón CTA",
+    "name": "cta_texto",
+    "type": "text",
+    "default": "Descubre cómo llegar"
+  },
+  {
+    "label": "Enlace del botón CTA",
+    "name": "cta_link",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT", "EMAIL_ADDRESS"],
+    "default": {
+      "url": { "href": "#", "type": "EXTERNAL" },
+      "no_follow": false,
+      "open_in_new_tab": false
+    }
+  }
+]
