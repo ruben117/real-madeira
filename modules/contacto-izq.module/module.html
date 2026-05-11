@@ -1,0 +1,32 @@
+{% set fallback_tel      = get_asset_url("../../images/icon-contacto-telefono.svg") %}
+{% set fallback_whatsapp = get_asset_url("../../images/icon-contacto-whatsapp.svg") %}
+{% set fallback_pin      = get_asset_url("../../images/icon-contacto-pin.svg") %}
+
+<div class="contacto-izq">
+
+  {% if module.titulo %}
+    <h2 class="contacto-izq__titulo">{{ module.titulo | escape_html }}</h2>
+  {% endif %}
+
+  <div class="contacto-izq__iconos">
+    {% for item in module.items %}
+      {% set href = item.enlace.url.href | default("") %}
+      {% set tag  = "a" if href else "span" %}
+
+      <{{ tag }} class="contacto-izq__btn"
+                {% if href %}
+                  href="{{ href }}"
+                  aria-label="{{ item.etiqueta | default('Contacto') | escape_attr }}"
+                  {% if item.enlace.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+                {% endif %}>
+        {% if item.icono.src %}
+          <img src="{{ item.icono.src }}"
+               alt="{{ item.etiqueta | default('') | escape_attr }}"
+               loading="lazy">
+        {% endif %}
+      </{{ tag }}>
+
+    {% endfor %}
+  </div>
+
+</div>

@@ -84,7 +84,7 @@
 /* ── Header main ─────────────────────────────────────────── */
 
 .header__main {
-  background-color: rgba(21, 38, 56, 0.55);
+  background-color: rgba(117, 113, 111, 0.55);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -93,7 +93,7 @@
 
 /* Estado scrolled: fondo sólido */
 .site-header.is-scrolled .header__main {
-  background-color: #152638;
+  background-color: #453d37;
   border-bottom-color: rgba(255, 255, 255, 0.12);
 }
 

@@ -9,7 +9,7 @@ Note: _macros.css needs to be imported into each stylesheet where macros are use
   --secondary-color: #1F140F;
   --accent-color: #F18F04;
   --text-color: #1F140F;
-  --heading-color: #171717;
+  --heading-color: #1F140F;
   --font-family-base: 'BwModelica', 'Roboto', sans-serif;
   --font-size-base: 16px;
   --font-size-disclaimer:10px;
@@ -61,6 +61,8 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 {% include './components/_ubicacion.css' %}
 {% include './components/_card-icono.css' %}
 {% include './components/_certificacion.css' %}
+{% include './components/_contacto.css' %}
+{% include './components/_faq.css' %}
 
 /* Utilities
 Helper classes with ability to override anything that comes before it

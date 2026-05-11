@@ -1,0 +1,68 @@
+<!--
+  templateType: section
+  label: Contacto — Agenda tu cita
+  isAvailableForNewContent: true
+  description: "Imagen de fondo con overlay. Izquierda: H2 + iconos. Derecha: formulario HubSpot en tarjeta."
+-->
+{% dnd_section
+  background_image={
+    "src": get_asset_url("../images/bgk-contacto.jpg"),
+    "background_position": "MIDDLE_CENTER",
+    "background_size": "cover"
+  },
+  background_color="#1F140F",
+  vertical_alignment="MIDDLE",
+  padding={
+    "default": { "top": 100, "bottom": 80 },
+    "mobile":  { "top": 60,  "bottom": 60 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+
+    {% dnd_row %}
+
+      {# ── Columna izquierda: H2 + iconos de contacto ── #}
+      {% dnd_module
+        path="../modules/contacto-izq",
+        label="Contacto — Heading e iconos",
+        offset=0,
+        width=5,
+        titulo="Agenda tu cita y conoce tu casa en el corazón de Pachuca.",
+        items=[
+          {
+            "icono": { "src": get_asset_url("../images/icon-contacto-telefono.svg"), "alt": "", "loading": "lazy" },
+            "enlace": { "url": { "href": "tel:+525917470000", "type": "EXTERNAL" }, "no_follow": false, "open_in_new_tab": false },
+            "etiqueta": "Llamar por teléfono"
+          },
+          {
+            "icono": { "src": get_asset_url("../images/icon-contacto-whatsapp.svg"), "alt": "", "loading": "lazy" },
+            "enlace": { "url": { "href": "https://wa.me/525917470000", "type": "EXTERNAL" }, "no_follow": false, "open_in_new_tab": true },
+            "etiqueta": "Contactar por WhatsApp"
+          },
+          {
+            "icono": { "src": get_asset_url("../images/icon-contacto-pin.svg"), "alt": "", "loading": "lazy" },
+            "enlace": { "url": { "href": "https://maps.google.com/?q=Real+Madeira+Pachuca", "type": "EXTERNAL" }, "no_follow": false, "open_in_new_tab": true },
+            "etiqueta": "Ver ubicación en el mapa"
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+
+      {# ── Columna derecha: formulario HubSpot en tarjeta crema ── #}
+      {# extra_classes="contacto-form-card" → CSS lo convierte en tarjeta (#f8f5f0, padding) #}
+      {% dnd_module
+        path="@hubspot/form",
+        label="Contacto — Formulario",
+        extra_classes="contacto-form-card",
+        offset=5,
+        width=7,
+        title="Formulario de contacto",
+        form={ "form_id": "" },
+        response_message="<p>Gracias por contactarnos. En breve te responderemos.</p>"
+      %}
+      {% end_dnd_module %}
+
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -1,0 +1,85 @@
+<!--
+  templateType: section
+  label: FAQ – Preguntas Frecuentes
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/faq.png
+  description: "Heading + acordeón de preguntas frecuentes con fondo blanco."
+-->
+
+{% dnd_section
+  background_color="#F5F3EF",
+  padding={
+    "default": { "top": 60, "bottom": 80 },
+    "mobile":  { "top": 40, "bottom": 40 }
+  }
+%}
+
+  {% dnd_column offset=0, width=12 %}
+
+    {# ── Heading ──────────────────────────────────────────── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/header",
+        label="FAQ – Título",
+        extra_classes="faq__heading-module",
+        header_tag="h2",
+        value="Preguntas frecuentes"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# ── Acordeón ─────────────────────────────────────────── #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/faq",
+        label="FAQ – Acordeón",
+        extra_classes="faq__module-wrapper",
+        items=[
+          {
+            "faq_pregunta": "¿Es seguro comprar en Real Madeira?",
+            "faq_respuesta": "<p>Por su Plan Maestro Comunitario que organiza y administra la zona para garantizar orden y seguridad a largo plazo.</p>"
+          },
+          {
+            "faq_pregunta": "¿Puedo usar mi crédito Infonavit?",
+            "faq_respuesta": "<p>Sí, aceptamos crédito Infonavit, FOVISSSTE y créditos bancarios. Nuestros asesores te guiarán en todo el proceso sin costo adicional.</p>"
+          },
+          {
+            "faq_pregunta": "¿Qué hace especial a la Comunidad Vinte?",
+            "faq_respuesta": "<p>Vinte lleva más de 22 años construyendo comunidades sustentables en México. Nos diferencia la certificación EDGE en ecotecnologías, la calidad de construcción y el acompañamiento post-venta a cada familia.</p>"
+          },
+          {
+            "faq_pregunta": "¿Dónde se encuentra ubicado exactamente Real Madeira?",
+            "faq_respuesta": "<p>Real Madeira está ubicado sobre Av. Luis Donaldo Colosio en Playa del Carmen, Quintana Roo. A tan solo 15 minutos de la Quinta Avenida, la playa y el Tren Maya.</p>"
+          },
+          {
+            "faq_pregunta": "¿Qué servicios y comercios hay cerca del desarrollo?",
+            "faq_respuesta": "<p>A pocos minutos encontrarás Walmart, Multiplaza, escuelas, hospitales, la estación del Tren Maya y acceso rápido a la Quinta Avenida y zona turística.</p>"
+          },
+          {
+            "faq_pregunta": "¿Cómo puedo contactarlos para más información?",
+            "faq_respuesta": "<p>Puedes agendar una visita o llamarnos directamente. También contamos con atención por WhatsApp para resolver tus dudas en cualquier momento.</p>"
+          },
+          {
+            "faq_pregunta": "¿En cuánto tiempo me entregan mi casa?",
+            "faq_respuesta": "<p>La entrega inmediata aplica entre 35 y 45 días después de la firma de escrituras, sujeto al prototipo disponible y al avance de trámites crediticios.</p>"
+          },
+          {
+            "faq_pregunta": "¿Qué incluye el ahorro de las ecotecnologías?",
+            "faq_respuesta": "<p>Nuestras viviendas con certificación EDGE incluyen paneles solares, sistemas de ahorro de agua y materiales de construcción eficientes que reducen hasta un 20% el consumo de energía y agua.</p>"
+          },
+          {
+            "faq_pregunta": "¿Puedo tener mascotas en el desarrollo?",
+            "faq_respuesta": "<p>Sí, Real Madeira es pet-friendly. Contamos con áreas verdes y espacios comunes diseñados también para el bienestar de tus mascotas.</p>"
+          },
+          {
+            "faq_pregunta": "¿Qué necesito para iniciar mi trámite de crédito?",
+            "faq_respuesta": "<p>Necesitas identificación oficial, comprobante de ingresos, estado de cuenta bancario reciente y tu número de seguridad social. Nuestro equipo te acompaña en cada paso del proceso.</p>"
+          }
+        ]
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

@@ -1,0 +1,47 @@
+[
+  {
+    "label": "Título (H2)",
+    "name": "titulo",
+    "type": "text",
+    "default": "Agenda tu cita y conoce tu casa en el corazón de Pachuca."
+  },
+  {
+    "label": "Iconos de contacto",
+    "name": "items",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 8,
+      "default": 3,
+      "sorting_label_field": "items.etiqueta"
+    },
+    "children": [
+      {
+        "label": "Ícono (SVG)",
+        "name": "icono",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "", "loading": "lazy" }
+      },
+      {
+        "label": "Enlace (tel:, https://wa.me/, etc.)",
+        "name": "enlace",
+        "type": "link",
+        "supported_types": ["EXTERNAL"],
+        "default": {
+          "url": { "href": "", "type": "EXTERNAL" },
+          "no_follow": false,
+          "open_in_new_tab": false
+        }
+      },
+      {
+        "label": "Etiqueta accesible",
+        "name": "etiqueta",
+        "type": "text",
+        "default": "Contacto"
+      }
+    ]
+  }
+]

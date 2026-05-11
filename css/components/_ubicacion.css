@@ -78,7 +78,7 @@
   display: grid;
   grid-template-columns: repeat(var(--cercanias-cols, 2), 1fr);
   margin-bottom: 2rem;
-  row-gap: 0;
+  row-gap: 10px;
 }
 
 /* Zona card: ícono oscuro + cuerpo claro */
@@ -254,6 +254,7 @@
   transition: background-color 0.2s;
   width: 36px;
   z-index: 1;
+  padding:0px
 }
 
 .ubicacion-lightbox__close:hover {

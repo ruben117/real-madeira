@@ -1,0 +1,26 @@
+[
+  {
+    "id": "items",
+    "name": "items",
+    "label": "Preguntas frecuentes",
+    "type": "group",
+    "repeater": true,
+    "occurrence": { "min": 1, "max": 20, "default": 10 },
+    "children": [
+      {
+        "id": "faq_pregunta",
+        "name": "faq_pregunta",
+        "label": "Pregunta",
+        "type": "text",
+        "default": "¿Pregunta frecuente?"
+      },
+      {
+        "id": "faq_respuesta",
+        "name": "faq_respuesta",
+        "label": "Respuesta",
+        "type": "richtext",
+        "default": "<p>Respuesta a la pregunta frecuente.</p>"
+      }
+    ]
+  }
+]

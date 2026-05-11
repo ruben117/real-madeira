@@ -1,0 +1,189 @@
+/* ============================================================
+   Contacto — Agenda tu cita
+   Figma: node 6017:2
+   ============================================================ */
+
+/* ── Overlay oscuro sobre imagen de fondo ──────────────── */
+
+.dnd-section:has(.contacto-izq) {
+  position: relative;
+}
+
+.dnd-section:has(.contacto-izq)::before {
+  background: rgba(31, 20, 15, 0.72);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
+}
+
+.dnd-section:has(.contacto-izq) > .row-fluid {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Columna izquierda ─────────────────────────────────── */
+
+.contacto-izq {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* H2: BwModelica Light (300), grande, BLANCO
+   !important necesario porque estilos globales de headings
+   pueden sobrescribir el color en esta sección oscura */
+.contacto-izq__titulo {
+  color: #ffffff !important;
+  font-size: clamp(36px, 3.9vw, 56px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* ── Iconos de contacto ─────────────────────────────────── */
+
+.contacto-izq__iconos {
+  display: flex;
+  gap: 12px;
+}
+
+/* Caja oscura 67×67 con hover a primary-color */
+.contacto-izq__btn {
+  align-items: center;
+  background-color: var(--secondary-color);   /* #1F140F */
+  display: flex;
+  flex-shrink: 0;
+  height: 67px;
+  justify-content: center;
+  text-decoration: none;
+  transition: background-color 0.22s;
+  width: 67px;
+}
+
+.contacto-izq__btn:hover,
+.contacto-izq__btn:focus {
+  background-color: var(--primary-color);
+  outline: none;
+}
+
+/* SVG como <img> sobre fondo oscuro → filter para hacerlo blanco
+   Bug conocido del proyecto (memory.md) */
+.contacto-izq__btn img {
+  display: block;
+  filter: brightness(0) invert(1);
+  height: 32px;
+  object-fit: contain;
+  width: 32px;
+}
+
+/* ── Tarjeta del formulario ─────────────────────────────────
+   .dnd-module.contacto-form-card = wrapper que HubSpot genera
+   cuando el dnd_module tiene extra_classes="contacto-form-card"
+   ──────────────────────────────────────────────────────────── */
+
+.dnd-module.contacto-form-card {
+  background-color: #f8f5f0;
+  padding: 40px;
+}
+
+/* Título del formulario (parámetro title de @hubspot/form) */
+.dnd-module.contacto-form-card .hs-form-title,
+.dnd-module.contacto-form-card .form-title {
+  color: var(--text-color);
+  font-size: 12px;
+  font-weight: var(--font-weight-heading-black);
+  letter-spacing: 1.5px;
+  margin: 0 0 1.75rem;
+  text-transform: uppercase;
+}
+
+/* ── HubSpot form overrides — scoped al módulo ─────────────
+   NUNCA usar .hs-form o .hs-form-field sin prefijo:
+   siempre dentro de .dnd-module.contacto-form-card
+   ──────────────────────────────────────────────────────────── */
+
+/* Limpiar background naranja que HubSpot inyecta en labels */
+.dnd-module.contacto-form-card .hs-form label,
+.dnd-module.contacto-form-card .hs-form .hs-form-field label {
+  background: none !important;
+  background-color: transparent !important;
+  color: var(--text-color);
+  font-family: var(--font-family-base);
+  font-size: 14px;
+  font-weight: var(--font-weight-base);
+  margin-bottom: 6px;
+  padding: 0;
+}
+
+/* Inputs y selects */
+.dnd-module.contacto-form-card .hs-form input[type="text"],
+.dnd-module.contacto-form-card .hs-form input[type="email"],
+.dnd-module.contacto-form-card .hs-form input[type="tel"],
+.dnd-module.contacto-form-card .hs-form input[type="number"],
+.dnd-module.contacto-form-card .hs-form select,
+.dnd-module.contacto-form-card .hs-form textarea {
+  background-color: #ffffff;
+  border: 1px solid rgba(31, 20, 15, 0.25);
+  border-radius: 0;
+  box-sizing: border-box;
+  color: var(--text-color);
+  font-family: var(--font-family-base);
+  font-size: 16px;
+  height: 48px;
+  padding: 10px 14px;
+  width: 100%;
+}
+
+/* Botón submit: fondo oscuro #1F140F, texto blanco, full-width */
+.dnd-module.contacto-form-card .hs-form input[type="submit"],
+.dnd-module.contacto-form-card .hs-form .hs-submit input,
+.dnd-module.contacto-form-card .hs-form .hs-button {
+  background-color: var(--secondary-color) !important;
+  border: none !important;
+  color: #ffffff !important;
+  cursor: pointer;
+  display: block;
+  font-family: var(--font-family-base);
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1;
+  padding: 16px 24px;
+  transition: background-color 0.22s;
+  width: 100%;
+}
+
+.dnd-module.contacto-form-card .hs-form input[type="submit"]:hover,
+.dnd-module.contacto-form-card .hs-form .hs-button:hover {
+  background-color: var(--primary-color) !important;
+}
+
+/* ── Tablet (768px – 1023px) ───────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .contacto-izq__titulo {
+    font-size: 30px;
+  }
+
+  .dnd-module.contacto-form-card {
+    padding: 28px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .contacto-izq__titulo {
+    font-size: 28px;
+  }
+
+  .contacto-izq {
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .dnd-module.contacto-form-card {
+    padding: 24px;
+  }
+}

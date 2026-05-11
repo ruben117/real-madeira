@@ -1,0 +1,24 @@
+<div class="faq" data-faq>
+  {% for item in module.items %}
+  <div class="faq__item{% if loop.first %} is-open{% endif %}" data-faq-item>
+    <button
+      class="faq__trigger"
+      data-faq-trigger
+      aria-expanded="{{ 'true' if loop.first else 'false' }}"
+      aria-controls="faq-answer-{{ loop.index }}"
+    >
+      <span class="faq__pregunta">{{ item.faq_pregunta | escape_html }}</span>
+      <span class="faq__icon" aria-hidden="true"></span>
+    </button>
+    <div
+      class="faq__respuesta"
+      id="faq-answer-{{ loop.index }}"
+      role="region"
+    >
+      <div class="faq__respuesta-inner">
+        {{ item.faq_respuesta | sanitize_html }}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

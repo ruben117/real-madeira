@@ -102,18 +102,20 @@
 }
 
 .prototipos-slider__btn:hover,
-.prototipos-slider__btn:focus {
+.prototipos-slider__btn:focus,
+.prototipos-slider__btn:active {
   border-color: var(--primary-color);
   color: var(--primary-color);
   outline: none;
+  border-radius: 50%;
 }
 
 /* ── Columna derecha: tarjetas apiladas ────────────────── */
 
 .prototipos-slider__right {
   display: grid;
-  flex: 0 0 570px;
-  width: 570px;
+  flex: 0 0 460px;
+  width: 460px;
 }
 
 /* Tarjeta prototipo */
@@ -173,7 +175,7 @@
 /* Característica: 23px Regular #3a3a3a */
 .prototipos-card__caracteristica {
   color: #3a3a3a;
-  font-size: 23px;
+  font-size: 17px;
   font-weight: var(--font-weight-base);
   line-height: 1.2;
   margin: 0 0 4px;
@@ -182,7 +184,7 @@
 /* Detalle: 20px Regular #95785e */
 .prototipos-card__detalle {
   color: #95785e;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: var(--font-weight-base);
   line-height: 1.2;
 }
