@@ -1,0 +1,27 @@
+<svg width="35" height="34" viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_6164_41)">
+<path d="M25.5625 9.16403L26.4727 8.25391L25.5625 7.34378L24.6524 8.25391L25.5625 9.16403Z" fill="#F5F3EF" stroke="white"/>
+<path d="M28.7989 12.3984L29.709 11.4883L28.7989 10.5782L27.8887 11.4883L28.7989 12.3984Z" fill="#F5F3EF" stroke="white"/>
+<path d="M22.3301 5.9277L23.2402 5.01758L22.3301 4.10745L21.42 5.01758L22.3301 5.9277Z" fill="#F5F3EF" stroke="white"/>
+<path d="M22.3301 12.3984L23.2402 11.4883L22.3301 10.5782L21.42 11.4883L22.3301 12.3984Z" fill="#F5F3EF" stroke="white"/>
+<path d="M25.5625 15.6308L26.4727 14.7207L25.5625 13.8106L24.6524 14.7207L25.5625 15.6308Z" fill="#F5F3EF" stroke="white"/>
+<path d="M19.0957 9.16403L20.0059 8.25391L19.0957 7.34378L18.1856 8.25391L19.0957 9.16403Z" fill="#F5F3EF" stroke="white"/>
+<path d="M19.0957 15.6308L20.0059 14.7207L19.0957 13.8106L18.1856 14.7207L19.0957 15.6308Z" fill="#F5F3EF" stroke="white"/>
+<path d="M22.3301 18.8652L23.2402 17.9551L22.3301 17.045L21.42 17.9551L22.3301 18.8652Z" fill="#F5F3EF" stroke="white"/>
+<path d="M15.8614 12.3984L16.7715 11.4883L15.8614 10.5782L14.9512 11.4883L15.8614 12.3984Z" fill="#F5F3EF" stroke="white"/>
+<path d="M11.1307 12.9123L8.84588 21.6779" stroke="white" stroke-miterlimit="10"/>
+<path d="M20.832 22.6156L12.1367 24.9707" stroke="white" stroke-miterlimit="10"/>
+<mask id="mask0_6164_41" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-6" y="-4" width="44" height="43">
+<path d="M10.2996 38.198L37.1945 11.303L22.6001 -3.2914L-4.29485 23.6035L10.2996 38.198Z" fill="white" stroke="white"/>
+</mask>
+<g mask="url(#mask0_6164_41)">
+<path d="M30.9068 17.0849C26.6114 21.3802 19.3915 25.5322 13.8387 19.9794C8.1242 14.2648 12.4379 7.20667 16.7332 2.91133C21.0286 -1.38406 25.4796 0.510631 29.3935 4.42455C33.3075 8.33847 35.2022 12.7895 30.9068 17.0849Z" stroke="white" stroke-miterlimit="10"/>
+<path d="M8.27712 28.8322L12.1418 24.9676L8.84922 21.675L4.98457 25.5397L4.20486 24.76L0.996094 27.9688L5.87701 32.8497L9.08578 29.6409L8.27712 28.8322Z" stroke="white" stroke-miterlimit="10"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_6164_41">
+<rect width="35" height="34" fill="white"/>
+</clipPath>
+</defs>
+</svg>

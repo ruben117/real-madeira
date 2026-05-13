@@ -1,8 +1,14 @@
 {
   "label": "Hero Home",
   "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "host_template_types": ["PAGE", "BLOG_POST", "BLOG_LISTING"],
+  "icon": "",
   "js_assets": [],
   "other_assets": [],
+  "smart_type": "NOT_SMART",
+  "tags": ["Real Lucerna"],
   "is_available_for_new_content": true,
-  "categories": ["media_and_content"]
+  "categories": ["body_content"]
 }

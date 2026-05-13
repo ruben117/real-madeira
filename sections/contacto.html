@@ -1,68 +1,87 @@
 <!--
   templateType: section
-  label: Contacto — Agenda tu cita
+  label: Contacto – Real Lucerna
   isAvailableForNewContent: true
-  description: "Imagen de fondo con overlay. Izquierda: H2 + iconos. Derecha: formulario HubSpot en tarjeta."
+  screenshotPath: ../images/section-previews/contacto.png
+  description: "Sección de contacto con imagen de fondo, heading + íconos y formulario con contenedor blanco."
 -->
+
 {% dnd_section
   background_image={
-    "src": get_asset_url("../images/bgk-contacto.jpg"),
-    "background_position": "MIDDLE_CENTER",
-    "background_size": "cover"
+    "backgroundPosition": "MIDDLE_CENTER",
+    "backgroundSize": "cover",
+    "imageUrl": get_asset_url("../images/bgk-contacto.jpg")
   },
-  background_color="#1F140F",
-  vertical_alignment="MIDDLE",
+  background_color="#33425D",
+  vertical_alignment="TOP",
   padding={
-    "default": { "top": 100, "bottom": 80 },
-    "mobile":  { "top": 60,  "bottom": 60 }
+    "default": { "top": 120, "bottom": 120 },
+    "mobile":  { "top": 50, "bottom": 50 }
   }
 %}
-  {% dnd_column offset=0, width=12 %}
+
+  {# ── Columna izquierda: heading + descripción + íconos ──── #}
+  {% dnd_column offset=0, width=5 %}
 
     {% dnd_row %}
-
-      {# ── Columna izquierda: H2 + iconos de contacto ── #}
       {% dnd_module
-        path="../modules/contacto-izq",
-        label="Contacto — Heading e iconos",
-        offset=0,
-        width=5,
-        titulo="Agenda tu cita y conoce tu casa en el corazón de Pachuca.",
+        path="@hubspot/header",
+        label="Contacto – Título",
+        extra_classes="contacto__heading-module",
+        header_tag="h2",
+        value="Agenda tu cita y conoce tu casa en el corazón de Pachuca."
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-grid",
+        label="Contacto – Íconos",
+        extra_classes="contacto__iconos-module",
         items=[
           {
-            "icono": { "src": get_asset_url("../images/icon-contacto-telefono.svg"), "alt": "", "loading": "lazy" },
-            "enlace": { "url": { "href": "tel:+525917470000", "type": "EXTERNAL" }, "no_follow": false, "open_in_new_tab": false },
-            "etiqueta": "Llamar por teléfono"
+            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-telefono.svg"), "alt": "Teléfono", "loading": "lazy" },
+            "icono_enlace": { "url": { "href": "tel:+529841234567", "type": "PHONE_NUMBER" }, "open_in_new_tab": false }
           },
           {
-            "icono": { "src": get_asset_url("../images/icon-contacto-whatsapp.svg"), "alt": "", "loading": "lazy" },
-            "enlace": { "url": { "href": "https://wa.me/525917470000", "type": "EXTERNAL" }, "no_follow": false, "open_in_new_tab": true },
-            "etiqueta": "Contactar por WhatsApp"
+            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-whatsapp.svg"), "alt": "WhatsApp", "loading": "lazy" },
+            "icono_enlace": { "url": { "href": "https://wa.me/529841234567", "type": "EXTERNAL" }, "open_in_new_tab": true }
           },
           {
-            "icono": { "src": get_asset_url("../images/icon-contacto-pin.svg"), "alt": "", "loading": "lazy" },
-            "enlace": { "url": { "href": "https://maps.google.com/?q=Real+Madeira+Pachuca", "type": "EXTERNAL" }, "no_follow": false, "open_in_new_tab": true },
-            "etiqueta": "Ver ubicación en el mapa"
+            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-pin.svg"), "alt": "Ubicación", "loading": "lazy" },
+            "icono_enlace": { "url": { "href": "https://maps.google.com/?q=Real+Madeira+Pachuca", "type": "EXTERNAL" }, "open_in_new_tab": true }
           }
-        ]
+        ],
+        config={
+          "flex_direction": "row",
+          "flex_wrap": "wrap",
+          "justify_content": "flex-start",
+          "align_items": "center",
+          "icono_gap": 12,
+          "icono_size": 50,
+          "icono_padding": 10,
+          "icono_radius": 0,
+          "icono_bg": { "color": "#1F140F", "opacity": 100 }
+        }
       %}
       {% end_dnd_module %}
-
-      {# ── Columna derecha: formulario HubSpot en tarjeta crema ── #}
-      {# extra_classes="contacto-form-card" → CSS lo convierte en tarjeta (#f8f5f0, padding) #}
-      {% dnd_module
-        path="@hubspot/form",
-        label="Contacto — Formulario",
-        extra_classes="contacto-form-card",
-        offset=5,
-        width=7,
-        title="Formulario de contacto",
-        form={ "form_id": "" },
-        response_message="<p>Gracias por contactarnos. En breve te responderemos.</p>"
-      %}
-      {% end_dnd_module %}
-
     {% end_dnd_row %}
 
   {% end_dnd_column %}
+
+  {# ── Columna derecha: formulario ─────────────────────────── #}
+  {% dnd_column offset=5, width=7 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/form",
+        label="Contacto – Formulario",
+        extra_classes="contacto__form-module"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
 {% end_dnd_section %}

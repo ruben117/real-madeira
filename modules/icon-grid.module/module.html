@@ -1,0 +1,40 @@
+{% set direction  = module.config.flex_direction  | default('row') %}
+{% set wrap       = module.config.flex_wrap       | default('wrap') %}
+{% set justify    = module.config.justify_content | default('flex-start') %}
+{% set align      = module.config.align_items     | default('center') %}
+{% set gap        = module.config.icono_gap       | default(12) %}
+{% set size       = module.config.icono_size      | default(56) %}
+{% set padding    = module.config.icono_padding   | default(0) %}
+{% set radius     = module.config.icono_radius    | default(0) %}
+{% set bg_color   = module.config.icono_bg.color  | default('#CBD527') %}
+
+<div class="icon-grid" style="
+  --ig-direction: {{ direction }};
+  --ig-wrap: {{ wrap }};
+  --ig-justify: {{ justify }};
+  --ig-align: {{ align }};
+  --ig-gap: {{ gap }}px;
+  --ig-size: {{ size }}px;
+  --ig-padding: {{ padding }}px;
+  --ig-radius: {{ radius }}px;
+  --ig-bg: {{ bg_color }};
+">
+  {% for item in module.items %}
+  {% set href = item.icono_enlace.url.href | default('#') %}
+  {% if item.icono_enlace.url.type == "EMAIL_ADDRESS" %}{% set href = "mailto:" ~ href %}{% endif %}
+  {% if item.icono_enlace.url.type == "PHONE_NUMBER" %}{% set href = "tel:" ~ href %}{% endif %}
+  <a
+    class="icon-grid__item"
+    href="{{ href | escape_url }}"
+    {% if item.icono_enlace.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+  >
+    {% set img_src = item.icono_imagen.src if item.icono_imagen.src else get_asset_url("../../images/large-placeholder-image.png") %}
+    <img
+      class="icon-grid__img"
+      src="{{ img_src }}"
+      alt="{{ item.icono_imagen.alt | escape_attr }}"
+      loading="lazy"
+    >
+  </a>
+  {% endfor %}
+</div>

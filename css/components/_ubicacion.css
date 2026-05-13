@@ -18,29 +18,43 @@
   max-width: 41%;
 }
 
-.ubicacion-mapa__trigger {
-  background: none;
-  border: none;
+/* Contenedor del zoom: overflow hidden para recortar la imagen ampliada */
+.ubicacion-mapa__zoom {
   cursor: zoom-in;
   display: block;
-  padding: 0;
+  overflow: hidden;
   width: 100%;
 }
 
-/* Animación fade-in + slide desde abajo */
+/*
+  Animación fade-up usa `translate` (propiedad CSS individual).
+  Zoom usa `scale` (propiedad CSS individual).
+  Son independientes: no se pisan en los estados de transición.
+*/
 .ubicacion-mapa__img {
   display: block;
   height: auto;
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.85s ease, transform 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  pointer-events: none;        /* evita drag de imagen */
+  scale: 1;
+  translate: 0 40px;           /* fade-up inicial */
+  transition:
+    opacity 0.85s ease,
+    translate 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    scale 0.45s ease;
   width: 100%;
-  will-change: opacity, transform;
+  will-change: opacity, translate, scale;
 }
 
+/* Fade-up completado */
 .ubicacion-mapa__img.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  translate: 0 0;
+}
+
+/* Zoom: escala 2.5× al hacer hover — transform-origin cambia con el cursor (via JS) */
+.ubicacion-mapa__zoom:hover .ubicacion-mapa__img.is-visible {
+  scale: 3;
 }
 
 /* ── Columna derecha ───────────────────────────────────── */
@@ -197,68 +211,6 @@
   background-color: var(--secondary-color);
   color: #ffffff;
   outline: none;
-}
-
-/* ── Lightbox ──────────────────────────────────────────── */
-
-.ubicacion-lightbox {
-  align-items: center;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 2000;
-}
-
-.ubicacion-lightbox[hidden] {
-  display: none !important;
-}
-
-.ubicacion-lightbox__backdrop {
-  background-color: rgba(0, 0, 0, 0.88);
-  cursor: pointer;
-  inset: 0;
-  position: absolute;
-}
-
-.ubicacion-lightbox__panel {
-  max-height: 90vh;
-  max-width: 960px;
-  overflow: auto;
-  position: relative;
-  width: 90vw;
-}
-
-.ubicacion-lightbox__panel img {
-  display: block;
-  height: auto;
-  width: 100%;
-}
-
-.ubicacion-lightbox__close {
-  align-items: center;
-  background: rgba(0, 0, 0, 0.55);
-  border: none;
-  border-radius: 50%;
-  color: #ffffff;
-  cursor: pointer;
-  display: flex;
-  height: 36px;
-  justify-content: center;
-  position: absolute;
-  right: 10px;
-  top: 10px;
-  transition: background-color 0.2s;
-  width: 36px;
-  z-index: 1;
-  padding:0px
-}
-
-.ubicacion-lightbox__close:hover {
-  background: rgba(0, 0, 0, 0.8);
 }
 
 /* ── Tablet (768px – 1023px) ───────────────────────────── */

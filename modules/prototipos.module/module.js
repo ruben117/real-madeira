@@ -29,6 +29,7 @@
         section.style.backgroundImage    = "url('" + bgUrl + "')";
         section.style.backgroundSize     = 'cover';
         section.style.backgroundPosition = 'center';
+        section.style.backgroundColor = '#1F140F';
       }
     }
 

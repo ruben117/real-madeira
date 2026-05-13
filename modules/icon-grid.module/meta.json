@@ -1,14 +1,14 @@
 {
-  "label": "Contacto — Iconos (teléfono, WhatsApp, ubicación)",
+  "label": "Icon Grid – Cuadrícula de íconos",
   "css_assets": [],
   "external_js": [],
   "global": false,
   "host_template_types": ["PAGE", "BLOG_POST", "BLOG_LISTING"],
-  "icon": "custom",
+  "icon": "",
   "js_assets": [],
   "other_assets": [],
   "smart_type": "NOT_SMART",
-  "tags": [],
+  "tags": ["Real Lucerna"],
   "is_available_for_new_content": true,
-  "categories": ["BODY_CONTENT"]
+  "categories": ["body_content"]
 }

@@ -1,189 +1,248 @@
 /* ============================================================
-   Contacto — Agenda tu cita
-   Figma: node 6017:2
+   SECCIÓN: CONTACTO
    ============================================================ */
 
-/* ── Overlay oscuro sobre imagen de fondo ──────────────── */
+/* ── Overlay sobre imagen de fondo ──────────────────────────── */
 
-.dnd-section:has(.contacto-izq) {
+.dnd-section:has(.contacto__heading-module) {
   position: relative;
 }
 
-.dnd-section:has(.contacto-izq)::before {
-  background: rgba(31, 20, 15, 0.72);
-  content: '';
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
-  z-index: 0;
-}
-
-.dnd-section:has(.contacto-izq) > .row-fluid {
+.dnd-section:has(.contacto__heading-module) .row-fluid {
   position: relative;
   z-index: 1;
 }
+.form-title, .submitted-message, form {
+    background-color: transparent !important;
+    border: none !important;
+}
+/* ── Columna izquierda ────────────────────────────────────── */
 
-/* ── Columna izquierda ─────────────────────────────────── */
-
-.contacto-izq {
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
+.contacto__heading-module h2 {
+  color: #ffffff;
+  font-size: var(--font-size-heading);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.25;
+  margin: 0 0 1.25rem;
 }
 
-/* H2: BwModelica Light (300), grande, BLANCO
-   !important necesario porque estilos globales de headings
-   pueden sobrescribir el color en esta sección oscura */
-.contacto-izq__titulo {
-  color: #ffffff !important;
-  font-size: clamp(36px, 3.9vw, 56px);
-  font-weight: 300;
-  line-height: 1.1;
+.contacto__desc-module p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.6;
+  margin: 0 0 1.75rem;
+}
+
+/* ── Columna derecha: contenedor del formulario ──────────── */
+
+.contacto__form-label {
+  color: var(--primary-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-heading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0px 0px  15px;
+}
+.form-title, form label, form legend {
+  color: var(--primary-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-heading);
+  margin: 0px 0px 5px;
+}
+.hs-form-field {
+    margin-bottom: 0.6rem;
+}
+form .hs-button, form input[type=submit] {
+  background-color: var(--primary-color) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  color: #fff !important;
+}
+
+.legal-consent-container .hs-richtext {
+    font-size: var(--font-size-disclaimer);
+    margin: 0px 0px 10px;
+}
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-column:has(.contacto__form-module) {
+    padding: 1rem;
+    margin-top: 2rem;
+  }
+  .contacto__heading-module h2 {
+    margin: 0 0 .25rem;
+  }
+  .contacto__desc-module p {
+    margin: 0 0 .75rem;
+  }
+}
+
+
+/* ── Columna derecha: tarjeta del formulario ────────────── */
+
+.contacto__form-module {
+  background-color: #F8FAFF;
+  border: 1px solid #DADAF0;
+  border-radius: 12px;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem 1.5rem;
+}
+
+/* Título del formulario ("FORMULARIO DE CONTACTO") */
+.contacto__form-module .form-title,
+.contacto__form-module h3 {
+  color: var(--primary-color, #E0001A);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   margin: 0;
+  text-transform: uppercase;
+  padding: 0px 0px 16px;
+  margin-bottom: 0 !important;
 }
 
-/* ── Iconos de contacto ─────────────────────────────────── */
+/* ── Campos ─────────────────────────────────────────────── */
 
-.contacto-izq__iconos {
-  display: flex;
-  gap: 12px;
+.contacto__form-module .hs-form-field {
+  margin-bottom: 10px;
 }
 
-/* Caja oscura 67×67 con hover a primary-color */
-.contacto-izq__btn {
-  align-items: center;
-  background-color: var(--secondary-color);   /* #1F140F */
-  display: flex;
-  flex-shrink: 0;
-  height: 67px;
-  justify-content: center;
-  text-decoration: none;
-  transition: background-color 0.22s;
-  width: 67px;
+.contacto__form-module .hs-form-field > label {
+  color: var(--secondary-color, #152638);
+  display: block;
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  margin-bottom: 0px;
 }
 
-.contacto-izq__btn:hover,
-.contacto-izq__btn:focus {
-  background-color: var(--primary-color);
+.contacto__form-module input.hs-input,
+.contacto__form-module select.hs-input,
+.contacto__form-module textarea.hs-input {
+  background-color: #F4F5F7;
+  border: 1px solid #F4F5F7;
+  border-radius: 4px;
+  color: var(--text-color, #2D2D2D);
+  font-size: var(--font-size-base);
+  padding: 5px 10px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: 100% !important;
+}
+
+.contacto__form-module input.hs-input:focus,
+.contacto__form-module select.hs-input:focus,
+.contacto__form-module textarea.hs-input:focus {
+  border-color: var(--secondary-color, #152638);
+  box-shadow: 0 0 0 3px rgba(21, 38, 56, 0.08);
   outline: none;
 }
 
-/* SVG como <img> sobre fondo oscuro → filter para hacerlo blanco
-   Bug conocido del proyecto (memory.md) */
-.contacto-izq__btn img {
-  display: block;
-  filter: brightness(0) invert(1);
-  height: 32px;
-  object-fit: contain;
-  width: 32px;
+form .legal-consent-container .hs-richtext,
+form .legal-consent-container .hs-richtext p {
+    font-size: 10px;
+    margin: 0px 0px 10px;
+    line-height: 1.1;
 }
 
-/* ── Tarjeta del formulario ─────────────────────────────────
-   .dnd-module.contacto-form-card = wrapper que HubSpot genera
-   cuando el dnd_module tiene extra_classes="contacto-form-card"
-   ──────────────────────────────────────────────────────────── */
-
-.dnd-module.contacto-form-card {
-  background-color: #f8f5f0;
-  padding: 40px;
+/* Dropdown chevron */
+.contacto__form-module select.hs-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23152638' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.5rem;
 }
 
-/* Título del formulario (parámetro title de @hubspot/form) */
-.dnd-module.contacto-form-card .hs-form-title,
-.dnd-module.contacto-form-card .form-title {
-  color: var(--text-color);
-  font-size: 12px;
-  font-weight: var(--font-weight-heading-black);
-  letter-spacing: 1.5px;
-  margin: 0 0 1.75rem;
-  text-transform: uppercase;
+/* Layout 2 columnas para Nombre+Apellido y Correo+Teléfono */
+.contacto__form-module .hs-form .form-columns-2 {
+  display: flex;
+  gap: 1rem;
 }
 
-/* ── HubSpot form overrides — scoped al módulo ─────────────
-   NUNCA usar .hs-form o .hs-form-field sin prefijo:
-   siempre dentro de .dnd-module.contacto-form-card
-   ──────────────────────────────────────────────────────────── */
+.contacto__form-module .hs-form .form-columns-2 .hs-form-field {
+  flex: 1;
+  min-width: 0;
+}
 
-/* Limpiar background naranja que HubSpot inyecta en labels */
-.dnd-module.contacto-form-card .hs-form label,
-.dnd-module.contacto-form-card .hs-form .hs-form-field label {
-  background: none !important;
-  background-color: transparent !important;
-  color: var(--text-color);
-  font-family: var(--font-family-base);
+/* Checkbox aviso de privacidad */
+.contacto__form-module .legal-consent-container,
+.contacto__form-module .hs-form-field.hs-fieldtype-booleancheckbox {
+  margin-bottom: 1.25rem;
+}
+
+.contacto__form-module .hs-form-booleancheckbox-display,
+.contacto__form-module .hs-form-booleancheckbox {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.contacto__form-module .hs-form-booleancheckbox input[type="checkbox"],
+.contacto__form-module .legal-consent-container input[type="checkbox"] {
+  accent-color: var(--primary-color, #E0001A);
+  flex-shrink: 0;
+  height: 15px;
+  width: 17px !important;
+  margin: 0;
+}
+.legal-consent-container .hs-form-booleancheckbox-display>span {
+  margin-left: 10px !important;
+}
+
+.contacto__form-module .hs-form-booleancheckbox label,
+.contacto__form-module .legal-consent-container label,
+.contacto__form-module .legal-consent-container p {
+  color: #6b7280;
   font-size: 14px;
-  font-weight: var(--font-weight-base);
-  margin-bottom: 6px;
-  padding: 0;
-}
-
-/* Inputs y selects */
-.dnd-module.contacto-form-card .hs-form input[type="text"],
-.dnd-module.contacto-form-card .hs-form input[type="email"],
-.dnd-module.contacto-form-card .hs-form input[type="tel"],
-.dnd-module.contacto-form-card .hs-form input[type="number"],
-.dnd-module.contacto-form-card .hs-form select,
-.dnd-module.contacto-form-card .hs-form textarea {
-  background-color: #ffffff;
-  border: 1px solid rgba(31, 20, 15, 0.25);
-  border-radius: 0;
-  box-sizing: border-box;
-  color: var(--text-color);
-  font-family: var(--font-family-base);
-  font-size: 16px;
-  height: 48px;
-  padding: 10px 14px;
-  width: 100%;
-}
-
-/* Botón submit: fondo oscuro #1F140F, texto blanco, full-width */
-.dnd-module.contacto-form-card .hs-form input[type="submit"],
-.dnd-module.contacto-form-card .hs-form .hs-submit input,
-.dnd-module.contacto-form-card .hs-form .hs-button {
-  background-color: var(--secondary-color) !important;
-  border: none !important;
-  color: #ffffff !important;
-  cursor: pointer;
-  display: block;
-  font-family: var(--font-family-base);
-  font-size: 17px;
-  font-weight: var(--font-weight-heading-black);
   line-height: 1;
-  padding: 16px 24px;
-  transition: background-color 0.22s;
+  margin: 0 !important;
+  gap: 0;
+}
+
+form .inputs-list > li{margin:0px}
+
+/* ── Botón submit ────────────────────────────────────────── */
+
+.contacto__form-module .hs-submit,
+.contacto__form-module .hs_submit {
+  margin-top: 0.25rem;
+}
+
+.contacto__form-module .hs-button,
+.contacto__form-module input[type="submit"] {
+  background-color: var(--primary-color, #E0001A);
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.875rem 1.5rem;
+  transition: background-color 0.2s ease;
   width: 100%;
 }
 
-.dnd-module.contacto-form-card .hs-form input[type="submit"]:hover,
-.dnd-module.contacto-form-card .hs-form .hs-button:hover {
-  background-color: var(--primary-color) !important;
+.contacto__form-module .hs-button:hover,
+.contacto__form-module input[type="submit"]:hover {
+  background-color: #b5001a;
 }
 
-/* ── Tablet (768px – 1023px) ───────────────────────────── */
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .contacto-izq__titulo {
-    font-size: 30px;
-  }
-
-  .dnd-module.contacto-form-card {
-    padding: 28px;
-  }
+/* Mensajes de error */
+.contacto__form-module .hs-error-msg {
+  color: var(--primary-color, #E0001A);
+  font-size:11px;
+  margin-top: 0.25rem;
 }
 
-/* ── Móvil (≤ 767px) ───────────────────────────────────── */
+/* ── Responsive ─────────────────────────────────────────── */
 
 @media (max-width: 767px) {
-  .contacto-izq__titulo {
-    font-size: 28px;
+  .contacto__form-module {
+    padding: 1.5rem 1.25rem;
   }
 
-  .contacto-izq {
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .dnd-module.contacto-form-card {
-    padding: 24px;
+  .contacto__form-module .hs-form .form-columns-2 {
+    flex-direction: column;
+    gap: 0;
   }
 }

@@ -1,20 +1,17 @@
-{% set map_src    = module.mapa.src if module.mapa.src else get_asset_url("../../images/mapa-negocios-ceranos.jpg") %}
-{% set map_lb_src = module.mapa_lightbox.src if module.mapa_lightbox.src else map_src %}
-{% set cta_href   = module.cta_link.url.href if module.cta_link.url.href else "#" %}
-{% set lb_id      = "ubicacion-lb-" ~ module.unique_id %}
+{% set map_src  = module.mapa.src if module.mapa.src else get_asset_url("../../images/mapa-negocios-ceranos.jpg") %}
+{% set cta_href = module.cta_link.url.href if module.cta_link.url.href else "#" %}
 
 <div class="ubicacion-content" data-ubicacion>
 
-  {# ── Columna izquierda: mapa con animación fade-up ── #}
+  {# ── Columna izquierda: mapa con zoom lupa ── #}
   <div class="ubicacion-content__left">
-    <button class="ubicacion-mapa__trigger"
-            aria-label="Ver mapa ampliado"
-            data-ub-map-open="{{ lb_id }}">
+    <div class="ubicacion-mapa__zoom">
       <img class="ubicacion-mapa__img"
            src="{{ map_src }}"
            alt="{{ module.mapa.alt | default('Mapa de ubicación de Real Madeira') | escape_attr }}"
-           loading="lazy">
-    </button>
+           loading="lazy"
+           draggable="false">
+    </div>
   </div>
 
   {# ── Columna derecha ── #}
@@ -66,26 +63,5 @@
       </a>
     {% endif %}
 
-  </div>
-</div>
-
-{# ── Lightbox del mapa ── #}
-<div class="ubicacion-lightbox"
-     id="{{ lb_id }}"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Mapa de ubicación ampliado"
-     tabindex="-1"
-     hidden>
-  <div class="ubicacion-lightbox__backdrop" data-ub-map-close aria-hidden="true"></div>
-  <div class="ubicacion-lightbox__panel">
-    <button class="ubicacion-lightbox__close" aria-label="Cerrar" data-ub-map-close>
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-        <path d="M1 1L13 13M13 1L1 13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </button>
-    <img src="{{ map_lb_src }}"
-         alt="{{ module.mapa.alt | default('Mapa de ubicación Real Madeira') | escape_attr }}"
-         loading="lazy">
   </div>
 </div>

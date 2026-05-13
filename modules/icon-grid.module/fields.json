@@ -1,0 +1,124 @@
+[
+  {
+    "id": "items",
+    "name": "items",
+    "label": "Íconos",
+    "type": "group",
+    "repeater": true,
+    "occurrence": { "min": 1, "max": 12, "default": 3 },
+    "children": [
+      {
+        "id": "icono_imagen",
+        "name": "icono_imagen",
+        "label": "Imagen del ícono",
+        "type": "image",
+        "default": { "src": "", "alt": "", "loading": "lazy" }
+      },
+      {
+        "id": "icono_enlace",
+        "name": "icono_enlace",
+        "label": "Enlace",
+        "type": "link",
+        "default": { "url": { "href": "#" }, "open_in_new_tab": false }
+      }
+    ]
+  },
+  {
+    "id": "config",
+    "name": "config",
+    "label": "Configuración Flex",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "id": "flex_direction",
+        "name": "flex_direction",
+        "label": "Dirección",
+        "type": "choice",
+        "display": "radio",
+        "choices": [["row","Fila (horizontal)"],["column","Columna (vertical)"]],
+        "default": "row"
+      },
+      {
+        "id": "flex_wrap",
+        "name": "flex_wrap",
+        "label": "Envolver elementos",
+        "type": "choice",
+        "display": "radio",
+        "choices": [["wrap","Sí (wrap)"],["nowrap","No (nowrap)"]],
+        "default": "wrap"
+      },
+      {
+        "id": "justify_content",
+        "name": "justify_content",
+        "label": "Alineación horizontal (justify-content)",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["flex-start","Inicio"],
+          ["center","Centro"],
+          ["flex-end","Final"],
+          ["space-between","Espacio entre"],
+          ["space-around","Espacio alrededor"]
+        ],
+        "default": "flex-start"
+      },
+      {
+        "id": "align_items",
+        "name": "align_items",
+        "label": "Alineación vertical (align-items)",
+        "type": "choice",
+        "display": "select",
+        "choices": [
+          ["flex-start","Inicio"],
+          ["center","Centro"],
+          ["flex-end","Final"]
+        ],
+        "default": "center"
+      },
+      {
+        "id": "icono_gap",
+        "name": "icono_gap",
+        "label": "Espacio entre íconos (px)",
+        "type": "number",
+        "min": 0,
+        "max": 80,
+        "default": 12
+      },
+      {
+        "id": "icono_size",
+        "name": "icono_size",
+        "label": "Tamaño del ícono (px)",
+        "type": "number",
+        "min": 24,
+        "max": 160,
+        "default": 56
+      },
+      {
+        "id": "icono_padding",
+        "name": "icono_padding",
+        "label": "Padding interior del ícono (px)",
+        "type": "number",
+        "min": 0,
+        "max": 40,
+        "default": 0
+      },
+      {
+        "id": "icono_radius",
+        "name": "icono_radius",
+        "label": "Border radius (px)",
+        "type": "number",
+        "min": 0,
+        "max": 80,
+        "default": 0
+      },
+      {
+        "id": "icono_bg",
+        "name": "icono_bg",
+        "label": "Color de fondo del ícono",
+        "type": "color",
+        "default": { "color": "#CBD527", "opacity": 100 }
+      }
+    ]
+  }
+]

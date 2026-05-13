@@ -3,9 +3,7 @@
 
   function initUbicacion(container) {
     var mapImg  = container.querySelector('.ubicacion-mapa__img');
-    var trigger = container.querySelector('[data-ub-map-open]');
-    var lbId    = trigger ? trigger.getAttribute('data-ub-map-open') : null;
-    var lb      = lbId ? document.getElementById(lbId) : null;
+    var zoomEl  = container.querySelector('.ubicacion-mapa__zoom');
 
     /* ── Animación fade-up al entrar al viewport ── */
     if (mapImg) {
@@ -20,30 +18,26 @@
       observer.observe(mapImg);
     }
 
-    if (!trigger || !lb) return;
+    /* ── Efecto lupa: zoom hacia la posición del cursor ── */
+    if (zoomEl && mapImg) {
 
-    /* ── Lightbox ── */
-    function openLb() {
-      lb.removeAttribute('hidden');
-      lb.focus();
-      document.body.style.overflow = 'hidden';
+      zoomEl.addEventListener('mousemove', function (e) {
+        /* Solo activo una vez que la imagen ya es visible (fade-in completado) */
+        if (!mapImg.classList.contains('is-visible')) return;
+
+        var rect = zoomEl.getBoundingClientRect();
+        var x = ((e.clientX - rect.left) / rect.width) * 100;
+        var y = ((e.clientY - rect.top) / rect.height) * 100;
+
+        /* transform-origin solo afecta a `scale`, no a `translate` (CSS individual transforms) */
+        mapImg.style.transformOrigin = x + '% ' + y + '%';
+      });
+
+      zoomEl.addEventListener('mouseleave', function () {
+        /* Restaurar origen al salir para que el zoom-out sea al centro */
+        mapImg.style.transformOrigin = 'center center';
+      });
     }
-
-    function closeLb() {
-      lb.setAttribute('hidden', '');
-      document.body.style.overflow = '';
-      trigger.focus();
-    }
-
-    trigger.addEventListener('click', openLb);
-
-    lb.querySelectorAll('[data-ub-map-close]').forEach(function (el) {
-      el.addEventListener('click', closeLb);
-    });
-
-    lb.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') { e.preventDefault(); closeLb(); }
-    });
   }
 
   function init() {
