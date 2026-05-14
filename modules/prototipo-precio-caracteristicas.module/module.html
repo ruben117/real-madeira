@@ -1,0 +1,47 @@
+{% set fallback_icons = [
+  get_asset_url("../../images/icon-prototipos-caracteristicas-recamaras.svg"),
+  get_asset_url("../../images/icon-prototipos-caracteristicas-banos.svg"),
+  get_asset_url("../../images/icon-prototipos-caracteristicas-estacionamientos.svg"),
+  get_asset_url("../../images/icon-prototipos-caracteristicas-pasillos-separacion.svg")
+] %}
+
+<div class="proto-precio-caract" data-proto-precio-caract>
+
+  {# ── Precio y disclaimer ── #}
+  <div class="proto-precio-caract__top">
+    {% if module.precio %}
+      <h3 class="proto-precio-caract__precio">{{ module.precio | escape_html }}</h3>
+    {% endif %}
+    {% if module.disclaimer %}
+      <p class="proto-precio-caract__disclaimer">{{ module.disclaimer | escape_html }}</p>
+    {% endif %}
+  </div>
+
+  {# ── Grid de características ── #}
+  {% if module.caracteristicas %}
+    <div class="proto-precio-caract__grid-wrap">
+      <div class="proto-precio-caract__grid">
+        {% for item in module.caracteristicas %}
+          {% set icon_src = item.icono.src if item.icono.src else fallback_icons[loop.index0 % 4] %}
+          <div class="proto-caract-item">
+            <div class="proto-caract-item__icon-wrap">
+              <img
+                class="proto-caract-item__icon"
+                src="{{ icon_src | escape_url }}"
+                alt=""
+                aria-hidden="true"
+                loading="lazy">
+            </div>
+            <div class="proto-caract-item__texto">
+              <span class="proto-caract-item__nombre">{{ item.nombre | escape_html }}</span>
+              {% if item.subtitulo %}
+                <span class="proto-caract-item__subtitulo">{{ item.subtitulo | escape_html }}</span>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+
+</div>

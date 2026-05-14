@@ -1,0 +1,14 @@
+{
+  "label": "Prototipo — Precio y Características",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "host_template_types": ["PAGE"],
+  "icon": "custom",
+  "js_assets": [],
+  "other_assets": [],
+  "smart_type": "NOT_SMART",
+  "tags": ["Real Madeira"],
+  "is_available_for_new_content": false,
+  "categories": ["body_content"]
+}

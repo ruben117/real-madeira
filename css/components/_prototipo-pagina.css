@@ -1,0 +1,246 @@
+/* ============================================================
+   Prototipo — Página de detalle
+   Secciones: prototipo-hero / prototipo-precio-caracteristicas
+   ============================================================ */
+
+/* ── Sección Hero: overlay oscuro + 90vh mínimo ─────────── */
+
+.dnd-section:has(.proto-hero-eyebrow) {
+  min-height: 90vh;
+  position: relative;
+}
+
+/* Contenido por encima del overlay */
+.dnd-section:has(.proto-hero-eyebrow) > .row-fluid {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Eyebrow H2 ──────────────────────────────────────────── */
+
+.proto-hero-eyebrow {
+  text-align: center;
+}
+
+.proto-hero-eyebrow h2 {
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: var(--font-weight-heading);
+  letter-spacing: 0.01em;
+  margin: 0;
+}
+
+/* ── Título H1 ───────────────────────────────────────────── */
+
+.proto-hero-titulo {
+  text-align: center;
+}
+
+.proto-hero-titulo h1 {
+  color: #ffffff;
+  font-size: clamp(38px, 3vw, 57px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.1;
+  margin: 0 auto;
+  max-width: 900px;
+}
+
+/* ── Descripción richtext ────────────────────────────────── */
+
+.proto-hero-cuerpo {
+  text-align: center;
+}
+
+.proto-hero-cuerpo p {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-base);
+  line-height: 1.6;
+  margin: 34px auto 0px;
+  max-width: 700px;
+}
+
+/* ── Sección Precio + Características ───────────────────── */
+
+/*
+  Quitamos el padding del dnd-column para que el módulo
+  (width=12, offset=0) ocupe el 100% del ancho de la sección.
+  Esto permite que la franja blanca de características y la
+  línea separadora naranja lleguen de borde a borde sin usar
+  trucos de 100vw que generan scroll horizontal.
+*/
+.dnd-section:has(.proto-precio-caract) .dnd-column {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ── Módulo: Precio ──────────────────────────────────────── */
+
+.proto-precio-caract {
+  text-align: center;
+}
+
+.proto-precio-caract__top {
+  padding: 40px 1rem 32px;
+}
+
+/* Precio H3 — grande naranja */
+.proto-precio-caract__precio {
+  color: var(--primary-color);
+  font-size: clamp(40px, 4.5vw, 62px);
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+
+/* Disclaimer — pequeño y sutil */
+.proto-precio-caract__disclaimer {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 12px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* ── Zona blanca con línea naranja full-width ────────────── */
+
+/*
+  Al haber removido el padding del .dnd-column, el módulo
+  ocupa el 100% del ancho de la sección. Por tanto left:0 /
+  right:0 cubren todo el viewport sin trucos de 100vw.
+*/
+.proto-precio-caract__grid-wrap {
+  background: #ffffff;
+  position: relative;
+  padding-top: 5px; /* espacio para la línea naranja absoluta */
+}
+
+/* Línea naranja separadora full-width */
+.proto-precio-caract__grid-wrap::before {
+  background: var(--primary-color);
+  content: '';
+  height: 5px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+/* Grid de ítems — contenido centrado con padding lateral */
+.proto-precio-caract__grid {
+  display: grid;
+  gap: 0;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 0 1rem;
+}
+
+/* ── Ítem de característica ──────────────────────────────── */
+
+.proto-caract-item {
+  align-items: center;
+  display: flex;
+  gap: 14px;
+  padding: 28px 20px;
+}
+
+/* Separador vertical entre ítems */
+.proto-caract-item:not(:last-child) {
+  border-right: 1px solid rgba(31, 20, 15, 0.12);
+}
+
+/* Ícono */
+.proto-caract-item__icon-wrap {
+  flex-shrink: 0;
+}
+
+.proto-caract-item__icon {
+  display: block;
+  filter: brightness(0) saturate(100%) invert(60%) sepia(80%)
+          saturate(650%) hue-rotate(350deg) brightness(102%) contrast(102%);
+  height: 40px;
+  object-fit: contain;
+  width: 40px;
+}
+
+/* Texto */
+.proto-caract-item__texto {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.proto-caract-item__nombre {
+  color: var(--text-color);
+  display: block;
+  font-size: 18px;
+  font-weight: var(--font-weight-heading);
+  line-height: 1.25;
+}
+
+.proto-caract-item__subtitulo {
+  color: var(--text-color);
+  display: block;
+  font-size: 13px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.4;
+  margin-top: 3px;
+  opacity: 0.7;
+}
+
+/* ── Tablet (768px – 1023px) ─────────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .proto-hero-titulo h1 {
+    font-size: 42px;
+  }
+
+  .proto-precio-caract__precio {
+    font-size: 42px;
+  }
+
+  .proto-precio-caract__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .proto-caract-item:nth-child(2) {
+    border-right: 1px solid rgba(31, 20, 15, 0.12);
+  }
+
+  .proto-caract-item:nth-child(even) {
+    border-right: none;
+  }
+}
+
+/* ── Móvil (≤ 767px) ─────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .proto-hero-titulo h1 {
+    font-size: 34px;
+  }
+
+  .proto-precio-caract__top {
+    padding: 28px 1rem 24px;
+  }
+
+  .proto-precio-caract__precio {
+    font-size: 36px;
+  }
+
+  .proto-precio-caract__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .proto-caract-item {
+    border-bottom: 1px solid rgba(31, 20, 15, 0.12);
+    border-right: none !important;
+    padding: 16px 20px;
+  }
+
+  .proto-caract-item:last-child {
+    border-bottom: none;
+  }
+}

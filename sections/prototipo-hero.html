@@ -1,0 +1,55 @@
+<!--
+  templateType: section
+  label: Prototipo — Hero
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/hero-banner.png
+  description: "Hero de página de prototipo: fondo con overlay, eyebrow H2, título H1 y descripción."
+-->
+{% dnd_section
+  background_image={
+    "backgroundSize": "cover",
+    "backgroundPosition": "MIDDLE_CENTER",
+    "imageUrl": get_asset_url("../images/bgk-hero-prototipos-castelo.jpg")
+  },
+  padding={
+    "default": { "top": 120, "bottom": 60 },
+    "mobile":  { "top": 100, "bottom": 40 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+
+    {# Eyebrow H2 — "Modelo Castelo" #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Eyebrow",
+        extra_classes="proto-hero-eyebrow",
+        html="<h2>Modelo Castelo</h2>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Título H1 #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Título H1",
+        extra_classes="proto-hero-titulo",
+        html="<h1>La armonía perfecta entre diseño y privacidad</h1>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Descripción richtext #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Descripción",
+        extra_classes="proto-hero-cuerpo",
+        html="<p>Con 91.71 m² de construcción, el Modelo Castelo redefine la vivienda media en Pachuca. Gracias a su pasillo de separación, disfruta de la independencia que solo una casa sin muros compartidos puede ofrecer.</p>"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+{% end_dnd_section %}

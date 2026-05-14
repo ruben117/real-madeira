@@ -1,0 +1,76 @@
+[
+  {
+    "id": "precio",
+    "name": "precio",
+    "label": "Precio",
+    "type": "text",
+    "default": "$5,087,000 MXN*"
+  },
+  {
+    "id": "disclaimer",
+    "name": "disclaimer",
+    "label": "Disclaimer",
+    "type": "text",
+    "default": "*El precio corresponde a precio de contado. El precio de la vivienda puede variar dependiendo el prototipo, tipo de financiamiento y gastos notariales."
+  },
+  {
+    "id": "caracteristicas",
+    "name": "caracteristicas",
+    "label": "Características",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 12,
+      "default": 4,
+      "sorting_label_field": "caracteristicas.nombre"
+    },
+    "children": [
+      {
+        "id": "icono",
+        "name": "icono",
+        "label": "Ícono",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "", "loading": "lazy" }
+      },
+      {
+        "id": "nombre",
+        "name": "nombre",
+        "label": "Característica",
+        "type": "text",
+        "default": "Característica"
+      },
+      {
+        "id": "subtitulo",
+        "name": "subtitulo",
+        "label": "Subtítulo (opcional)",
+        "type": "text",
+        "default": ""
+      }
+    ],
+    "default": [
+      {
+        "icono": { "src": "", "alt": "", "loading": "lazy" },
+        "nombre": "3 Recámaras",
+        "subtitulo": "(una en planta baja para mayor comodidad)."
+      },
+      {
+        "icono": { "src": "", "alt": "", "loading": "lazy" },
+        "nombre": "3 Baños completos.",
+        "subtitulo": ""
+      },
+      {
+        "icono": { "src": "", "alt": "", "loading": "lazy" },
+        "nombre": "2 Cajones de estacionamiento.",
+        "subtitulo": ""
+      },
+      {
+        "icono": { "src": "", "alt": "", "loading": "lazy" },
+        "nombre": "Pasillo lateral de separación.",
+        "subtitulo": ""
+      }
+    ]
+  }
+]

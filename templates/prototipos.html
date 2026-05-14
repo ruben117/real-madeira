@@ -1,0 +1,24 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Prototipos
+  screenshotPath: ../images/template-previews/prototipos.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Contenido del prototipo",
+  class="body-container body-container--prototipos"
+%}
+
+  {# Hero — fondo, eyebrow H2, título H1 y descripción #}
+  {% include_dnd_partial path="../sections/prototipo-hero.html" %}
+
+  {# Precio, disclaimer y grid de características #}
+  {% include_dnd_partial path="../sections/prototipo-precio-caracteristicas.html" %}
+
+{% end_dnd_area %}
+
+{% endblock body %}

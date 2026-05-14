@@ -1,0 +1,14 @@
+<svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_6169_128" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="30" height="30">
+<path d="M0 0H29.0141V29.0141H0V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_6169_128)">
+<path d="M3.58789 11.938V5.53405C3.58789 4.41446 4.49566 3.50686 5.61542 3.50686H23.3982C24.518 3.50686 25.4257 4.41446 25.4257 5.53405V11.938" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M27.1104 23.8969H1.90296C1.3212 23.8969 0.849609 23.4253 0.849609 22.8436V16.3844C0.849609 15.8027 1.3212 15.3311 1.90296 15.3311H27.1104C27.6922 15.3311 28.1637 15.8027 28.1637 16.3844V22.8436C28.1637 23.4253 27.6922 23.8969 27.1104 23.8969Z" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.7493 15.3305V13.9924C26.7493 12.8578 25.8293 11.9379 24.6944 11.9379H4.32248C3.18759 11.9379 2.26758 12.8578 2.26758 13.9924V15.3305" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M12.0302 11.938C12.61 11.938 13.0799 11.4681 13.0799 10.8884V9.59478C13.0799 9.01518 12.61 8.54529 12.0302 8.54529H7.46574C6.88597 8.54529 6.41602 9.01518 6.41602 9.59478V10.8884C6.41602 11.4681 6.88597 11.938 7.46574 11.938" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M21.5478 11.938C22.1275 11.938 22.5975 11.4681 22.5975 10.8884V9.59478C22.5975 9.01518 22.1275 8.54529 21.5478 8.54529H16.9833C16.4036 8.54529 15.9336 9.01518 15.9336 9.59478V10.8884C15.9336 11.4681 16.4036 11.938 16.9833 11.938" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M2.6582 23.8974V25.5083" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M26.3555 23.8974V25.5083" stroke="#F3B762" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
