@@ -1,0 +1,46 @@
+/* ── Fila con imagen de fondo: esquinas redondeadas ─────── */
+
+.dnd-row:has(.call-to-action-section) {
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* ── Contenido centrado ──────────────────────────────────── */
+
+.call-to-action-section h2 {
+  color: #ffffff;
+    font-weight: var(--font-weight-thin);
+    margin: 0px 0px 5px;
+}
+
+.call-to-action-section p {
+  color: rgb(255 255 255);
+  font-size: var(--font-size-base);
+  line-height: 1.1;
+  margin: 20px auto 15px;
+  max-width: 80%;
+}
+.call-to-action-section__button .button {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #000000 !important;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-heading);
+  border-radius: 0px;
+  margin-top: 30px;
+}
+
+.call-to-action-section__button .button:hover,
+.call-to-action-section__button .button:focus {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  color: #ffffff !important;
+  border-radius: 0px;
+}
+/* ── Responsive – Mobile (≤ 767px) ──────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-row:has(.call-to-action-section) {
+    border-radius: 12px;
+  }
+}

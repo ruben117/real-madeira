@@ -1,18 +1,13 @@
 <!--
   templateType: section
-  label: Contacto – Real Madeira
+  label: Contacto Prototipos – Real Madeira
   isAvailableForNewContent: true
   screenshotPath: ../images/section-previews/contacto.png
   description: "Sección de contacto con imagen de fondo, heading + íconos y formulario con contenedor blanco."
 -->
 
 {% dnd_section
-  background_image={
-    "backgroundPosition": "MIDDLE_CENTER",
-    "backgroundSize": "cover",
-    "imageUrl": get_asset_url("../images/bgk-contacto.jpg")
-  },
-  background_color="#33425D",
+  background_color="#F5F3EF",
   vertical_alignment="TOP",
   padding={
     "default": { "top": 200, "bottom": 200 },
@@ -27,9 +22,21 @@
       {% dnd_module
         path="@hubspot/header",
         label="Contacto – Título",
-        extra_classes="contacto__heading-module",
+        extra_classes="contacto__heading-module prototipos-contacto__heading",
         header_tag="h2",
-        value="Agenda tu cita y conoce tu casa en el corazón de Pachuca."
+        value="¿El Modelo Málaga es lo que estabas buscando?"
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Inversión — Párrafo inferior",
+        extra_classes="contacto__desc-module prototipos-contacto__desc",
+        offset=0,
+        width=12,
+        html="<p>Recibe una corrida financiera detallada según tu tipo de crédito (Infonavit, Fovissste o Bancario).</p>"
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}
@@ -38,19 +45,19 @@
       {% dnd_module
         path="../modules/icon-grid",
         label="Contacto – Íconos",
-        extra_classes="contacto__iconos-module",
+        extra_classes="contacto__iconos-module prototipos-contacto__iconos",
         items=[
           {
-            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-telefono.svg"), "alt": "Teléfono", "loading": "lazy" },
+            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-telefono-blanco.svg"), "alt": "Teléfono", "loading": "lazy" },
             "icono_enlace": { "url": { "href": "tel:+529841234567", "type": "PHONE_NUMBER" }, "open_in_new_tab": false }
           },
           {
-            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-whatsapp.svg"), "alt": "WhatsApp", "loading": "lazy" },
+            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-whatsapp-blanco.svg"), "alt": "WhatsApp", "loading": "lazy" },
             "icono_enlace": { "url": { "href": "https://wa.me/529841234567", "type": "EXTERNAL" }, "open_in_new_tab": true }
           },
           {
-            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-pin.svg"), "alt": "Ubicación", "loading": "lazy" },
-            "icono_enlace": { "url": { "href": "https://maps.google.com/?q=Real+Madeira+Pachuca", "type": "EXTERNAL" }, "open_in_new_tab": true }
+            "icono_imagen": { "src": get_asset_url("../images/icon-contacto-pin-blanco.svg"), "alt": "Ubicación", "loading": "lazy" },
+            "icono_enlace": { "url": { "href": "https://maps.google.com/?q=Real+Madeira", "type": "EXTERNAL" }, "open_in_new_tab": true }
           }
         ],
         config={
@@ -62,7 +69,7 @@
           "icono_size": 50,
           "icono_padding": 10,
           "icono_radius": 0,
-          "icono_bg": { "color": "#1F140F", "opacity": 100 }
+          "icono_bg": { "color": "#F18F04", "opacity": 100 }
         }
       %}
       {% end_dnd_module %}

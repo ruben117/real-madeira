@@ -44,10 +44,19 @@
      ">
 
   {% for item in module.items %}
+    {# Borde: override por ítem → fallback al global #}
     {% set borde_color = item.borde_color_override.color if item.borde_color_override.color
                          else module.card_borde_color.color | default('transparent') %}
 
-    <div class="card-icono-item" style="--ci-borde-color:{{ borde_color }};">
+    {# Fondo: override por ítem (respeta opacity) → fallback al global #}
+    {% if item.bg_color_override.color %}
+      {% set item_bg = 'transparent' if item.bg_color_override.opacity == 0
+                       else item.bg_color_override.color %}
+    {% else %}
+      {% set item_bg = ci_card_bg %}
+    {% endif %}
+
+    <div class="card-icono-item" style="--ci-card-bg:{{ item_bg }};--ci-borde-color:{{ borde_color }};">
 
       {# ── Fila superior: ícono + título ── #}
       <div class="card-icono-item__top">

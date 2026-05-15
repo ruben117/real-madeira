@@ -1,0 +1,94 @@
+<!--
+  templateType: section
+  label: Amenidades – Real Madeira
+  isAvailableForNewContent: true
+  screenshotPath: ../images/section-previews/amenidades.png
+  description: "Sección de amenidades con íconos y descripciones."
+-->
+
+
+{% dnd_section
+  background_color="#1F140F",
+  vertical_alignment="MIDDLE",
+  padding={ "left": "80px", "bottom": "80px" }
+%}
+
+  {# ── Columna izquierda: heading, íconos, lista ── #}
+  {% dnd_column offset=0, width=5 %}
+
+    {# Título y subtítulo #}
+    {% dnd_row %}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        html="<h2>Vive rodeado de lo que amas</h2><p>Tu Modelo Málaga te otorga acceso a la infraestructura más completa de Pachuca:</p>",
+        extra_classes="amenidades__heading-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Ícono 1 #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-richtext",
+        icon={ "src": get_asset_url("../images/icon-prototipos-amenidades-casa-club.svg"), "alt": "Seguridad", "loading": "lazy" },
+        icon_position="left",
+        icon_size=36,
+        icon_gap=10,
+        content="<p><strong>Casa Club:</strong> Gimnasio, alberca y salón de usos múltiples a pocos pasos.</p>",
+        extra_classes="amenidades__icon-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Ícono 2 #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-richtext",
+        icon={ "src": get_asset_url("../images/icon-prototipos-amenidades-vida-activa.svg"), "alt": "Vida Activa", "loading": "lazy" },
+        icon_position="left",
+        icon_size=36,
+        icon_gap=10,
+        content="<p><strong>Vida Activa:</strong> Contamos con Kínder, Primaria y Secundaria dentro del desarrollo.</p>",
+        extra_classes="amenidades__icon-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+    {# Ícono 3 #}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/icon-richtext",
+        icon={ "src": get_asset_url("../images/icon-prototipos-amenidades-conveniencia.svg"), "alt": "Conveniencia", "loading": "lazy" },
+        icon_position="left",
+        icon_size=36,
+        icon_gap=10,
+        content="<p><strong>Conveniencia:</strong> Zona comercial interna con Oxxo y servicios básicos dentro del desarrollo.</p>",
+        extra_classes="amenidades__icon-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+  {# ── Columna derecha: slider de imágenes ── #}
+  {% dnd_column offset=5, width=7 %}
+
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/image-slider",
+        loop=true,
+        autoplay=false,
+        autoplay_delay=4000,
+        extra_classes="amenidades__slider-module",
+        offset=0, width=12
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+
+  {% end_dnd_column %}
+
+{% end_dnd_section %}

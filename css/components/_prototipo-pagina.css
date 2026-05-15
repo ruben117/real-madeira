@@ -1,13 +1,23 @@
 /* ============================================================
    Prototipo — Página de detalle
-   Secciones: prototipo-hero / prototipo-precio-caracteristicas
+   Sección: prototipo-hero.html
    ============================================================ */
 
-/* ── Sección Hero: overlay oscuro + 90vh mínimo ─────────── */
+/* ── Sección: overlay oscuro + 90vh mínimo ─────────────── */
 
 .dnd-section:has(.proto-hero-eyebrow) {
   min-height: 90vh;
   position: relative;
+}
+
+/* Overlay sobre la imagen de fondo */
+.dnd-section:has(.proto-hero-eyebrow)::before {
+  background: rgba(12, 6, 2, 0.55);
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  z-index: 0;
 }
 
 /* Contenido por encima del overlay */
@@ -16,7 +26,7 @@
   z-index: 1;
 }
 
-/* ── Eyebrow H2 ──────────────────────────────────────────── */
+/* ── Eyebrow H2 ─────────────────────────────────────────── */
 
 .proto-hero-eyebrow {
   text-align: center;
@@ -30,7 +40,7 @@
   margin: 0;
 }
 
-/* ── Título H1 ───────────────────────────────────────────── */
+/* ── Título H1 ──────────────────────────────────────────── */
 
 .proto-hero-titulo {
   text-align: center;
@@ -45,7 +55,7 @@
   max-width: 900px;
 }
 
-/* ── Descripción richtext ────────────────────────────────── */
+/* ── Descripción richtext ───────────────────────────────── */
 
 .proto-hero-cuerpo {
   text-align: center;
@@ -56,25 +66,11 @@
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-base);
   line-height: 1.6;
-  margin: 34px auto 0px;
+  margin: 0 auto;
   max-width: 700px;
 }
 
-/* ── Sección Precio + Características ───────────────────── */
-
-/*
-  Quitamos el padding del dnd-column para que el módulo
-  (width=12, offset=0) ocupe el 100% del ancho de la sección.
-  Esto permite que la franja blanca de características y la
-  línea separadora naranja lleguen de borde a borde sin usar
-  trucos de 100vw que generan scroll horizontal.
-*/
-.dnd-section:has(.proto-precio-caract) .dnd-column {
-  padding-left: 0;
-  padding-right: 0;
-}
-
-/* ── Módulo: Precio ──────────────────────────────────────── */
+/* ── Módulo: Precio ─────────────────────────────────────── */
 
 .proto-precio-caract {
   text-align: center;
@@ -93,7 +89,7 @@
   margin: 0 0 10px;
 }
 
-/* Disclaimer — pequeño y sutil */
+/* Disclaimer */
 .proto-precio-caract__disclaimer {
   color: rgba(255, 255, 255, 0.65);
   font-size: 12px;
@@ -103,20 +99,23 @@
   max-width: 700px;
 }
 
-/* ── Zona blanca con línea naranja full-width ────────────── */
+/* ── Zona blanca con línea naranja ──────────────────────── */
 
 /*
-  Al haber removido el padding del .dnd-column, el módulo
-  ocupa el 100% del ancho de la sección. Por tanto left:0 /
-  right:0 cubren todo el viewport sin trucos de 100vw.
+  El .dnd-column tiene padding: 0 1rem (ver _containers-dnd.css).
+  Compensamos con margin negativo de -1rem para que el fondo
+  blanco y la línea naranja lleguen a los bordes de la sección
+  sin usar trucos de 100vw que generan scroll horizontal.
 */
 .proto-precio-caract__grid-wrap {
   background: #ffffff;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  padding-top: 5px; /* espacio para el ::before naranja */
   position: relative;
-  padding-top: 5px; /* espacio para la línea naranja absoluta */
 }
 
-/* Línea naranja separadora full-width */
+/* Línea separadora naranja */
 .proto-precio-caract__grid-wrap::before {
   background: var(--primary-color);
   content: '';
@@ -127,7 +126,7 @@
   top: 0;
 }
 
-/* Grid de ítems — contenido centrado con padding lateral */
+/* Grid de ítems */
 .proto-precio-caract__grid {
   display: grid;
   gap: 0;
@@ -137,7 +136,7 @@
   padding: 0 1rem;
 }
 
-/* ── Ítem de característica ──────────────────────────────── */
+/* ── Ítem de característica ─────────────────────────────── */
 
 .proto-caract-item {
   align-items: center;
@@ -191,7 +190,7 @@
   opacity: 0.7;
 }
 
-/* ── Tablet (768px – 1023px) ─────────────────────────────── */
+/* ── Tablet (768px – 1023px) ────────────────────────────── */
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .proto-hero-titulo h1 {
@@ -215,7 +214,7 @@
   }
 }
 
-/* ── Móvil (≤ 767px) ─────────────────────────────────────── */
+/* ── Móvil (≤ 767px) ────────────────────────────────────── */
 
 @media (max-width: 767px) {
   .proto-hero-titulo h1 {
@@ -230,8 +229,15 @@
     font-size: 36px;
   }
 
+  /* En móvil el column no tiene padding, restauramos margen */
+  .proto-precio-caract__grid-wrap {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
   .proto-precio-caract__grid {
     grid-template-columns: 1fr;
+    padding: 0;
   }
 
   .proto-caract-item {
@@ -242,5 +248,118 @@
 
   .proto-caract-item:last-child {
     border-bottom: none;
+  }
+}
+
+/* ============================================================
+   Plano / Distribución — prototipos-plano.html
+   Módulos nativos: @hubspot/image + @hubspot/rich_text
+   ============================================================ */
+
+/* ── Columna izquierda: imagen con zoom lupa (JS en main.js) ── */
+
+/*
+  extra_classes="protoplano-img-zoom" → .dnd-module wrapper.
+  JS en main.js: IntersectionObserver fade-up + mousemove scale
+  siguiendo el cursor. Overflow hidden en toda la cadena.
+*/
+.protoplano-img-zoom,
+.protoplano-img-zoom > *,
+.protoplano-img-zoom > * > * {
+  cursor: zoom-in;
+  overflow: hidden;
+}
+
+.protoplano-img-zoom img {
+  display: block;
+  width: 100%;
+}
+
+/* ── Columna derecha: heading + richtext + botón ─────────── */
+
+/*
+  Un solo dnd_row: la imagen flota izquierda (span5), los tres
+  módulos del lado derecho (span7 offset5) se apilan verticalmente
+  aprovechando el float de Bootstrap. Padding-left compartido
+  para alinear el contenido con el gutter de columna.
+*/
+.protoplano-heading,
+.protoplano-content,
+.protoplano-cta {
+  padding-left: 60px;
+}
+
+/* H2 — título */
+.protoplano-heading h2 {
+  color: #ffffff;
+  font-size: clamp(28px, 2.5vw, 42px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Párrafos */
+.protoplano-content p {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 16px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+}
+
+/* H3 — Planta Baja naranja, Planta Alta blanca */
+.protoplano-content h3 {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: var(--font-weight-heading);
+  line-height: 1.2;
+  margin: 0.25rem 0 0.5rem;
+}
+
+.protoplano-content h3:first-of-type {
+  color: var(--primary-color);
+}
+
+/* Botón */
+.protoplano-cta .btn-primary {
+  display: inline-block;
+}
+
+/* ── Tablet (768px – 1023px) ─────────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .protoplano-heading,
+  .protoplano-content,
+  .protoplano-cta {
+    padding-left: 32px;
+  }
+
+  .protoplano-heading h2 {
+    font-size: 28px;
+  }
+
+  .protoplano-content h3 {
+    font-size: 19px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ─────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .protoplano-heading,
+  .protoplano-content,
+  .protoplano-cta {
+    padding-left: 0;
+    padding-top: 1rem;
+  }
+
+  .protoplano-heading h2 {
+    font-size: 26px;
+  }
+
+  .protoplano-cta .btn-primary {
+    display: block;
+    text-align: center;
+    width: 100%;
   }
 }

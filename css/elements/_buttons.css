@@ -16,6 +16,55 @@ button:disabled,
   color: #E6E6E6;
 }
 
+/* ── Botón primario ────────────────────────────────────── */
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1;
+  padding: 14px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.22s ease;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  outline: none;
+  text-decoration: none;
+}
+
+/* ── Botón outline (fondos oscuros) ────────────────────── */
+
+.btn-outline {
+  background-color: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 17px;
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1;
+  padding: 12px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: #ffffff;
+  color: var(--secondary-color);
+  outline: none;
+  text-decoration: none;
+}
+
 /* No button */
 
 .no-button,

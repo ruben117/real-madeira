@@ -80,6 +80,54 @@
     });
   }
 
+  /* ── Zoom lupa genérico (.protoplano-img-zoom) ──────────── */
+  /*
+    Reutiliza el mismo patrón que ubicacion.module:
+    - IntersectionObserver para fade-up al entrar en viewport
+    - mousemove → transform-origin dinámico (zoom sigue al cursor)
+    - mouseleave → reset al centro
+    Las propiedades CSS translate y scale son independientes
+    para que el fade-up y el zoom no se pisen.
+  */
+  function initZoomImg(wrapper) {
+    var img = wrapper.querySelector('img');
+    if (!img) return;
+
+    /* Fade-up inicial */
+    img.style.opacity    = '0';
+    img.style.translate  = '0 30px';
+    img.style.transition =
+      'opacity 0.85s ease, translate 0.85s cubic-bezier(0.25,0.46,0.45,0.94), scale 0.45s ease';
+    img.style.willChange = 'opacity, translate, scale';
+    img.style.scale      = '1';
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity   = '1';
+          entry.target.style.translate = '0 0';
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    observer.observe(img);
+
+    wrapper.addEventListener('mousemove', function (e) {
+      if (!img.classList.contains('is-visible')) return;
+      var rect = wrapper.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width)  * 100;
+      var y = ((e.clientY - rect.top)  / rect.height) * 100;
+      img.style.transformOrigin = x + '% ' + y + '%';
+      img.style.scale           = '2.5';
+    });
+
+    wrapper.addEventListener('mouseleave', function () {
+      img.style.transformOrigin = 'center center';
+      img.style.scale           = '1';
+    });
+  }
+
   /* ── Init ────────────────────────────────────────────────── */
   domReady(function () {
     if (!document.body) return;
@@ -127,6 +175,9 @@
     if (emailGlobalUnsub) {
       emailGlobalUnsub.addEventListener('change', toggleDisabled);
     }
+
+    /* Zoom lupa: inicializar en todos los wrappers de la página */
+    document.querySelectorAll('.protoplano-img-zoom').forEach(initZoomImg);
   });
 
 })();

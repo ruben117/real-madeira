@@ -8,6 +8,7 @@ Note: _macros.css needs to be imported into each stylesheet where macros are use
   --primary-color: #F18F04;
   --secondary-color: #1F140F;
   --accent-color: #F18F04;
+  --primary-color-black: #a05f04;
   --text-color: #1F140F;
   --heading-color: #1F140F;
   --font-family-base: 'BwModelica', 'Roboto', sans-serif;
@@ -64,9 +65,12 @@ Specific pieces of UI that are stylized. Typically used for global partial styli
 {% include './components/_contacto.css' %}
 {% include './components/_faq.css' %}
 {% include './components/_prototipo-pagina.css' %}
+{% include './components/_call-to-action.css' %}
+{% include './components/_proto-edge.css' %}
 
 /* Utilities
 Helper classes with ability to override anything that comes before it
 */
 
 {% include './utilities/_helper.css' %}
+

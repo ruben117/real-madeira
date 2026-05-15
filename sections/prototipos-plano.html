@@ -1,0 +1,45 @@
+<!--
+  templateType: section
+  label: Prototipo — Plano y distribución
+  isAvailableForNewContent: true
+  description: "Un dnd_row, dos columnas: imagen plano con zoom (offset=0 w=5) + heading H2, richtext y botón (offset=5 w=7)."
+-->
+{% dnd_section
+  background_color="#1F140F",
+  padding={
+    "default": { "top": 80, "bottom": 80 },
+    "mobile":  { "top": 60, "bottom": 60 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+
+      {# ── Columna izquierda: imagen del plano con zoom ── #}
+      {% dnd_module
+        path="@hubspot/image",
+        label="Plano — Imagen",
+        extra_classes="protoplano-img-zoom",
+        offset=0, width=5,
+        img={
+          "src": get_asset_url("../images/prototipo-castelo-plano.jpg"),
+          "alt": "Plano de distribución del Modelo Castelo",
+          "loading": "lazy",
+          "size_type": "auto_custom_max",
+          "max_width": 700
+        }
+      %}
+      {% end_dnd_module %}
+
+      {# ── Columna derecha: Heading H2, Richtext y Botón ── #}
+      {% dnd_module
+        path="@hubspot/rich_text",
+        label="Plano — Contenido Completo",
+        extra_classes="protoplano-content",
+        offset=5, width=7,
+        html="<h2>Espacios que evolucionan contigo</h2><p>Cada nivel ha sido diseñado para maximizar la iluminación natural y la funcionalidad familiar.</p><h3>Planta Baja</h3><p>Estancia de sala y comedor integrados, cocina funcional, un baño completo y una recámara ideal para visitas o personas mayores. Incluye patio posterior para tus reuniones.</p><h3>Planta Alta</h3><p>Dos amplias recámaras, dos baños completos y una terraza privada para disfrutar del aire libre.</p><a href='/contacto' class='btn-primary'>Agenda tu visita</a>"
+      %}
+      {% end_dnd_module %}
+
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

@@ -13,11 +13,29 @@
   class="body-container body-container--prototipos"
 %}
 
-  {# Hero — fondo, eyebrow H2, título H1 y descripción #}
-  {% include_dnd_partial path="../sections/prototipo-hero.html" %}
+  {# Hero — fondo, eyebrow H2, H1, descripción, precio y características #}
+  {% include_dnd_partial path="../sections/prototipo-hero.html" %}|
 
-  {# Precio, disclaimer y grid de características #}
-  {% include_dnd_partial path="../sections/prototipo-precio-caracteristicas.html" %}
+  {# Galería de imágenes del prototipo #}
+
+  {% include_dnd_partial path="../sections/prototipos-galeria.html" %}
+
+  {# Plano y distribución — zoom lupa + contenido con H2, H3, párrafos y CTA #}
+  {% include_dnd_partial path="../sections/prototipos-plano.html" %}
+
+  {# Call to Action #}
+
+  {% include_dnd_partial path="../sections/call-to-action.html" %}
+
+  {# Certificación EDGE #}
+
+  {% include_dnd_partial path="../sections/proto-edge.html" %}
+  {# Amenidades – Vive en la mejor zona #}
+
+  {% include_dnd_partial path="../sections/prototipos-amenidades.html" %}
+
+  {# Contacto — Agenda tu cita #}
+  {% include_dnd_partial path="../sections/prototipos-contacto.html" %}
 
 {% end_dnd_area %}
 

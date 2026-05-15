@@ -1,0 +1,61 @@
+/* ============================================================
+   PROTOTIPO – EDGE
+   Sección certificación: logo + heading + descripción centrados
+   ============================================================ */
+
+/* ── Logo ────────────────────────────────────────────────── */
+
+.proto-edge__logo-module {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.proto-edge__logo-module img {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+  display: inline-block;
+}
+
+/* ── Heading ─────────────────────────────────────────────── */
+
+.proto-edge__heading-module h2 {
+  color: var(--heading-color);
+  font-size: var(--font-size-subheading);
+  font-weight: var(--font-weight-thin);
+  line-height: 1.2;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+/* ── Descripción ─────────────────────────────────────────── */
+
+.proto-edge__desc-module p {
+  color: var(--text-color);
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+  margin: 0 auto;
+  max-width: 520px;
+  text-align: center;
+}
+
+.proto-edge__desc-module strong {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* ── Responsive – Mobile (≤ 767px) ──────────────────────── */
+
+@media (max-width: 767px) {
+  .dnd-section:has(.proto-edge__logo-module) .dnd-column {
+    width: 100% !important;
+  }
+
+  .proto-edge__logo-module img {
+    max-width: 180px;
+  }
+
+  .proto-edge__heading-module h2 {
+    font-size: 28px;
+  }
+}

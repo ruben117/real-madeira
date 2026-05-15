@@ -194,6 +194,12 @@
         "name": "borde_color_override",
         "type": "color",
         "default": { "color": "", "opacity": 100 }
+      },
+      {
+        "label": "Color de fondo (override por item)",
+        "name": "bg_color_override",
+        "type": "color",
+        "default": { "color": "", "opacity": 100 }
       }
     ]
   }
