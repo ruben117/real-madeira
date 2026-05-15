@@ -1,3 +1,112 @@
+/* ============================================================
+   CTA Footer — módulo cta-footer
+   Dos columnas 1/3 (oscura) + 2/3 (imagen fill)
+   ============================================================ */
+
+.cta-footer {
+  display: flex;
+  min-height: 380px;
+  overflow: hidden;
+  gap:20px;
+}
+
+/* ── Columna izquierda 1/3 ───────────────────────────────── */
+
+.cta-footer__izq {
+  background-color: #1F140F;
+  display: flex;
+  flex: 0 0 33.333%;
+  flex-direction: column;
+  gap: 28px;
+  max-width: 33.333%;
+  padding: 48px 40px;
+}
+
+/* Logo */
+.cta-footer__logo {
+  display: block;
+  height: auto;
+  max-width: 180px;
+  width: 100%;
+}
+
+/* Richtext — crece para empujar el botón al fondo */
+.cta-footer__texto {
+  flex: 1;
+}
+
+.cta-footer__texto p {
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: var(--font-weight-base);
+  line-height: 1.3;
+  margin: 40px 0px 0px;
+}
+
+/* Botón alineado al inicio (izquierda) */
+.cta-footer__btn {
+  align-self: flex-start;
+}
+
+/* ── Columna derecha 2/3: imagen fill cover ──────────────── */
+
+.cta-footer__der {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.cta-footer__img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+}
+
+/* ── Tablet (768px – 1023px) ─────────────────────────────── */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .cta-footer__izq {
+    flex: 0 0 40%;
+    max-width: 40%;
+    padding: 36px 28px;
+  }
+
+  .cta-footer__texto p {
+    font-size: 20px;
+  }
+}
+
+/* ── Móvil (≤ 767px) ─────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .cta-footer {
+    flex-direction: column;
+    min-height: 0;
+    gap:0px; 
+  }
+
+  .cta-footer__izq {
+    flex: none;
+    max-width: 100%;
+    padding: 36px 24px;
+  }
+
+  .cta-footer__btn {
+    align-self: stretch;
+    text-align: center;
+  }
+
+  .cta-footer__der {
+    min-height: 220px;
+  }
+  
+  .cta-footer__texto p {
+    margin: 20px 0px;
+  }
+}
+
 /* ── Fila con imagen de fondo: esquinas redondeadas ─────── */
 
 .dnd-row:has(.call-to-action-section) {

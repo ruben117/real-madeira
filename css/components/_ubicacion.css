@@ -211,6 +211,7 @@
   background-color: var(--secondary-color);
   color: #ffffff;
   outline: none;
+  font-weight: var(--font-weight-heading-black);
 }
 
 /* ── Tablet (768px – 1023px) ───────────────────────────── */

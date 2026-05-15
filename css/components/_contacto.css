@@ -73,7 +73,7 @@ form .hs-button, form input[type=submit] {
 
 @media (max-width: 767px) {
   .dnd-column:has(.contacto__form-module) {
-    padding: 1rem;
+    padding: 0rem;
     margin-top: 2rem;
   }
   .contacto__heading-module h2 {

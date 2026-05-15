@@ -1,0 +1,56 @@
+[
+  {
+    "id": "logo",
+    "name": "logo",
+    "label": "Logo",
+    "type": "image",
+    "responsive": false,
+    "resizable": false,
+    "show_loading": false,
+    "default": {
+      "src": "",
+      "alt": "Real Madeira",
+      "loading": "lazy"
+    }
+  },
+  {
+    "id": "texto",
+    "name": "texto",
+    "label": "Texto (richtext)",
+    "type": "richtext",
+    "default": "<p>¿Buscas tu casa para vivir de inmediato o como una inversión patrimonial?</p>"
+  },
+  {
+    "id": "cta_texto",
+    "name": "cta_texto",
+    "label": "Texto del botón",
+    "type": "text",
+    "default": "Solicitar Cotización Personalizada"
+  },
+  {
+    "id": "cta_link",
+    "name": "cta_link",
+    "label": "Enlace del botón",
+    "type": "link",
+    "supported_types": ["EXTERNAL", "CONTENT"],
+    "default": {
+      "url": { "href": "/contacto", "type": "EXTERNAL" },
+      "open_in_new_tab": false,
+      "no_follow": false
+    }
+  },
+  {
+    "id": "imagen",
+    "name": "imagen",
+    "label": "Imagen (columna derecha)",
+    "type": "image",
+    "responsive": false,
+    "resizable": false,
+    "show_loading": false,
+    "default": {
+      "src": "",
+      "alt": "",
+      "loading": "lazy"
+    }
+  }
+]

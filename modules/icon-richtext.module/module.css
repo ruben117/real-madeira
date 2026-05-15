@@ -57,7 +57,7 @@
 }
 
 .icon-rt__content strong{
-  color: var(--primary-color);
+  color: var(--accent-color);
   display: block;
   font-size: 20px;
 }

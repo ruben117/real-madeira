@@ -53,24 +53,7 @@
         path="@hubspot/rich_text",
         label="EDGE – Descripción",
         extra_classes="proto-edge__desc-module",
-        html='<p>El Modelo Paraíso está diseñado bajo estándares de sostenibilidad internacional. Gracias a su certificación <strong>EDGE</strong>, esta casa te permite ahorrar hasta un <strong>50% en tus recibos de luz y agua.</strong></p>'
-      %}
-      {% end_dnd_module %}
-    {% end_dnd_row %}
-
-    {# ── Descripción ─────────────────────────────────────────── #}
-    {% dnd_row %}
-      {% dnd_module
-        path="../modules/edge-stat",
-        label="Cert. EDGE – Stats",
-        extra_classes="cert-edge__stats-module",
-        offset=0, width=12,
-        items=[
-          { "tipo": "energia",      "valor": 31   },
-          { "tipo": "agua",         "valor": 44   },
-          { "tipo": "co2",          "valor": 1.62 },
-          { "tipo": "nivel_ahorro", "valor": 75   }
-        ]
+        html='<p>Como parte del compromiso de <strong>Vinte</strong> con el medio ambiente, el Modelo Castelo integra ecotecnias que reducen significativamente el costo de tus servicios básicos.</p>'
       %}
       {% end_dnd_module %}
     {% end_dnd_row %}
@@ -103,23 +86,23 @@
         cuerpo_alineacion="left",
         items=[
           {
-            "titulo": "Ahorro Garantizado",
-            "cuerpo": "<p>Tecnología aplicada para reducir el consumo de luz, agua y gas.</p>",
-            "icono": { "src": get_asset_url("../images/icon-certificacion-energia.svg"), "alt": "" },
+            "titulo": "Ahorro de Energía",
+            "cuerpo": "<p>Optimización de entradas de luz natural para reducir el uso de electricidad.</p>",
+            "icono": { "src": get_asset_url("../images/icon-certificacion-energia.svg"), "alt": "Ahorro de Energía" },
             "borde_color_override": { "color": "#FFB04E", "opacity": 100 },
             "bg_color_override": { "color": "#FFB04E", "opacity": 20 }
           },
           {
-            "titulo": "Bienestar Ambiental",
-            "cuerpo": "<p>Diseños que maximizan la iluminación natural y ventilación.</p>",
-            "icono": { "src": get_asset_url("../images/icon-certificacion-agua.svg"), "alt": "" },
+            "titulo": "Ahorro de Agua",
+            "cuerpo": "<p>Grifería y sanitarios de bajo consumo certificados.</p>",
+            "icono": { "src": get_asset_url("../images/icon-certificacion-agua.svg"), "alt": "Ahorro de Agua" },
             "borde_color_override": { "color": "#36A0DE", "opacity": 100 },
             "bg_color_override": { "color": "#36A0DE", "opacity": 20 }
           },
           {
-            "titulo": "Plusvalía Verde",
-            "cuerpo": "<p>Una casa sustentable mantiene un valor de reventa superior en el mercado actual.</p>",
-            "icono": { "src": get_asset_url("../images/icon-certificacion-co2.svg"), "alt": "" },
+            "titulo": "Eficiencia Térmica",
+            "cuerpo": "<p>Materiales que mantienen la frescura en verano y el calor en invierno.</p>",
+            "icono": { "src": get_asset_url("../images/icon-certificacion-co2.svg"), "alt": "Eficiencia Térmica" },
             "borde_color_override": { "color": "#94BA5A", "opacity": 100 },
             "bg_color_override": { "color": "#94BA5A", "opacity": 20 }
           }

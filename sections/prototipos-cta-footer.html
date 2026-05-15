@@ -1,0 +1,41 @@
+<!--
+  templateType: section
+  label: CTA Footer
+  isAvailableForNewContent: true
+  description: "Dos columnas 1/3 + 2/3: logo + richtext + botón (col. oscura) | imagen fill cover (col. derecha)."
+-->
+{% dnd_section
+  background_color="#f5f3ef",
+  padding={
+    "default": { "top": 60, "bottom": 100 },
+    "mobile":  { "top": 40, "bottom": 40 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/cta-footer",
+        label="CTA Footer",
+        offset=0, width=12,
+        logo={
+          "src": get_asset_url("../images/logo-real-madeira-blanco.png"),
+          "alt": "Real Madeira — Comunidad Vinte",
+          "loading": "lazy"
+        },
+        texto="<p>¿Buscas tu casa para vivir de inmediato o como una inversión patrimonial?</p>",
+        cta_texto="Solicitar Cotización Personalizada",
+        cta_link={
+          "url": { "href": "/contacto", "type": "EXTERNAL" },
+          "open_in_new_tab": false,
+          "no_follow": false
+        },
+        imagen={
+          "src": get_asset_url("../images/cta-prototipos-alberca.jpg"),
+          "alt": "Alberca Real Madeira",
+          "loading": "lazy"
+        }
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

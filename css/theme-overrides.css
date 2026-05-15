@@ -177,14 +177,14 @@ html {
 body {
   {{ body_font.style }};
   color: {{ body_font.color }};
-  font-size: var(--font-weight-base);
+  font-size: var(--font-size-base);
 }
 
 /* Paragraphs */
 
 p {
   {{ body_font.style }};
-  font-size: var(--font-weight-base);
+  font-size: var(--font-size-base);
 }
 
 /* Anchors */

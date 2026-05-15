@@ -1,0 +1,40 @@
+{% set logo_src = module.logo.src if module.logo.src
+                  else get_asset_url("../../images/logo-real-madeira-blanco.png") %}
+{% set img_src  = module.imagen.src if module.imagen.src
+                  else get_asset_url("../../images/cta-prototipos-alberca.jpg") %}
+{% set cta_href = module.cta_link.url.href if module.cta_link.url.href else "/contacto" %}
+
+<div class="cta-footer">
+
+  {# ── Columna izquierda 1/3: logo + richtext + botón ── #}
+  <div class="cta-footer__izq">
+
+    <img class="cta-footer__logo"
+         src="{{ logo_src | escape_url }}"
+         alt="{{ module.logo.alt | default('Real Madeira') | escape_attr }}"
+         loading="lazy">
+
+    {% if module.texto %}
+      <div class="cta-footer__texto">{{ module.texto }}</div>
+    {% endif %}
+
+    {% if module.cta_texto %}
+      <a class="btn-primary cta-footer__btn"
+         href="{{ cta_href }}"
+         {% if module.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+         {% if module.cta_link.no_follow %}rel="nofollow"{% endif %}>
+        {{ module.cta_texto | escape_html }}
+      </a>
+    {% endif %}
+
+  </div>
+
+  {# ── Columna derecha 2/3: imagen fill cover ── #}
+  <div class="cta-footer__der">
+    <img class="cta-footer__img"
+         src="{{ img_src | escape_url }}"
+         alt="{{ module.imagen.alt | default('') | escape_attr }}"
+         loading="lazy">
+  </div>
+
+</div>
