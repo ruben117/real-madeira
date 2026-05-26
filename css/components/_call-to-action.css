@@ -47,6 +47,13 @@
 .cta-footer__btn {
   align-self: flex-start;
 }
+.cta-footer__btn:hover, .cta-footer__btn:focus {
+  opacity: 0.85;
+  transform: translateY(-2px);
+  background-color: var(--primary-color);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  
+}
 
 /* ── Columna derecha 2/3: imagen fill cover ──────────────── */
 

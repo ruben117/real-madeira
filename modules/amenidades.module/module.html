@@ -1,6 +1,11 @@
-{% set cta_href = module.cta_link.url.href if module.cta_link.url.href else "#contacto" %}
+{% set cta_href   = module.cta_link.url.href if module.cta_link.url.href else "#contacto" %}
+{% set auto_play  = module.config.auto_play | default(false) %}
+{% set intervalo  = (module.config.intervalo | default(5)) * 1000 %}
 
-<div class="amenidades-content" data-amenidades>
+<div class="amenidades-content"
+     data-amenidades
+     data-autoplay="{{ 'true' if auto_play else 'false' }}"
+     data-interval="{{ intervalo }}">
 
   {# ── Columna izquierda: heading + slider + CTA ── #}
   <div class="amenidades-content__left">
@@ -9,16 +14,19 @@
       <h2 class="amenidades-content__titulo">{{ module.titulo | escape_html }}</h2>
     {% endif %}
 
-    {# Slider #}
+    {# Slider — clic en slide activo abre lightbox #}
     <div class="amenidades-slider">
       <div class="amenidades-slider__track">
         {% for item in module.amenidades %}
           {% set img_src = item.imagen.src if item.imagen.src else get_asset_url("../../images/amenidades-parque.jpg") %}
+          {% set img_alt = item.imagen.alt | default(item.nombre) | escape_attr %}
           <div class="amenidades-slider__slide{% if loop.index == 1 %} is-active{% endif %}"
                data-slide="{{ loop.index0 }}"
+               data-lb-src="{{ img_src }}"
+               data-lb-alt="{{ img_alt }}"
                aria-hidden="{% if loop.index == 1 %}false{% else %}true{% endif %}">
             <img src="{{ img_src }}"
-                 alt="{{ item.imagen.alt | default(item.nombre) | escape_attr }}"
+                 alt="{{ img_alt }}"
                  loading="{% if loop.index == 1 %}eager{% else %}lazy{% endif %}">
           </div>
         {% endfor %}
@@ -74,5 +82,35 @@
       </li>
     {% endfor %}
   </ul>
+
+</div>
+
+{# ── Lightbox ── #}
+<div class="amenidades-lb" data-amenidades-lb hidden
+     role="dialog" aria-modal="true" aria-label="Galería de amenidades">
+
+  <div class="amenidades-lb__overlay" data-lb-close></div>
+
+  <div class="amenidades-lb__dialog">
+    <img class="amenidades-lb__img" src="" alt="" data-lb-img>
+  </div>
+
+  <button class="amenidades-lb__close" data-lb-close aria-label="Cerrar galería">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+      <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </button>
+
+  <button class="amenidades-lb__nav amenidades-lb__prev" data-lb-prev aria-label="Imagen anterior">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <path d="M14 18L7 11L14 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <button class="amenidades-lb__nav amenidades-lb__next" data-lb-next aria-label="Siguiente imagen">
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+      <path d="M8 4l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 
 </div>

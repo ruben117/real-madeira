@@ -118,15 +118,17 @@
   width: 460px;
 }
 
-/* Tarjeta prototipo */
+/* Tarjeta prototipo — ahora es <a> que cubre toda la card */
 .prototipos-card {
   background-color: #f6f5f0;
+  color: inherit;
   display: flex;
   flex-direction: column;
   grid-area: 1 / 1;
   opacity: 0;
   padding: 20px 20px 0;
   pointer-events: none;
+  text-decoration: none;
   transition: opacity 0.5s ease;
 }
 
@@ -155,7 +157,13 @@
   display: block;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.45s ease;
   width: 100%;
+}
+
+/* Hover en card activa: sutil zoom en la imagen */
+.prototipos-card.is-active:hover .prototipos-card__img-wrap img {
+  transform: scale(1.04);
 }
 
 /* Footer: feature + detalle + botón */

@@ -1,7 +1,12 @@
 {% set fallback_bg = get_asset_url("../../images/bgk-home-prototipos-montesino.jpg") %}
-{% set icon_cta = get_asset_url("../../images/icon-button-hero-ligthbox.png") %}
+{% set icon_cta    = get_asset_url("../../images/icon-button-hero-ligthbox.png") %}
+{% set auto_play   = module.config.auto_play | default(false) %}
+{% set intervalo   = (module.config.intervalo | default(6)) * 1000 %}
 
-<div class="prototipos-slider" data-prototipos>
+<div class="prototipos-slider"
+     data-prototipos
+     data-autoplay="{{ 'true' if auto_play else 'false' }}"
+     data-interval="{{ intervalo }}">
 
   {# ── Contenido ── #}
   <div class="prototipos-slider__content">
@@ -49,8 +54,16 @@
     {# ── Columna derecha: tarjeta prototipo ── #}
     <div class="prototipos-slider__right">
       {% for item in module.prototipos %}
-        {% set cover = item.cover.src if item.cover.src else fallback_bg %}
-        <div class="prototipos-card{% if loop.index == 1 %} is-active{% endif %}" data-card="{{ loop.index0 }}">
+        {% set cover    = item.cover.src if item.cover.src else fallback_bg %}
+        {% set href     = item.cta_link.url.href if item.cta_link.url.href else "#" %}
+
+        {# Card completa como enlace: todo el contenido es clickeable #}
+        <a class="prototipos-card{% if loop.index == 1 %} is-active{% endif %}"
+           data-card="{{ loop.index0 }}"
+           href="{{ href }}"
+           aria-label="Ver detalles de {{ item.nombre | escape_attr }}"
+           {% if item.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+           {% if item.cta_link.no_follow %}rel="nofollow"{% endif %}>
 
           <h3 class="prototipos-card__nombre">{{ item.nombre | escape_html }}</h3>
 
@@ -69,18 +82,13 @@
                 <div class="prototipos-card__detalle">{{ item.detalle }}</div>
               {% endif %}
             </div>
-            {% if item.cta_link.url.href %}
-              <a class="prototipos-card__cta"
-                 href="{{ item.cta_link.url.href }}"
-                 aria-label="Ver más sobre {{ item.nombre | escape_attr }}"
-                 {% if item.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-                 {% if item.cta_link.no_follow %}rel="nofollow"{% endif %}>
-                <img src="{{ icon_cta }}" alt="" aria-hidden="true" loading="lazy">
-              </a>
-            {% endif %}
+            {# Ícono visual — ya no es <a> porque la card completa es el enlace #}
+            <div class="prototipos-card__cta" aria-hidden="true">
+              <img src="{{ icon_cta }}" alt="" loading="lazy">
+            </div>
           </div>
 
-        </div>
+        </a>
       {% endfor %}
     </div>
 

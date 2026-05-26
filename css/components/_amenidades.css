@@ -92,6 +92,7 @@
   color: var(--primary-color);
   outline: none;
   border-radius: 50%;
+  background-color: transparent;
 }
 
 /* CTA */
@@ -260,6 +261,101 @@
   .amenidades-grid__subtitulo {
     font-size: 16px;
   }
+}
+
+/* ============================================================
+   Amenidades — Lightbox
+   ============================================================ */
+
+/* Slide activo: indica que se puede ampliar */
+.amenidades-slider__slide.is-active {
+  cursor: zoom-in;
+}
+
+/* Contenedor del lightbox — posición fixed (cubre toda la pantalla) */
+.amenidades-lb {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 9999;
+}
+
+.amenidades-lb[hidden] {
+  display: none;
+}
+
+/* Overlay para cerrar al hacer clic fuera de la imagen */
+.amenidades-lb__overlay {
+  inset: 0;
+  position: absolute;
+}
+
+/* Imagen centrada */
+.amenidades-lb__dialog {
+  position: relative;
+  z-index: 1;
+}
+
+.amenidades-lb__img {
+  display: block;
+  max-height: 88vh;
+  max-width: 88vw;
+  object-fit: contain;
+}
+
+/* Botones compartidos */
+.amenidades-lb__close,
+.amenidades-lb__nav {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.12);
+  border: none;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  transition: background 0.2s ease;
+  z-index: 2;
+  padding:0;
+}
+
+.amenidades-lb__close:hover,
+.amenidades-lb__nav:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+/* Botón cerrar — esquina superior derecha */
+.amenidades-lb__close {
+  height: 44px;
+  right: 20px;
+  top: 20px;
+  width: 44px;
+}
+
+/* Botones prev / next — centrados en los laterales */
+.amenidades-lb__nav {
+  height: 52px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+}
+
+.amenidades-lb__prev { left: 20px; }
+.amenidades-lb__next { right: 20px; }
+
+/* ── Lightbox móvil ─────────────────────────────────── */
+@media (max-width: 767px) {
+  .amenidades-lb__img {
+    max-height: 80vh;
+    max-width: 94vw;
+  }
+
+  .amenidades-lb__prev { left: 8px; }
+  .amenidades-lb__next { right: 8px; }
 }
 
 /* ============================================================

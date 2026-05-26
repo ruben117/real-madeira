@@ -6,6 +6,29 @@
     "default": "Nuestros prototipos"
   },
   {
+    "label": "Configuración del slider",
+    "name": "config",
+    "type": "group",
+    "children": [
+      {
+        "label": "Inicio automático",
+        "name": "auto_play",
+        "type": "boolean",
+        "display": "toggle",
+        "default": false
+      },
+      {
+        "label": "Tiempo por slide (segundos)",
+        "name": "intervalo",
+        "type": "number",
+        "min": 2,
+        "max": 20,
+        "step": 1,
+        "default": 6
+      }
+    ]
+  },
+  {
     "label": "Prototipos",
     "name": "prototipos",
     "type": "group",

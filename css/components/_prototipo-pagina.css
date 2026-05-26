@@ -74,7 +74,7 @@
 
 .proto-precio-caract {
   text-align: center;
-  margin-top: 19vh;
+  margin-top: 15vh;
 }
 
 .proto-precio-caract__top {
@@ -84,7 +84,7 @@
 /* Precio H3 — grande naranja */
 .proto-precio-caract__precio {
   color: var(--primary-color);
-  font-size: 20px;
+  font-size: 40px;
   font-weight: var(--font-weight-heading);
   line-height: 1.1;
   margin: 0 0 10px;
