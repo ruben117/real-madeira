@@ -177,11 +177,11 @@
 
 .header__nav .menu__link:hover,
 .header__nav .menu__link:focus {
-  color: #FFEC01;
+  color: var(--accent-color);
 }
 
 .header__nav .menu__link--active-link {
-  color: #FFEC01;
+  color: var(--accent-color);
 }
 
 

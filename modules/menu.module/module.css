@@ -63,7 +63,7 @@
 
 .menu__item--depth-1 {
   display: inline-block;
-  padding: 0.7rem 0.875rem;
+  padding: 13px 0px;
   text-transform: uppercase;
 }
 
@@ -74,6 +74,7 @@
   left: 0;
   position: absolute;
   width: 100%;
+  background-color: #ffffff !important;
 }
 
 @media (max-width: 767px) {
