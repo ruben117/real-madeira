@@ -6,6 +6,7 @@
     var slides  = content.querySelectorAll('.amenidades-slider__slide');
     var btnPrev = content.querySelector('[data-slider-prev]');
     var btnNext = content.querySelector('[data-slider-next]');
+    var nameEl  = content.querySelector('[data-amenidad-nombre]');
     var current = 0;
 
     /* ── Config desde data-attributes ── */
@@ -18,7 +19,6 @@
     var lbImg = lbEl ? lbEl.querySelector('[data-lb-img]') : null;
     var lbIndex = 0;
 
-    /* Recopila src + alt de cada slide */
     var lbImages = [].slice.call(slides).map(function (slide) {
       return {
         src: slide.getAttribute('data-lb-src') || '',
@@ -47,7 +47,6 @@
     function nextLb(e) { if (e) e.stopPropagation(); openLb(lbIndex + 1); }
 
     if (lbEl) {
-      /* Cerrar con overlay y botón × */
       lbEl.querySelectorAll('[data-lb-close]').forEach(function (el) {
         el.addEventListener('click', closeLb);
       });
@@ -57,24 +56,21 @@
       if (lbNext) lbNext.addEventListener('click', nextLb);
     }
 
-    /* ESC y flechas de teclado globales */
     document.addEventListener('keydown', function (e) {
       if (!lbEl || lbEl.hidden) return;
-      if (e.key === 'Escape')      { closeLb(); }
-      if (e.key === 'ArrowLeft')   { prevLb(); }
-      if (e.key === 'ArrowRight')  { nextLb(); }
+      if (e.key === 'Escape')     { closeLb(); }
+      if (e.key === 'ArrowLeft')  { prevLb(); }
+      if (e.key === 'ArrowRight') { nextLb(); }
     });
 
-    /* ── Slide activo: clic → abre lightbox ── */
+    /* Clic en slide activo → lightbox */
     slides.forEach(function (slide, i) {
       slide.addEventListener('click', function () {
-        if (slide.classList.contains('is-active')) {
-          openLb(i);
-        }
+        if (slide.classList.contains('is-active')) { openLb(i); }
       });
     });
 
-    /* ── Navegación del slider ── */
+    /* ── Navegación ── */
     function goTo(index) {
       var total = items.length;
       current = (index + total) % total;
@@ -90,19 +86,17 @@
         slide.classList.toggle('is-active', active);
         slide.setAttribute('aria-hidden', active ? 'false' : 'true');
       });
+
+      /* Actualiza nombre debajo del slider */
+      if (nameEl && items[current]) {
+        nameEl.textContent = items[current].getAttribute('data-nombre') || '';
+      }
     }
 
     items.forEach(function (item, i) {
-      item.addEventListener('click', function () {
-        goTo(i);
-        resetAuto();
-      });
+      item.addEventListener('click', function () { goTo(i); resetAuto(); });
       item.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          goTo(i);
-          resetAuto();
-        }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); goTo(i); resetAuto(); }
       });
     });
 
@@ -114,7 +108,7 @@
       if (!autoplay) return;
       stopAuto();
       autoTimer = setInterval(function () {
-        if (lbEl && !lbEl.hidden) return; /* pausa si el lightbox está abierto */
+        if (lbEl && !lbEl.hidden) return;
         goTo(current + 1);
       }, interval);
     }

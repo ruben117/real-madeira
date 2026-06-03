@@ -10,7 +10,8 @@
   padding={
     "default": { "top": 100, "bottom": 80 },
     "mobile":  { "top": 60,  "bottom": 60 }
-  }
+  },
+  vertical_alignment="MIDDLE" 
 %}
   {% dnd_column offset=0, width=12 %}
     {% dnd_row %}
@@ -23,8 +24,9 @@
           "auto_play": true,
           "intervalo": 5
         },
+        eyebrow="¡+15 Amenidades!",
         titulo="El fraccionamiento Real Madeira es la comunidad que tiene todo para que no tengas que salir de casa.",
-        cta_texto="Cotización rápidae",
+        cta_texto="Cotización rápida",
         cta_link={
           "url": { "href": "#contacto", "type": "EXTERNAL" },
           "no_follow": false,
@@ -38,10 +40,34 @@
             "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-control-acceso.jpg"), "alt": "Control de acceso" }
           },
           {
+            "nombre": "Mesas de ping pong",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-ping-pong.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-ping-pong.jpg"), "alt": "Mesas de ping pong" }
+          },
+          {
+            "nombre": "Terraza para eventos",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-terraza-eventos.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-terraza-eventos.jpg"), "alt": "Terraza para eventos" }
+          },
+          {
             "nombre": "Casa club con alberca",
             "subtitulo": "",
             "icono": { "src": get_asset_url("../images/icon-amenidades-casa-club-alberca.svg"), "alt": "" },
             "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-casa-club.jpg"), "alt": "Casa club con alberca" }
+          },
+          {
+            "nombre": "Área de skateboard",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-skateboard.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-skateboard.jpg"), "alt": "Área de skateboard" }
+          },
+          {
+            "nombre": "Salón de usos múltiples",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-salon-usos-multiples.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-salon-usos-multiples.jpg"), "alt": "Salón de usos múltiples" }
           },
           {
             "nombre": "Gimnasio",
@@ -50,16 +76,28 @@
             "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-gimnasio.jpg"), "alt": "Gimnasio" }
           },
           {
+            "nombre": "Baby park",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-baby-park.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-baby-park.jpg"), "alt": "Baby park" }
+          },
+          {
+            "nombre": "Área comercial",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-area-comercial.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-area-comercial.jpg"), "alt": "Área comercial" }
+          },
+          {
             "nombre": "Área verdes recreativas",
             "subtitulo": "",
             "icono": { "src": get_asset_url("../images/icon-amenidades-areas-verdes.svg"), "alt": "" },
             "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-areas-verdes.jpg"), "alt": "Áreas verdes recreativas" }
           },
           {
-            "nombre": "Canchas de fut 7",
+            "nombre": "Sala de Coworking",
             "subtitulo": "",
-            "icono": { "src": get_asset_url("../images/icon-amenidades-cancha-fut-7.svg"), "alt": "" },
-            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-cancha-fut-7.jpg"), "alt": "Canchas de fut 7" }
+            "icono": { "src": get_asset_url("../images/icon-amenidades-coworking.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-coworking.jpg"), "alt": "Sala de Coworking" }
           },
           {
             "nombre": "Dog Park",
@@ -68,10 +106,22 @@
             "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-dog-park.jpg"), "alt": "Dog Park" }
           },
           {
+            "nombre": "Canchas de fut 7",
+            "subtitulo": "",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-cancha-fut-7.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-cancha-fut-7.jpg"), "alt": "Canchas de fut 7" }
+          },
+          {
             "nombre": "Canchas de Pádel",
-            "subtitulo": "¡Proximamente!",
+            "subtitulo": "¡Próximamente!",
             "icono": { "src": get_asset_url("../images/icon-amenidades-padel.svg"), "alt": "" },
-            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-entrada.jpg"), "alt": "Canchas de Pádel" }
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-padel.jpg"), "alt": "Canchas de Pádel" }
+          },
+          {
+            "nombre": "Canchas multideportivas",
+            "subtitulo": "Béisbol, básquetbol y pickleball",
+            "icono": { "src": get_asset_url("../images/icon-amenidades-canchas-multiples.svg"), "alt": "" },
+            "imagen": { "src": get_asset_url("../images/real-madeira-amenidades-canchas-multiples.jpg"), "alt": "Canchas multideportivas" }
           }
         ]
       %}

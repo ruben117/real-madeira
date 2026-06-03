@@ -1,40 +1,50 @@
 /* ============================================================
    Amenidades — Slider + Grid de íconos
-   Valores exactos: Figma node 5930:3
    ============================================================ */
 
-/* ── Layout: dos columnas ──────────────────────────────── */
+/* ── Layout: 70% izquierda / 30% derecha ───────────────── */
 
 .amenidades-content {
   align-items: flex-start;
   display: flex;
-  gap: 80px;
+  gap: 48px;
 }
 
-/* ── Columna izquierda ─────────────────────────────────── */
+/* ── Columna izquierda 70% ──────────────────────────────── */
 
 .amenidades-content__left {
-  flex: 0 0 56%;
-  max-width: 56%;
+  display: flex;
+  flex: 0 0 calc(70% - 24px);
+  flex-direction: column;
+  max-width: calc(70% - 24px);
 }
 
+/* Eyebrow — "¡+15 Amenidades!" */
+.amenidades-content__eyebrow {
+  color: var(--primary-color);
+  font-size: clamp(32px, 3vw, 46px);
+  font-weight: var(--font-weight-heading-black);
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+/* Descripción */
 .amenidades-content__titulo {
   color: #f5f3ef;
-  font-size: 24px;
+  font-size: 18px;
   font-weight: var(--font-weight-base);
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  margin-top: 0;
+  line-height: 1.5;
+  margin: 0 0 20px;
 }
 
 /* ── Slider ────────────────────────────────────────────── */
 
 .amenidades-slider {
-  margin-bottom: 1.5rem;
+  width: 100%;
 }
 
 .amenidades-slider__track {
-  aspect-ratio: 670 / 378;
+  aspect-ratio: 670 / 420;
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -52,6 +62,7 @@
 }
 
 .amenidades-slider__slide.is-active {
+  cursor: zoom-in;
   opacity: 1;
   pointer-events: auto;
 }
@@ -63,53 +74,69 @@
   width: 100%;
 }
 
-/* Nav: botones circulares prev/next */
+/* ── Fila: nombre de amenidad + nav ─────────────────────── */
 
+.amenidades-nombre-row {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+  min-height: 52px;
+}
+
+/* Nombre dinámico actualizado por JS */
+.amenidades-nombre-display {
+  color: var(--primary-color);
+  font-size: clamp(20px, 2vw, 30px);
+  font-weight: var(--font-weight-base);
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* Nav: botones circulares prev/next — ahora en la fila del nombre */
 .amenidades-slider__nav {
   display: flex;
+  flex-shrink: 0;
   gap: 12px;
-  margin-top: 1.125rem;
 }
 
 .amenidades-slider__btn {
   align-items: center;
   background: transparent;
-  border: 2px solid var(--accent-color);
+  border: 2px solid var(--primary-color);
   border-radius: 50%;
   color: #f5f3ef;
   cursor: pointer;
   display: flex;
   height: 44px;
   justify-content: center;
-  transition: border-color 0.22s, color 0.22s;
+  padding: 0;
+  transition: background-color 0.22s, color 0.22s;
   width: 44px;
-  padding:0;
 }
 
 .amenidades-slider__btn:hover,
 .amenidades-slider__btn:focus {
-  border: 2px solid var(--accent-color);
-  color: var(--primary-color);
+  background-color: var(--primary-color);
+  color: #ffffff;
   outline: none;
-  border-radius: 50%;
-  background-color: transparent;
 }
 
 /* CTA */
-
 .amenidades-content__cta {
+  align-self: flex-start;
   background-color: var(--primary-color);
   color: #ffffff;
   display: inline-block;
   font-size: 17px;
   font-weight: var(--font-weight-heading-black);
   line-height: 1;
-  margin-top: 1.5rem;
+  margin-top: 20px;
   min-width: 182px;
   padding: 14px 24px;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.22s, color 0.22s;
+  transition: background-color 0.22s;
 }
 
 .amenidades-content__cta:hover,
@@ -119,113 +146,70 @@
   outline: none;
 }
 
-/* ── Grid de amenidades (columna derecha) ──────────────── */
+/* ── Grid derecha 30%: 3 columnas, solo íconos ──────────── */
 
 .amenidades-grid {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
+  display: grid;
+  flex: 0 0 calc(30% - 24px);
+  gap: 30px;
+  grid-template-columns: repeat(3, 1fr);
   list-style: none;
-  margin: 0;
+  margin: 70px 0;
   padding: 0;
 }
 
+/* Cada celda es un cuadrado con el ícono centrado */
 .amenidades-grid__item {
   align-items: center;
+  aspect-ratio: 1;
+  background-color: #352b25;
   cursor: pointer;
   display: flex;
-  gap: 20px;
-  padding: 11px 0;
+  justify-content: center;
+  padding: 0;
+  transition: background-color 0.25s ease;
 }
 
 .amenidades-grid__item:focus {
-  outline: none;
+  outline: 2px solid var(--primary-color);
   outline-offset: 2px;
 }
 
-/* Ícono: caja 67×67 */
-
-.amenidades-grid__icon {
-  align-items: center;
-  background-color: #352b25;
-  display: flex;
-  flex-shrink: 0;
-  height: 67px;
-  justify-content: center;
-  transition: background-color 0.25s ease;
-  width: 67px;
-}
-
-.amenidades-grid__icon img {
+.amenidades-grid__item img {
   display: block;
-  height: 34px;
+  filter: brightness(0) invert(1);
+  height: 36px;
   object-fit: contain;
-  width: 34px;
+  width: 36px;
 }
 
-/* Texto */
-
-.amenidades-grid__info {
-  display: flex;
-  flex-direction: column;
-}
-
-.amenidades-grid__nombre {
-  color: #f5f3ef;
-  display: block;
-  font-size: 22px;
-  font-weight: var(--font-weight-base);
-  line-height: 1.2;
-  transition: color 0.25s ease;
-}
-
-.amenidades-grid__subtitulo {
-  color: #8b929f;
-  display: block;
-  font-size: 20px;
-  font-weight: var(--font-weight-base);
-  line-height: 1.2;
-  margin-top: 3px;
-}
-
-/* Estado activo */
-
-.amenidades-grid__item.is-active .amenidades-grid__icon {
+/* Estado activo: fondo naranja */
+.amenidades-grid__item.is-active {
   background-color: var(--primary-color);
-  margin-left: -20px;
-}
-
-.amenidades-grid__item.is-active .amenidades-grid__nombre {
-  color: #f3b762;
 }
 
 /* ── Tablet (768px – 1023px) ───────────────────────────── */
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .amenidades-content {
-    gap: 40px;
+    gap: 32px;
   }
 
   .amenidades-content__left {
-    flex: 0 0 52%;
-    max-width: 52%;
+    flex: 0 0 calc(65% - 16px);
+    max-width: calc(65% - 16px);
   }
 
-  .amenidades-content__titulo {
-    font-size: 21px;
+  .amenidades-grid {
+    flex: 0 0 calc(35% - 16px);
   }
 
-  .amenidades-grid__nombre {
-    font-size: 18px;
+  .amenidades-content__eyebrow {
+    font-size: 30px;
   }
 
-  .amenidades-grid__subtitulo {
-    font-size: 16px;
-  }
-
-  .amenidades-grid__icon {
-    height: 56px;
-    width: 56px;
+  .amenidades-nombre-display {
+    font-size: 20px;
   }
 }
 
@@ -234,7 +218,7 @@
 @media (max-width: 767px) {
   .amenidades-content {
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 2rem;
   }
 
   .amenidades-content__left {
@@ -243,23 +227,18 @@
     width: 100%;
   }
 
-  .amenidades-content__titulo {
-    font-size: 20px;
-  }
-
-  .amenidades-content__cta {
-    display: block;
-    min-width: 0;
-    text-align: center;
+  .amenidades-grid {
+    flex: none;
     width: 100%;
   }
 
-  .amenidades-grid__nombre {
-    font-size: 18px;
+  .amenidades-content__eyebrow {
+    font-size: 28px;
   }
 
-  .amenidades-grid__subtitulo {
-    font-size: 16px;
+  .amenidades-content__cta {
+    align-self: stretch;
+    text-align: center;
   }
 }
 

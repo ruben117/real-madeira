@@ -1,6 +1,12 @@
 [
   {
-    "label": "Título (H2)",
+    "label": "Eyebrow (ej: ¡+15 Amenidades!)",
+    "name": "eyebrow",
+    "type": "text",
+    "default": "¡+15 Amenidades!"
+  },
+  {
+    "label": "Descripción",
     "name": "titulo",
     "type": "text",
     "default": "El fraccionamiento Real Madeira es la comunidad que tiene todo para que no tengas que salir de casa."

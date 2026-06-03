@@ -7,11 +7,15 @@
      data-autoplay="{{ 'true' if auto_play else 'false' }}"
      data-interval="{{ intervalo }}">
 
-  {# ── Columna izquierda: heading + slider + CTA ── #}
+  {# ── Columna izquierda 70%: eyebrow + descripción + slider + nombre + CTA ── #}
   <div class="amenidades-content__left">
 
+    {% if module.eyebrow %}
+      <p class="amenidades-content__eyebrow">{{ module.eyebrow | escape_html }}</p>
+    {% endif %}
+
     {% if module.titulo %}
-      <h2 class="amenidades-content__titulo">{{ module.titulo | escape_html }}</h2>
+      <p class="amenidades-content__titulo">{{ module.titulo | escape_html }}</p>
     {% endif %}
 
     {# Slider — clic en slide activo abre lightbox #}
@@ -31,7 +35,13 @@
           </div>
         {% endfor %}
       </div>
+    </div>
 
+    {# Nombre de amenidad + nav en la misma fila #}
+    <div class="amenidades-nombre-row">
+      <p class="amenidades-nombre-display" data-amenidad-nombre>
+        {{ module.amenidades[0].nombre | default('') | escape_html }}
+      </p>
       <div class="amenidades-slider__nav">
         <button class="amenidades-slider__btn" aria-label="Amenidad anterior" data-slider-prev>
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -57,28 +67,19 @@
 
   </div>
 
-  {# ── Columna derecha: grid de amenidades ── #}
+  {# ── Columna derecha 30%: grid 3×5 solo íconos ── #}
   <ul class="amenidades-grid" role="list">
     {% for item in module.amenidades %}
       <li class="amenidades-grid__item{% if loop.index == 1 %} is-active{% endif %}"
           data-amenidad="{{ loop.index0 }}"
+          data-nombre="{{ item.nombre | escape_attr }}"
           role="button"
           tabindex="0"
+          aria-label="{{ item.nombre | escape_attr }}"
           aria-selected="{% if loop.index == 1 %}true{% else %}false{% endif %}">
-
-        <div class="amenidades-grid__icon">
-          {% if item.icono.src %}
-            <img src="{{ item.icono.src }}" alt="" aria-hidden="true" loading="lazy">
-          {% endif %}
-        </div>
-
-        <div class="amenidades-grid__info">
-          <span class="amenidades-grid__nombre">{{ item.nombre | escape_html }}</span>
-          {% if item.subtitulo %}
-            <span class="amenidades-grid__subtitulo">{{ item.subtitulo | escape_html }}</span>
-          {% endif %}
-        </div>
-
+        {% if item.icono.src %}
+          <img src="{{ item.icono.src }}" alt="" aria-hidden="true" loading="lazy">
+        {% endif %}
       </li>
     {% endfor %}
   </ul>

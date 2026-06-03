@@ -1,0 +1,14 @@
+<svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.5 26.875H30.9393" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M5.80407 14.9121H9.60141C10.8221 14.9121 11.8117 15.9017 11.8117 17.1224V18.9936H3.59375V17.1224C3.59375 15.9018 4.58334 14.9121 5.80407 14.9121Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M7.70768 14.7276C6.15945 14.7276 4.9043 13.4725 4.9043 11.9242V10.4733C4.9043 8.92507 6.15938 7.66992 7.70768 7.66992C9.25592 7.66992 10.5111 8.92501 10.5111 10.4733V11.9242C10.5111 13.4725 9.25592 14.7276 7.70768 14.7276Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M13.7739 18.9922H1.63477V26.8764H13.7739V18.9922Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="7.70509" cy="22.9336" r="0.947282" fill="black"/>
+<path d="M21.8373 14.9121H25.6346C26.8553 14.9121 27.8449 15.9017 27.8449 17.1224V18.9936H19.627V17.1224C19.627 15.9018 20.6165 14.9121 21.8373 14.9121Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M23.737 14.7276C22.1887 14.7276 20.9336 13.4725 20.9336 11.9242V10.4733C20.9336 8.92507 22.1887 7.66992 23.737 7.66992C25.2852 7.66992 26.5404 8.92501 26.5404 10.4733V11.9242C26.5403 13.4725 25.2852 14.7276 23.737 14.7276Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M29.8032 18.9922H17.6641V26.8764H29.8032V18.9922Z" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="23.7344" cy="22.9336" r="0.947282" fill="black"/>
+<path d="M20.7937 3.28261C19.7241 1.6099 17.8518 0.5 15.7191 0.5C13.5864 0.5 11.7141 1.6099 10.6445 3.28255" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M17.7538 5.45111C17.3678 4.71886 16.6024 4.2168 15.7187 4.2168C14.835 4.2168 14.0696 4.71886 13.6836 5.45111" stroke="white" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="15.7188" cy="8.29298" r="0.947282" fill="black"/>
+</svg>
