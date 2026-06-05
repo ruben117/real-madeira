@@ -63,6 +63,7 @@
   border-color: #ffffff;
   color: var(--primary-color);
   outline: none;
+  font-weight: 700;
 }
 
 /* ── Columna derecha — alineada al fondo ───────────────── */
@@ -103,7 +104,7 @@
 
 .hero-home__thumbnail-trigger {
   background: none;
-  border: none;
+  border: none !important;
   cursor: pointer;
   display: block;
   padding: 0;
@@ -139,6 +140,7 @@
 .hero-home__thumbnail-trigger:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
+  outline: none;
 }
 
 /* ── Botón Tour Virtual (trigger del lightbox) ─────────── */

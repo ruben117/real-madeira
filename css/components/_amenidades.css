@@ -104,7 +104,7 @@
   align-items: center;
   background: transparent;
   border: 2px solid var(--primary-color);
-  border-radius: 50%;
+  border-radius: 50% !important;
   color: #f5f3ef;
   cursor: pointer;
   display: flex;
@@ -144,6 +144,7 @@
   background-color: var(--secondary-color);
   color: #ffffff;
   outline: none;
+  font-weight: var(--font-weight-heading-black);
 }
 
 /* ── Grid derecha 30%: 3 columnas, solo íconos ──────────── */

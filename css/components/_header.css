@@ -200,12 +200,12 @@
 }
 
 .header__cta .button:hover {
-  background-color: #b5001a;
+  background-color: var(--secondary-color);
   transform: translateY(-1px);
   border: none;
 }
 .header__cta .button:focus {
-  background-color: #b5001a;
+  background-color: var(--secondary-color);
   transform: translateY(-1px);
   border: none;
 }

@@ -96,7 +96,7 @@
 
 {% set form_help_text_font_color = theme.forms.help_text.text.color.color %}
 
-{% set form_field_placeholder_color = theme.forms.fields.placeholder.color.color %}
+{% set form_field_placeholder_color = "#8B929F" %}
 {% set form_field_font_color = theme.forms.fields.text.color.color %}
 {% set form_field_bg_color = color(theme.forms.fields.background.color) %}
 {% set form_field_border = theme.forms.fields.border.border.css %}
@@ -176,7 +176,7 @@ html {
 
 body {
   {{ body_font.style }};
-  color: {{ body_font.color }};
+  color: var(--text-color);
   font-size: var(--font-size-base);
 }
 
