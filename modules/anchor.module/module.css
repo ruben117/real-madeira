@@ -1,0 +1,66 @@
+/* ============================================================
+   ANCHOR MODULE — Scroll ID
+   Cada selector usa > (hijo directo) en TODOS los niveles
+   para apuntar al path exacto sin afectar otras secciones.
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+/* ── El div del anchor: sin espacio ─────────────────────── */
+.section-anchor {
+  display: block;
+  height: 0;
+  line-height: 0;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+/* ── Nivel 1: .hs_cos_wrapper (padre directo del anchor) ─── */
+.hs_cos_wrapper:has(> .section-anchor) {
+  height: 0;
+  overflow: hidden;
+}
+
+/* ── Nivel 2: .dnd-module (span12 widget-type-custom_widget) */
+.dnd-module:has(> .hs_cos_wrapper > .section-anchor) {
+  min-height: 0 !important;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ── Nivel 3: .row-fluid dentro del dnd-row ─────────────── */
+.dnd-row > .row-fluid:has(> .dnd-module > .hs_cos_wrapper > .section-anchor) {
+  height: 0;
+  overflow: hidden;
+}
+
+/* ── Nivel 4: .dnd-row (row-fluid-wrapper) ──────────────── */
+.dnd-row:has(> .row-fluid > .dnd-module > .hs_cos_wrapper > .section-anchor) {
+  height: 0;
+  overflow: hidden;
+}
+
+/* ── Nivel 5: .dnd-column — el que ves en el screenshot ─── */
+/* Path exacto: dnd-column > dnd-row > row-fluid > dnd-module > hs_cos_wrapper > section-anchor */
+.dnd-column:has(> .dnd-row > .row-fluid > .dnd-module > .hs_cos_wrapper > .section-anchor) {
+  min-height: 0 !important;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ── Nivel 6: .dnd-section — la sección contenedora ─────── */
+/* Elimina también el padding que el editor asigna (dnd_area-row-X-padding) */
+.dnd-section:has(> .row-fluid > .dnd-column > .dnd-row > .row-fluid > .dnd-module > .hs_cos_wrapper > .section-anchor) {
+  height: 0;
+  overflow: hidden;
+  padding: 0 !important;
+}

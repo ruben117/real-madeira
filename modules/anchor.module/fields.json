@@ -1,0 +1,21 @@
+[
+  {
+    "id": "anchor_id",
+    "name": "anchor_id",
+    "label": "ID del ancla",
+    "type": "text",
+    "required": true,
+    "placeholder": "ej: contacto, ubicacion, amenidades",
+    "help_text": "Escribe el ID sin # ni espacios. Los enlaces deben apuntar a #este-id para hacer scroll hasta aquí.",
+    "default": ""
+  },
+  {
+    "id": "offset",
+    "name": "offset",
+    "label": "Offset del header fijo (px)",
+    "type": "number",
+    "required": false,
+    "default": 100,
+    "help_text": "Espacio extra hacia arriba para que el header fijo no tape el contenido. Por defecto 100px."
+  }
+]

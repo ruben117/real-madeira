@@ -1,0 +1,11 @@
+{% set anchor = module.anchor_id | replace(" ", "-") | lower %}
+{% set offset = module.offset | default(100) %}
+
+{% if anchor %}
+  <div
+    id="{{ anchor }}"
+    class="section-anchor"
+    style="scroll-margin-top: {{ offset }}px;"
+    aria-hidden="true"
+  ></div>
+{% endif %}

@@ -75,3 +75,6 @@ Helper classes with ability to override anything that comes before it
 
 {% include './utilities/_helper.css' %}
 
+html {
+  scroll-behavior: smooth;
+}
