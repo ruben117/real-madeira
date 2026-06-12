@@ -105,7 +105,7 @@
 .prototipos-slider__btn:focus,
 .prototipos-slider__btn:active {
   border-color: var(--primary-color);
-  color: var(--primary-color);
+  color: #ffffff;
   outline: none;
   border-radius: 50%;
 }

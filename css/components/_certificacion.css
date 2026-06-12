@@ -73,6 +73,7 @@
 .oportunidades-cta:focus {
   background-color: var(--secondary-color);
   color: #ffffff;
+  font-weight: var(--font-weight-heading-black);
   outline: none;
 }
 

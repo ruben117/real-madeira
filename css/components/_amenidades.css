@@ -141,8 +141,8 @@
 
 .amenidades-content__cta:hover,
 .amenidades-content__cta:focus {
-  background-color: var(--secondary-color);
-  color: #ffffff;
+  background-color: #ffffff;
+  color: var(--secondary-color);
   outline: none;
   font-weight: var(--font-weight-heading-black);
 }
