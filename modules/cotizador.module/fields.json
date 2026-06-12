@@ -1,0 +1,161 @@
+[
+  {
+    "id": "tasa_bancario",
+    "name": "tasa_bancario",
+    "label": "Tasa mensual — Bancario (%)",
+    "type": "number",
+    "required": false,
+    "default": 1,
+    "help_text": "Porcentaje mensual del monto de crédito (1 = 1%)."
+  },
+  {
+    "id": "tasa_infonavit",
+    "name": "tasa_infonavit",
+    "label": "Tasa mensual — Infonavit (%)",
+    "type": "number",
+    "required": false,
+    "default": 1
+  },
+  {
+    "id": "ahorro_edge",
+    "name": "ahorro_edge",
+    "label": "Ahorro EDGE mensual ($)",
+    "type": "number",
+    "required": false,
+    "default": 950,
+    "help_text": "Descuento mensual por certificación EDGE."
+  },
+  {
+    "id": "opciones_enganche",
+    "name": "opciones_enganche",
+    "label": "Opciones de enganche",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 4, "default": 2 },
+    "children": [
+      {
+        "id": "eng_pct",
+        "name": "eng_pct",
+        "label": "Porcentaje (%)",
+        "type": "number",
+        "required": false,
+        "default": 10
+      }
+    ]
+  },
+  {
+    "id": "prototipos",
+    "name": "prototipos",
+    "label": "Prototipos",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 12, "default": 5 },
+    "children": [
+      {
+        "id": "proto_nombre",
+        "name": "proto_nombre",
+        "label": "Nombre del prototipo",
+        "type": "text",
+        "required": false,
+        "default": "Prototipo"
+      },
+      {
+        "id": "proto_tipo",
+        "name": "proto_tipo",
+        "label": "Tipo de vivienda",
+        "type": "choice",
+        "choices": [
+          ["departamento", "Departamento"],
+          ["casa", "Casa"]
+        ],
+        "default": "departamento"
+      },
+      {
+        "id": "proto_metros",
+        "name": "proto_metros",
+        "label": "Metros cuadrados",
+        "type": "number",
+        "required": false,
+        "default": 46
+      },
+      {
+        "id": "proto_precio",
+        "name": "proto_precio",
+        "label": "Precio base ($MXN)",
+        "type": "number",
+        "required": false,
+        "default": 2399000
+      }
+    ]
+  },
+  {
+    "id": "equipamientos",
+    "name": "equipamientos",
+    "label": "Equipamiento (paso 3)",
+    "type": "group",
+    "occurrence": { "min": 0, "max": 10, "default": 0 },
+    "children": [
+      {
+        "id": "equip_nombre",
+        "name": "equip_nombre",
+        "label": "Nombre del equipamiento",
+        "type": "text",
+        "required": false,
+        "default": "Equipamiento"
+      },
+      {
+        "id": "equip_descripcion",
+        "name": "equip_descripcion",
+        "label": "Descripción (ej: Paquete Premium)",
+        "type": "text",
+        "required": false,
+        "default": ""
+      },
+      {
+        "id": "equip_icono",
+        "name": "equip_icono",
+        "label": "Ícono (SVG o PNG)",
+        "type": "image",
+        "required": false
+      },
+      {
+        "id": "equip_precio",
+        "name": "equip_precio",
+        "label": "Precio adicional ($MXN)",
+        "type": "number",
+        "required": false,
+        "default": 0,
+        "help_text": "0 si el equipamiento está incluido sin costo extra."
+      }
+    ]
+  },
+  {
+    "id": "cta_texto",
+    "name": "cta_texto",
+    "label": "Texto del botón principal",
+    "type": "text",
+    "required": false,
+    "default": "Iniciar trámite"
+  },
+  {
+    "id": "cta_link",
+    "name": "cta_link",
+    "label": "Enlace del botón principal",
+    "type": "link",
+    "required": false
+  },
+  {
+    "id": "whatsapp_numero",
+    "name": "whatsapp_numero",
+    "label": "Número de WhatsApp (solo dígitos)",
+    "type": "text",
+    "required": false,
+    "default": "5550107360"
+  },
+  {
+    "id": "disclaimer",
+    "name": "disclaimer",
+    "label": "Texto de disclaimer",
+    "type": "text",
+    "required": false,
+    "default": "*Mensualidad estimada a 20 años. No incluye gastos notariales ni avalúo. Sujeto a cambios sin previo aviso. La mensualidad real considera el ahorro proyectado en servicios de luz y agua."
+  }
+]

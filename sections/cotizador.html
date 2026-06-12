@@ -1,0 +1,49 @@
+<!--
+  templateType: section
+  label: Cotizador de Vivienda
+  isAvailableForNewContent: true
+  description: "Cotizador interactivo: tipo de crédito, selección de prototipo, equipamiento y resumen de pago mensual con opciones de enganche."
+-->
+{% dnd_section
+  background_color="#F5F3EF",
+  padding={
+    "default": { "top": 100, "bottom": 50 },
+    "mobile":  { "top": 0, "bottom": 0 }
+  }
+%}
+  {% dnd_column offset=0, width=12 %}
+    {% dnd_row %}
+      {% dnd_module
+        path="../modules/cotizador",
+        label="Cotizador",
+        offset=0, width=12,
+        tasa_bancario=1,
+        tasa_infonavit=1,
+        ahorro_edge=950,
+        opciones_enganche=[
+          { "eng_pct": 0 },
+          { "eng_pct": 10 },
+          { "eng_pct": 20 },
+          { "eng_pct": 30 }
+        ],
+        prototipos=[
+          { "proto_nombre": "Málaga",        "proto_tipo": "departamento", "proto_metros": 46, "proto_precio": 2399000 },
+          { "proto_nombre": "Montesino",     "proto_tipo": "casa",         "proto_metros": 46, "proto_precio": 2599000 },
+          { "proto_nombre": "Pontevel",      "proto_tipo": "casa",         "proto_metros": 46, "proto_precio": 3599000 },
+          { "proto_nombre": "Pontevel Plus", "proto_tipo": "casa",         "proto_metros": 46, "proto_precio": 3999000 },
+          { "proto_nombre": "Castelo",       "proto_tipo": "casa",         "proto_metros": 46, "proto_precio": 4199000 }
+        ],
+        equipamientos=[],
+        cta_texto="Iniciar trámite",
+        cta_link={
+          "url": { "href": "#contacto", "type": "EXTERNAL" },
+          "open_in_new_tab": false,
+          "no_follow": false
+        },
+        whatsapp_numero="5550107360",
+        disclaimer="*Mensualidad estimada a 20 años. No incluye gastos notariales ni avalúo. Sujeto a cambios sin previo aviso. La mensualidad real considera el ahorro proyectado en servicios de luz y agua."
+      %}
+      {% end_dnd_module %}
+    {% end_dnd_row %}
+  {% end_dnd_column %}
+{% end_dnd_section %}

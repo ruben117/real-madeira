@@ -1,0 +1,24 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Cotizador
+  screenshotPath: ../images/template-previews/home.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Cotizador de vivienda",
+  class="body-container body-container--cotizador"
+%}
+
+  {# Cotizador interactivo #}
+  {% include_dnd_partial path="../sections/cotizador.html" %}
+
+  {# CTA Footer #}
+  {% include_dnd_partial path="../sections/cta-footer.html" %}
+
+{% end_dnd_area %}
+
+{% endblock body %}

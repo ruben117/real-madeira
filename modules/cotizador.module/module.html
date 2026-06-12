@@ -1,0 +1,286 @@
+{% set uid = module.unique_id %}
+{% set prototipos    = module.prototipos %}
+{% set equipamientos = module.equipamientos %}
+{% set enganche_ops  = module.opciones_enganche %}
+
+{# ── SVG reutilizables ─────────────────────────────────────── #}
+{% set svg_casa %}
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M9 22V13h6v9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+</svg>
+{% endset %}
+
+{% set svg_depto %}
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect x="3" y="2" width="18" height="20" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M9 2v20M15 2v20" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  <path d="M3 8h18M3 14h18" stroke="currentColor" stroke-width="1.2"/>
+</svg>
+{% endset %}
+
+{% set svg_shield %}
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+{% endset %}
+
+{# ── Datos JSON para JavaScript ──────────────────────────────── #}
+<script id="cotizador-cfg-{{ uid }}" type="application/json">
+{
+  "tasaBancario": {{ module.tasa_bancario | default(1) }},
+  "tasaInfonavit": {{ module.tasa_infonavit | default(1) }},
+  "ahorroEdge": {{ module.ahorro_edge | default(950) }},
+  "whatsapp": "{{ module.whatsapp_numero | default('5550107360') }}",
+  "ctaLink": "{{ module.cta_link.url.href | default('#contacto') }}",
+  "ctaNewTab": {{ module.cta_link.open_in_new_tab | default(false) | tojson }},
+  "opcionesEnganche": [{% for o in enganche_ops %}{{ o.eng_pct | default(10) }}{% if not loop.last %},{% endif %}{% endfor %}],
+  "prototipos": [
+    {% for p in prototipos %}
+    {
+      "nombre": {{ p.proto_nombre | default('') | tojson }},
+      "tipo": {{ p.proto_tipo | default('departamento') | tojson }},
+      "metros": {{ p.proto_metros | default(46) }},
+      "precio": {{ p.proto_precio | default(0) | int }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
+  "equipamientos": [
+    {% for e in equipamientos %}
+    {
+      "nombre": {{ e.equip_nombre | default('') | tojson }},
+      "descripcion": {{ e.equip_descripcion | default('') | tojson }},
+      "icono": {{ e.equip_icono.src | default('') | tojson }},
+      "precio": {{ e.equip_precio | default(0) | int }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+{# ── Markup ──────────────────────────────────────────────────── #}
+<section class="cotizador" id="cotizador-{{ uid }}" aria-label="Cotizador de vivienda">
+  <div class="cotizador__layout">
+
+    {# ════════════════════════════════════════════
+       COLUMNA IZQUIERDA — Pasos
+    ════════════════════════════════════════════ #}
+    <div class="cotizador__steps">
+
+      {# ── Paso 1: Tipo de crédito ──────────────── #}
+      <div class="cot-step">
+        <div class="cot-step__header">
+          <span class="cot-step__num" aria-hidden="true">1</span>
+          <h3 class="cot-step__title">Tipo de Crédito</h3>
+        </div>
+        <div class="cot-step__body">
+          <div class="credito-grid" role="radiogroup" aria-label="Tipo de crédito">
+
+            <button class="credito-btn"
+                    role="radio" aria-checked="false"
+                    data-credito="infonavit" type="button">
+              <span class="credito-btn__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <path d="M9 22V13h6v9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="credito-btn__label">Infonavit</span>
+            </button>
+
+            <button class="credito-btn is-active"
+                    role="radio" aria-checked="true"
+                    data-credito="bancario" type="button">
+              <span class="credito-btn__icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                  <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                  <line x1="12" y1="12" x2="12" y2="17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                  <line x1="9.5" y1="14.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <span class="credito-btn__label">Bancario</span>
+            </button>
+
+          </div>
+        </div>
+      </div>
+
+      {# ── Paso 2: Prototipos ───────────────────── #}
+      <div class="cot-step">
+        <div class="cot-step__header">
+          <span class="cot-step__num" aria-hidden="true">2</span>
+          <h3 class="cot-step__title">Elige tu Prototipo</h3>
+        </div>
+        <div class="cot-step__body">
+          <ul class="item-list" role="radiogroup" aria-label="Selecciona prototipo">
+            {% for p in prototipos %}
+            <li class="item-row{% if loop.first %} is-active{% endif %}"
+                role="radio"
+                aria-checked="{{ 'true' if loop.first else 'false' }}"
+                data-proto="{{ loop.index0 }}"
+                tabindex="{{ '0' if loop.first else '-1' }}">
+
+              <span class="item-row__icon{% if loop.first %} is-active{% endif %}" aria-hidden="true">
+                {{ svg_casa if p.proto_tipo == 'casa' else svg_depto }}
+              </span>
+
+              <div class="item-row__info">
+                <strong class="item-row__nombre">{{ p.proto_nombre | escape_html }}</strong>
+                <span class="item-row__detalle">
+                  {{ p.proto_tipo | upper | escape_html }} · {{ p.proto_metros | default(46) }} M²
+                </span>
+              </div>
+
+              <div class="item-row__precio">
+                <span class="item-row__valor" data-raw="{{ p.proto_precio | default(0) | int }}"></span>
+                <span class="item-row__precio-label">PRECIO BASE</span>
+              </div>
+
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      {# ── Paso 3: Equipamiento (solo si hay items) ── #}
+      {% if equipamientos and equipamientos | length > 0 %}
+      <div class="cot-step">
+        <div class="cot-step__header">
+          <span class="cot-step__num" aria-hidden="true">3</span>
+          <h3 class="cot-step__title">Equipamiento</h3>
+        </div>
+        <div class="cot-step__body">
+          <ul class="item-list" role="group" aria-label="Selecciona equipamiento">
+            {% for e in equipamientos %}
+            <li class="item-row equip-row{% if loop.first %} is-active{% endif %}"
+                role="checkbox"
+                aria-checked="{{ 'true' if loop.first else 'false' }}"
+                data-equip="{{ loop.index0 }}"
+                tabindex="{{ '0' if loop.first else '-1' }}">
+
+              <span class="item-row__icon{% if loop.first %} is-active{% endif %} equip-icon" aria-hidden="true">
+                {% if e.equip_icono.src %}
+                  <img src="{{ e.equip_icono.src }}" alt="" loading="lazy">
+                {% else %}
+                  {{ svg_shield }}
+                {% endif %}
+              </span>
+
+              <div class="item-row__info">
+                <strong class="item-row__nombre">{{ e.equip_nombre | escape_html }}</strong>
+                {% if e.equip_descripcion %}
+                <span class="item-row__detalle">{{ e.equip_descripcion | escape_html }}</span>
+                {% endif %}
+              </div>
+
+              <div class="item-row__precio">
+                {% if e.equip_precio | default(0) | int > 0 %}
+                <span class="item-row__valor" data-raw="{{ e.equip_precio | int }}"></span>
+                <span class="item-row__precio-label">ADICIONAL</span>
+                {% else %}
+                <span class="item-row__valor item-row__valor--incluido">Incluido</span>
+                {% endif %}
+              </div>
+
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+
+    {# ════════════════════════════════════════════
+       COLUMNA DERECHA — Resumen
+    ════════════════════════════════════════════ #}
+    <div class="cotizador__resumen">
+
+      <div class="resumen-card">
+
+        {# Pago mensual fijo #}
+        <div class="resumen-card__top">
+          <p class="rc-pago-label">PAGO MENSUAL FIJO</p>
+          <div class="rc-pago-main">
+            <span class="rc-pago-valor" data-pago-base>$—</span>
+            <span class="rc-pago-period">/MES*</span>
+          </div>
+        </div>
+
+        {# Modelo + inversión #}
+        <div class="resumen-card__detalles">
+          <div class="rc-detalle-row">
+            <span class="rc-detalle-label">Modelo seleccionado</span>
+            <span class="rc-detalle-valor" data-modelo-nombre>—</span>
+          </div>
+          <div class="rc-detalle-row">
+            <span class="rc-detalle-label">Inversión Total</span>
+            <span class="rc-detalle-valor" data-inversion-total>—</span>
+          </div>
+        </div>
+
+        {# Opciones de enganche #}
+        <div class="resumen-card__enganche">
+          <p class="rc-enganche-titulo">OPCIÓN DE ENGANCHE</p>
+          <div class="rc-enganche-btns" role="radiogroup" aria-label="Porcentaje de enganche">
+            {% for op in enganche_ops %}
+            <button class="rc-enganche-btn{% if loop.first %} is-active{% endif %}"
+                    role="radio"
+                    aria-checked="{{ 'true' if loop.first else 'false' }}"
+                    data-enganche-pct="{{ op.eng_pct | default(10) }}"
+                    type="button">
+              {{ op.eng_pct | default(10) }}%
+            </button>
+            {% endfor %}
+          </div>
+          <div class="rc-enganche-total">
+            <span>Total a pagar de enganche:</span>
+            <strong data-enganche-monto>—</strong>
+          </div>
+        </div>
+
+        {# Mensualidad real + ahorro EDGE #}
+        <div class="resumen-card__mensualidad">
+          <div class="rc-mensualidad-row">
+            <div>
+              <p class="rc-mens-label">MENSUALIDAD REAL*</p>
+              <p class="rc-mens-valor" data-mensualidad-real>$—</p>
+            </div>
+            <div class="rc-ahorro">
+              <p class="rc-ahorro-label">Ahorro EDGE</p>
+              <p class="rc-ahorro-valor" data-ahorro-edge>—</p>
+            </div>
+          </div>
+        </div>
+
+        {# CTA principal #}
+        <a class="rc-btn-cta"
+           href="{{ module.cta_link.url.href | default('#contacto') }}"
+           {% if module.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
+           data-cta-btn>
+          {{ module.cta_texto | default('Iniciar trámite') | escape_html }}
+        </a>
+
+      </div>
+
+      {# Acciones secundarias #}
+      <div class="resumen-acciones">
+        <button class="rc-btn-pdf" type="button" data-pdf-btn>
+          Descargar PDF
+        </button>
+        <button class="rc-btn-whatsapp" type="button" data-wa-btn>
+          WhatsApp
+        </button>
+      </div>
+
+      {% if module.disclaimer %}
+      <p class="cotizador__disclaimer">{{ module.disclaimer | escape_html }}</p>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+
