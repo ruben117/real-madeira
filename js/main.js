@@ -7,7 +7,7 @@
   var hamburger   = document.getElementById('header-hamburger');
   var emailGlobalUnsub = document.querySelector('input[name="globalunsub"]');
 
-  /* ── Helpers ─────────────────────────────────────────────── */
+  /* ── Helpers ─────────────────────────────────────────────── v3a-2*/
   function domReady(cb) {
     if (['interactive', 'complete'].indexOf(document.readyState) >= 0) {
       cb();

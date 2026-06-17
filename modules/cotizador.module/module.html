@@ -31,7 +31,6 @@
 {
   "tasaBancario": {{ module.tasa_bancario | default(1) }},
   "tasaInfonavit": {{ module.tasa_infonavit | default(1) }},
-  "ahorroEdge": {{ module.ahorro_edge | default(950) }},
   "whatsapp": "{{ module.whatsapp_numero | default('5550107360') }}",
   "ctaLink": "{{ module.cta_link.url.href | default('#contacto') }}",
   "ctaNewTab": {{ module.cta_link.open_in_new_tab | default(false) | tojson }},
@@ -239,19 +238,9 @@
             <span>Total a pagar de enganche:</span>
             <strong data-enganche-monto>—</strong>
           </div>
-        </div>
-
-        {# Mensualidad real + ahorro EDGE #}
-        <div class="resumen-card__mensualidad">
-          <div class="rc-mensualidad-row">
-            <div>
-              <p class="rc-mens-label">MENSUALIDAD REAL*</p>
-              <p class="rc-mens-valor" data-mensualidad-real>$—</p>
-            </div>
-            <div class="rc-ahorro">
-              <p class="rc-ahorro-label">Ahorro EDGE</p>
-              <p class="rc-ahorro-valor" data-ahorro-edge>—</p>
-            </div>
+          <div class="rc-enganche-total rc-credito-row">
+            <span>Monto de crédito:</span>
+            <strong data-monto-credito>—</strong>
           </div>
         </div>
 

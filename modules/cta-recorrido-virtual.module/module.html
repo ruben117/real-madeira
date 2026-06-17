@@ -1,0 +1,136 @@
+{% set uid        = module.unique_id %}
+{% set recorridos = module.recorridos %}
+
+{# ── Datos JSON para JavaScript ──────────────────────────────── #}
+<script id="rv-cfg-{{ uid }}" type="application/json">
+{
+  "portalId":       {{ module.portal_id       | default('') | tojson }},
+  "formGuid":       {{ module.form_guid        | default('') | tojson }},
+  "btnEnviarTexto": {{ module.btn_enviar_texto | default('Ver mi recorrido') | tojson }},
+  "recorridos": [
+    {% for r in recorridos %}
+    {
+      "nombre": {{ r.rec_nombre | default('') | tojson }},
+      "url":    {{ r.rec_url    | default('') | tojson }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
+
+{# ── Botón + Dialog ──────────────────────────────────────────── #}
+<div class="cta-rv" id="cta-rv-{{ uid }}">
+
+  <button class="cta-rv__btn" type="button" data-rv-open aria-haspopup="dialog">
+    <span class="cta-rv__btn-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6"/>
+        <path d="M10 8.5l5 3.5-5 3.5V8.5z" fill="currentColor"/>
+      </svg>
+    </span>
+    {{ module.btn_texto | default('Ver Recorrido Virtual') | escape_html }}
+  </button>
+
+  {# ── Dialog ───────────────────────────────────────────────── #}
+  <dialog class="rv-dialog"
+          id="rv-dialog-{{ uid }}"
+          aria-labelledby="rv-dlg-titulo-{{ uid }}"
+          aria-describedby="rv-dlg-desc-{{ uid }}">
+
+    <div class="rv-dialog__panel">
+
+      <button class="rv-dialog__close" type="button" data-rv-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <h3 class="rv-dialog__titulo" id="rv-dlg-titulo-{{ uid }}">
+        {{ module.form_titulo | default('¿Cuál prototipo te interesa?') | escape_html }}
+      </h3>
+
+      {% if module.form_descripcion %}
+      <p class="rv-dialog__desc" id="rv-dlg-desc-{{ uid }}">
+        {{ module.form_descripcion | escape_html }}
+      </p>
+      {% endif %}
+
+      {# Formulario #}
+      <form class="rv-form" id="rv-form-{{ uid }}" novalidate>
+
+        <div class="rv-form__field">
+          <label class="rv-form__label" for="rv-nombre-{{ uid }}">Nombre completo</label>
+          <input class="rv-form__input" type="text"
+                 id="rv-nombre-{{ uid }}" name="nombre"
+                 placeholder="Tu nombre" autocomplete="name" required>
+          <span class="rv-form__error" data-error="nombre" hidden>Ingresa tu nombre completo</span>
+        </div>
+
+        <div class="rv-form__field">
+          <label class="rv-form__label" for="rv-email-{{ uid }}">Correo electrónico</label>
+          <input class="rv-form__input" type="email"
+                 id="rv-email-{{ uid }}" name="email"
+                 placeholder="correo@ejemplo.com" autocomplete="email" required>
+          <span class="rv-form__error" data-error="email" hidden>Ingresa un correo electrónico válido</span>
+        </div>
+
+        <div class="rv-form__field">
+          <label class="rv-form__label" for="rv-tel-{{ uid }}">Teléfono</label>
+          <input class="rv-form__input" type="tel"
+                 id="rv-tel-{{ uid }}" name="telefono"
+                 placeholder="55 1234 5678" autocomplete="tel" required>
+          <span class="rv-form__error" data-error="telefono" hidden>Ingresa tu número de teléfono</span>
+        </div>
+
+        {% if recorridos | length > 1 %}
+        <div class="rv-form__field">
+          <label class="rv-form__label" for="rv-select-{{ uid }}">Prototipo de interés</label>
+          <div class="rv-form__select-wrap">
+            <select class="rv-form__select" id="rv-select-{{ uid }}" name="recorrido" required>
+              <option value="">Selecciona un prototipo</option>
+              {% for r in recorridos %}
+              <option value="{{ loop.index0 }}">{{ r.rec_nombre | default('') | escape_html }}</option>
+              {% endfor %}
+            </select>
+            <span class="rv-form__select-arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </div>
+          <span class="rv-form__error" data-error="recorrido" hidden>Selecciona un prototipo</span>
+        </div>
+        {# Si solo hay un recorrido, se pasa directo sin mostrar el select #}
+        {% else %}
+        <input type="hidden" name="recorrido" value="0">
+        {% endif %}
+
+        {% if module.privacidad_texto %}
+        <p class="rv-form__privacidad">{{ module.privacidad_texto }}</p>
+        {% endif %}
+
+        <button class="rv-form__submit" type="submit" data-submit-btn>
+          {{ module.btn_enviar_texto | default('Ver mi recorrido') | escape_html }}
+        </button>
+
+      </form>
+
+      {# Estado de éxito #}
+      <div class="rv-success" id="rv-success-{{ uid }}" hidden aria-live="polite">
+        <span class="rv-success__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="1.6"/>
+            <path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <p class="rv-success__titulo">¡Todo listo!</p>
+        <p class="rv-success__desc">Tu recorrido virtual se está abriendo en una nueva pestaña.</p>
+        <button class="rv-success__cerrar" type="button" data-rv-close>Cerrar</button>
+      </div>
+
+    </div>
+  </dialog>
+
+</div>

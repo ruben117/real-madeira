@@ -1,0 +1,85 @@
+[
+  {
+    "id": "btn_texto",
+    "name": "btn_texto",
+    "label": "Texto del botón",
+    "type": "text",
+    "required": false,
+    "default": "Ver Recorrido Virtual"
+  },
+  {
+    "id": "form_titulo",
+    "name": "form_titulo",
+    "label": "Título del formulario",
+    "type": "text",
+    "required": false,
+    "default": "¿Cuál prototipo te interesa?"
+  },
+  {
+    "id": "form_descripcion",
+    "name": "form_descripcion",
+    "label": "Descripción del formulario",
+    "type": "text",
+    "required": false,
+    "default": "Déjanos tus datos y te abrimos el recorrido de inmediato."
+  },
+  {
+    "id": "btn_enviar_texto",
+    "name": "btn_enviar_texto",
+    "label": "Texto del botón Enviar",
+    "type": "text",
+    "required": false,
+    "default": "Ver mi recorrido"
+  },
+  {
+    "id": "recorridos",
+    "name": "recorridos",
+    "label": "Recorridos virtuales",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 10, "default": 1 },
+    "children": [
+      {
+        "id": "rec_nombre",
+        "name": "rec_nombre",
+        "label": "Nombre del prototipo",
+        "type": "text",
+        "required": false,
+        "default": "Prototipo"
+      },
+      {
+        "id": "rec_url",
+        "name": "rec_url",
+        "label": "URL del recorrido virtual",
+        "type": "text",
+        "required": false,
+        "default": "",
+        "help_text": "URL completa del tour 360° que se abrirá en nueva pestaña al enviar el formulario."
+      }
+    ]
+  },
+  {
+    "id": "portal_id",
+    "name": "portal_id",
+    "label": "Portal ID de HubSpot (opcional)",
+    "type": "text",
+    "required": false,
+    "default": "",
+    "help_text": "Configura junto con el Form GUID para registrar leads en HubSpot automáticamente."
+  },
+  {
+    "id": "form_guid",
+    "name": "form_guid",
+    "label": "Form GUID de HubSpot (opcional)",
+    "type": "text",
+    "required": false,
+    "default": ""
+  },
+  {
+    "id": "privacidad_texto",
+    "name": "privacidad_texto",
+    "label": "Aviso de privacidad",
+    "type": "richtext",
+    "required": false,
+    "default": "Tus datos están protegidos y no serán compartidos con terceros."
+  }
+]

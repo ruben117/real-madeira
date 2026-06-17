@@ -17,15 +17,6 @@
     "default": 1
   },
   {
-    "id": "ahorro_edge",
-    "name": "ahorro_edge",
-    "label": "Ahorro EDGE mensual ($)",
-    "type": "number",
-    "required": false,
-    "default": 950,
-    "help_text": "Descuento mensual por certificación EDGE."
-  },
-  {
     "id": "opciones_enganche",
     "name": "opciones_enganche",
     "label": "Opciones de enganche",

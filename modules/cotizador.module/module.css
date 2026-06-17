@@ -386,55 +386,8 @@
   font-weight: 700;
 }
 
-/* Sección mensualidad real */
-.resumen-card__mensualidad {
-  padding: 16px 24px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.rc-mensualidad-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-}
-
-.rc-mens-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #22c55e;
-  text-transform: uppercase;
-  margin: 0 0 4px;
-}
-
-.rc-mens-valor {
-  font-size: 26px;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.02em;
-  margin: 0;
-}
-
-.rc-ahorro {
-  text-align: right;
-  flex-shrink: 0;
-}
-
-.rc-ahorro-label {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: #22c55e;
-  text-transform: uppercase;
-  margin: 0 0 4px;
-}
-
-.rc-ahorro-valor {
-  font-size: 14px;
-  font-weight: 700;
-  color: #22c55e;
-  margin: 0;
+.rc-credito-row {
+  margin-top: 8px;
 }
 
 /* CTA principal */
