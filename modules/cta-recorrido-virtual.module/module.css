@@ -3,30 +3,38 @@
    Solo botón inline + dialog/lightbox. Sin hero ni sección.
    ============================================================ */
 
+/* ── Alineación (controlada desde el builder) ──────────────── */
+
+.cta-rv {
+  text-align: var(--rv-align, left);
+}
+
 /* ── Botón ─────────────────────────────────────────────────── */
 
 .cta-rv__btn {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  padding: 14px 28px;
-  background: var(--primary-color);
-  color: #ffffff;
-  border: none;
-  border-radius: 100px;
+  padding: var(--rv-btn-padding, 14px 28px);
+  background: var(--rv-btn-bg, var(--primary-color));
+  color: var(--rv-btn-color, #ffffff);
+  border: var(--rv-btn-border, 0px solid transparent);
+  border-radius: var(--rv-btn-radius, 100px);
   font-family: var(--font-family-base);
-  font-size: 15px;
+  font-size: var(--rv-btn-font-size, 15px);
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 0.01em;
-  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  box-shadow: 0 4px 20px rgba(232, 144, 10, 0.35);
+  transition: 0.2s, transform 0.15s, box-shadow 0.2s;
 }
 
 .cta-rv__btn:hover {
-  background: #d17e03;
+  background: color-mix(in srgb, var(--rv-btn-bg, var(--primary-color)) 15%, #000);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(232, 144, 10, 0.45);
+  border-radius: var(--rv-btn-radius, 100px);
+  border: var(--rv-btn-border, 0px solid transparent);
+  border-color: color-mix(in srgb, var(--rv-btn-bg, var(--primary-color)) 15%, #000);
+  color:var(--rv-btn-bg, var(--primary-color));
 }
 
 .cta-rv__btn:active {
@@ -155,12 +163,11 @@
 
 .rv-form__input {
   width: 100%;
-  padding: 12px 14px;
   border: 1.5px solid #e5e0d9;
   border-radius: 10px;
   font-family: var(--font-family-base);
-  font-size: 15px;
-  color: var(--secondary-color);
+  font-size: 15px !important;
+  padding: 12px 14px !important;  color: var(--secondary-color);
   background: #faf9f7;
   box-sizing: border-box;
   transition: border-color 0.2s, box-shadow 0.2s;

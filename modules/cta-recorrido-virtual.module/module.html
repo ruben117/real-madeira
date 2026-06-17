@@ -11,8 +11,20 @@
 }
 </script>
 
+{# ── Variables de estilo (module.estilo.*) ───────────────────── #}
+{% set s = module.estilo %}
+{% set btn_border %}{{ s.borde_ancho | default(0) }}px solid {{ s.borde_color.color | default('transparent') }}{% endset %}
+
 {# ── Botón + Dialog ──────────────────────────────────────────── #}
-<div class="cta-rv" id="cta-rv-{{ uid }}">
+<div class="cta-rv" id="cta-rv-{{ uid }}" style="
+  --rv-align: {{ s.alineacion | default('left') }};
+  {% if s.btn_bg.color %}--rv-btn-bg: {{ s.btn_bg.color }};{% endif %}
+  {% if s.btn_color.color %}--rv-btn-color: {{ s.btn_color.color }};{% endif %}
+  {% if s.btn_forma %}--rv-btn-radius: {{ s.btn_forma }};{% endif %}
+  --rv-btn-border: {{ btn_border }};
+  {% if s.font_size %}--rv-btn-font-size: {{ s.font_size }}px;{% endif %}
+  {% if s.padding_v and s.padding_h %}--rv-btn-padding: {{ s.padding_v }}px {{ s.padding_h }}px;{% elif s.padding_v %}--rv-btn-padding: {{ s.padding_v }}px 28px;{% elif s.padding_h %}--rv-btn-padding: 14px {{ s.padding_h }}px;{% endif %}
+">
 
   <button class="cta-rv__btn" type="button" data-rv-open aria-haspopup="dialog">
     <span class="cta-rv__btn-icon" aria-hidden="true">
@@ -52,44 +64,44 @@
         {% if module.form_descripcion %}
           {{ module.form_descripcion | escape_html }}
         {% else %}
-          Déjanos tus datos y te abrimos el recorrido virtual del
+          Déjanos tus datos y te abrimos el recorrido virtual de
           <strong>{{ module.rec_nombre | default('prototipo') | escape_html }}</strong>.
         {% endif %}
       </p>
 
       {# ── Formulario ──────────────────────────────────────── #}
-      <form class="rv-form" id="rv-form-{{ uid }}" novalidate>
+      <form class="rv-form" id="rv-form-{{ uid }}" name="rv-form-{{ module.rec_nombre | default('prototipo') }}" novalidate>
 
         <div class="rv-form__row">
           <div class="rv-form__field">
-            <label class="rv-form__label" for="rv-firstname-{{ uid }}">Nombre</label>
+            <label class="rv-form__label" for="rv-firstname-{{ uid }}">Nombre:</label>
             <input class="rv-form__input" type="text"
                    id="rv-firstname-{{ uid }}" name="firstname"
-                   placeholder="Tu nombre" autocomplete="given-name" required>
+                   placeholder="Nombre*" autocomplete="given-name" required>
             <span class="rv-form__error" data-error="firstname" hidden>Ingresa tu nombre</span>
           </div>
           <div class="rv-form__field">
-            <label class="rv-form__label" for="rv-lastname-{{ uid }}">Apellidos</label>
+            <label class="rv-form__label" for="rv-lastname-{{ uid }}">Apellidos:</label>
             <input class="rv-form__input" type="text"
                    id="rv-lastname-{{ uid }}" name="lastname"
-                   placeholder="Tus apellidos" autocomplete="family-name" required>
+                   placeholder="Apellidos*" autocomplete="family-name" required>
             <span class="rv-form__error" data-error="lastname" hidden>Ingresa tus apellidos</span>
           </div>
         </div>
 
         <div class="rv-form__row">
           <div class="rv-form__field">
-            <label class="rv-form__label" for="rv-email-{{ uid }}">Correo electrónico</label>
+            <label class="rv-form__label" for="rv-email-{{ uid }}">Correo electrónico:</label>
             <input class="rv-form__input" type="email"
                    id="rv-email-{{ uid }}" name="email"
-                   placeholder="correo@ejemplo.com" autocomplete="email" required>
+                   placeholder="Correo electrónico*" autocomplete="email" required>
             <span class="rv-form__error" data-error="email" hidden>Ingresa un correo válido</span>
           </div>
           <div class="rv-form__field">
-            <label class="rv-form__label" for="rv-phone-{{ uid }}">Teléfono</label>
+            <label class="rv-form__label" for="rv-phone-{{ uid }}">Teléfono:</label>
             <input class="rv-form__input" type="tel"
                    id="rv-phone-{{ uid }}" name="phone"
-                   placeholder="55 1234 5678" autocomplete="tel" required>
+                   placeholder="Número de teléfono*" autocomplete="tel" required>
             <span class="rv-form__error" data-error="phone" hidden>Ingresa tu teléfono</span>
           </div>
         </div>
@@ -115,7 +127,7 @@
         </span>
         <p class="rv-success__titulo">¡Todo listo!</p>
         <p class="rv-success__desc">
-          Tu recorrido virtual del
+          Tu recorrido virtual de
           <strong>{{ module.rec_nombre | default('prototipo') | escape_html }}</strong>
           se está abriendo en una nueva pestaña.
         </p>

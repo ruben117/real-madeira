@@ -76,5 +76,98 @@
     "type": "richtext",
     "required": false,
     "default": "Tus datos están protegidos y no serán compartidos con terceros."
+  },
+
+  {
+    "id": "estilo",
+    "name": "estilo",
+    "label": "Estilo del botón",
+    "type": "group",
+    "tab": "STYLE",
+    "children": [
+      {
+        "id": "alineacion",
+        "name": "alineacion",
+        "label": "Alineación",
+        "type": "choice",
+        "display": "radio",
+        "choices": [
+          ["left",   "Izquierda"],
+          ["center", "Centro"],
+          ["right",  "Derecha"]
+        ],
+        "default": "left"
+      },
+      {
+        "id": "btn_bg",
+        "name": "btn_bg",
+        "label": "Color de fondo",
+        "type": "color",
+        "default": { "color": "", "opacity": 100 }
+      },
+      {
+        "id": "btn_color",
+        "name": "btn_color",
+        "label": "Color del texto",
+        "type": "color",
+        "default": { "color": "", "opacity": 100 }
+      },
+      {
+        "id": "btn_forma",
+        "name": "btn_forma",
+        "label": "Forma del botón",
+        "type": "choice",
+        "display": "radio",
+        "choices": [
+          ["100px", "Píldora"],
+          ["10px",  "Redondeado"],
+          ["0px",   "Cuadrado"]
+        ],
+        "default": ""
+      },
+      {
+        "id": "borde_color",
+        "name": "borde_color",
+        "label": "Color del borde",
+        "type": "color",
+        "default": { "color": "", "opacity": 100 }
+      },
+      {
+        "id": "borde_ancho",
+        "name": "borde_ancho",
+        "label": "Grosor del borde (px)",
+        "type": "number",
+        "min": 0,
+        "max": 8,
+        "default": 0
+      },
+      {
+        "id": "font_size",
+        "name": "font_size",
+        "label": "Tamaño de fuente (px)",
+        "type": "number",
+        "min": 12,
+        "max": 24,
+        "default": null
+      },
+      {
+        "id": "padding_v",
+        "name": "padding_v",
+        "label": "Padding vertical (px)",
+        "type": "number",
+        "min": 4,
+        "max": 40,
+        "default": null
+      },
+      {
+        "id": "padding_h",
+        "name": "padding_h",
+        "label": "Padding horizontal (px)",
+        "type": "number",
+        "min": 8,
+        "max": 80,
+        "default": null
+      }
+    ]
   }
 ]
