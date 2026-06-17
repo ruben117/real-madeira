@@ -13,7 +13,8 @@
     "label": "Título del formulario",
     "type": "text",
     "required": false,
-    "default": "¿Cuál prototipo te interesa?"
+    "default": "",
+    "help_text": "Si se deja vacío se genera automáticamente como \"Conoce el [Prototipo] desde adentro\"."
   },
   {
     "id": "form_descripcion",
@@ -21,7 +22,8 @@
     "label": "Descripción del formulario",
     "type": "text",
     "required": false,
-    "default": "Déjanos tus datos y te abrimos el recorrido de inmediato."
+    "default": "",
+    "help_text": "Si se deja vacío se genera automáticamente mencionando el nombre del prototipo."
   },
   {
     "id": "btn_enviar_texto",
@@ -29,50 +31,43 @@
     "label": "Texto del botón Enviar",
     "type": "text",
     "required": false,
-    "default": "Ver mi recorrido"
+    "default": "Iniciar recorrido 360"
   },
   {
-    "id": "recorridos",
-    "name": "recorridos",
-    "label": "Recorridos virtuales",
-    "type": "group",
-    "occurrence": { "min": 1, "max": 10, "default": 1 },
-    "children": [
-      {
-        "id": "rec_nombre",
-        "name": "rec_nombre",
-        "label": "Nombre del prototipo",
-        "type": "text",
-        "required": false,
-        "default": "Prototipo"
-      },
-      {
-        "id": "rec_url",
-        "name": "rec_url",
-        "label": "URL del recorrido virtual",
-        "type": "text",
-        "required": false,
-        "default": "",
-        "help_text": "URL completa del tour 360° que se abrirá en nueva pestaña al enviar el formulario."
-      }
-    ]
+    "id": "rec_nombre",
+    "name": "rec_nombre",
+    "label": "Nombre del prototipo",
+    "type": "text",
+    "required": false,
+    "default": "Málaga",
+    "help_text": "Se usa en el título del form y como valor del campo oculto en HubSpot."
+  },
+  {
+    "id": "rec_url",
+    "name": "rec_url",
+    "label": "URL del recorrido virtual",
+    "type": "text",
+    "required": false,
+    "default": "",
+    "help_text": "URL completa del tour 360° que se abrirá en nueva pestaña al enviar el formulario."
   },
   {
     "id": "portal_id",
     "name": "portal_id",
-    "label": "Portal ID de HubSpot (opcional)",
+    "label": "Portal ID de HubSpot",
     "type": "text",
     "required": false,
     "default": "",
-    "help_text": "Configura junto con el Form GUID para registrar leads en HubSpot automáticamente."
+    "help_text": "Requerido para registrar el lead. Encuéntralo en Configuración → Cuenta → Información de la cuenta."
   },
   {
     "id": "form_guid",
     "name": "form_guid",
-    "label": "Form GUID de HubSpot (opcional)",
+    "label": "Form GUID de HubSpot",
     "type": "text",
     "required": false,
-    "default": ""
+    "default": "",
+    "help_text": "GUID del formulario [Madeira] Prototipos. Visible en la URL al editar el formulario en HubSpot."
   },
   {
     "id": "privacidad_texto",

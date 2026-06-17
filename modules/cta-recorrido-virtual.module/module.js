@@ -1,7 +1,8 @@
 /* ============================================================
    CTA — RECORRIDO VIRTUAL
-   Abre dialog con formulario → envío opcional a HubSpot Forms
-   → abre URL del recorrido seleccionado en nueva pestaña
+   Campos HubSpot: firstname, lastname, email, phone,
+   que_prototipo_te_interesa_madeira (oculto = rec_nombre)
+   Al enviar: registra lead en HubSpot y abre recorrido URL
    ============================================================ */
 
 (function () {
@@ -18,6 +19,10 @@
       var cfg;
       try { cfg = JSON.parse(cfgEl.textContent); }
       catch (e) { console.error('[RV] Config error:', e); return; }
+
+      if (!cfg.portalId || !cfg.formGuid) {
+        console.warn('[RV] Portal ID o Form GUID no configurados — el lead no se registrará en HubSpot.');
+      }
 
       root.dataset.rvInit = '1';
       initRV(root, cfg, uid);
@@ -45,7 +50,7 @@
       clearErrors();
       if (submitBtn) {
         submitBtn.disabled    = false;
-        submitBtn.textContent = cfg.btnEnviarTexto || 'Ver mi recorrido';
+        submitBtn.textContent = cfg.btnEnviarTexto || 'Iniciar recorrido 360';
       }
     }
 
@@ -55,16 +60,18 @@
       btn.addEventListener('click', closeDialog);
     });
 
+    /* Clic en el backdrop */
     dialog.addEventListener('click', function (e) {
       if (e.target === dialog) closeDialog();
     });
 
+    /* ESC nativo */
     dialog.addEventListener('cancel', resetDialog);
 
     /* ── Validación ───────────────────────────────────────── */
     function clearErrors() {
       form.querySelectorAll('.rv-form__error').forEach(function (el) { el.hidden = true; });
-      form.querySelectorAll('.rv-form__input, .rv-form__select').forEach(function (el) {
+      form.querySelectorAll('.rv-form__input').forEach(function (el) {
         el.classList.remove('is-error');
       });
     }
@@ -85,23 +92,21 @@
       e.preventDefault();
       clearErrors();
 
-      var nombre   = form.querySelector('[name="nombre"]').value.trim();
-      var email    = form.querySelector('[name="email"]').value.trim();
-      var tel      = form.querySelector('[name="telefono"]').value.trim();
-      var selectEl = form.querySelector('[name="recorrido"]');
-      var recIdx   = selectEl ? selectEl.value : '0';
+      var firstname = form.querySelector('[name="firstname"]').value.trim();
+      var lastname  = form.querySelector('[name="lastname"]').value.trim();
+      var email     = form.querySelector('[name="email"]').value.trim();
+      var phone     = form.querySelector('[name="phone"]').value.trim();
 
       var valid = true;
-      if (!nombre)             { showError('nombre',    'Ingresa tu nombre completo');           valid = false; }
-      if (!validEmail(email))  { showError('email',     'Ingresa un correo electrónico válido'); valid = false; }
-      if (!tel)                { showError('telefono',  'Ingresa tu número de teléfono');        valid = false; }
-      if (recIdx === '')       { showError('recorrido', 'Selecciona un prototipo');              valid = false; }
+      if (!firstname)           { showError('firstname', 'Ingresa tu nombre');              valid = false; }
+      if (!lastname)            { showError('lastname',  'Ingresa tus apellidos');          valid = false; }
+      if (!validEmail(email))   { showError('email',     'Ingresa un correo válido');       valid = false; }
+      if (!phone)               { showError('phone',     'Ingresa tu número de teléfono'); valid = false; }
 
       if (!valid) return;
 
-      var recorrido = cfg.recorridos[parseInt(recIdx, 10)];
-      if (!recorrido || !recorrido.url) {
-        showError('recorrido', 'URL del recorrido no configurada');
+      if (!cfg.recUrl) {
+        console.error('[RV] URL del recorrido no configurada.');
         return;
       }
 
@@ -110,7 +115,7 @@
         submitBtn.textContent = 'Abriendo…';
       }
 
-      /* ── Envío opcional a HubSpot Forms API ─────────────── */
+      /* ── Envío a HubSpot Forms API ───────────────────────── */
       if (cfg.portalId && cfg.formGuid) {
         fetch(
           'https://api.hsforms.com/submissions/v3/integration/submit/'
@@ -120,10 +125,11 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               fields: [
-                { name: 'firstname', value: nombre },
-                { name: 'email',     value: email },
-                { name: 'phone',     value: tel },
-                { name: 'message',   value: 'Recorrido: ' + recorrido.nombre }
+                { name: 'firstname',                          value: firstname },
+                { name: 'lastname',                           value: lastname  },
+                { name: 'email',                              value: email     },
+                { name: 'phone',                              value: phone     },
+                { name: 'que_prototipo_te_interesa_madeira',  value: cfg.recNombre }
               ],
               context: {
                 pageUri:  window.location.href,
@@ -131,13 +137,13 @@
               }
             })
           }
-        ).catch(function () { /* falla silenciosa */ });
+        ).catch(function () { /* falla silenciosa — siempre abre el tour */ });
       }
 
-      /* ── Abrir recorrido ────────────────────────────────── */
-      window.open(recorrido.url, '_blank', 'noopener');
+      /* ── Abrir recorrido en nueva pestaña ─────────────────── */
+      window.open(cfg.recUrl, '_blank', 'noopener');
 
-      /* ── Mostrar éxito ──────────────────────────────────── */
+      /* ── Mostrar estado de éxito ──────────────────────────── */
       form.hidden      = true;
       successEl.hidden = false;
     });
