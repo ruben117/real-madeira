@@ -7,8 +7,8 @@
 
     <div class="footer__row">
 
-      {# ── Columna izquierda: logos + dirección legal ── #}
-      <div class="footer__col footer__col--left">
+      {# ── Columna 1: Logos + datos legales ─────────────────── #}
+      <div class="footer__col footer__col--brand">
 
         <div class="footer__logos">
           {% module "footer_logo_madeira"
@@ -38,32 +38,33 @@
         <address class="footer__address">
           {% module "footer_address"
             path="@hubspot/rich_text",
-            label="Dirección legal",
-            html="<p>PROMOTORA DE VIVIENDAS INTEGRALES SA DE CV<br>Av real del sol, Mz.16, Lt. 1, Real del Sol, Ojo de Agua, 55770, Tecámac, EDOMEX<br>Av. Epigmenio González #3, Fracc. Real Solare, El Marqués, Santiago de Querétaro, CP 76246</p>"
+            label="Dirección y datos legales",
+            html="<p>PROMOTORA DE VIVIENDAS INTEGRALES SA DE CV<br>No. Reg. 3697-2022 de fecha 23 de agosto 2022<br>Av Real del Sol, Mz.16, Lt. 1, Real del Sol, Ojo de Agua, 55770, Tecámac, Estado de México</p><p><a href="https://www.vinte.com.mx/privacidad?hsLang=es-mx"><strong>Aviso de privacidad</strong></a></p><p>Copyright {{ year }} todos los derechos reservados</p>"
           %}
         </address>
 
       </div>
 
-      {# ── Columna derecha: atención al cliente + legal ── #}
-      <div class="footer__col footer__col--right">
+      {# ── Columna 2: Oficina de Ventas ──────────────────────── #}
+      <div class="footer__col footer__col--ventas">
+        {% module "footer_ventas"
+          path="@hubspot/rich_text",
+          label="Oficina de Ventas",
+          html="<h4>Oficina de Ventas</h4><p>Av. Paseo del Mayab Mz. 22 Lt.2<br>Playa del Carmen, Quintana Roo<br>C.P. 77714<br>Tel. (55) 984 110 5050</p><p>Horario de atención:<br>Lunes a domingo de 09:00 a 19:00 hrs.</p><p>Email: <a href='mailto:tucasaodepa@vinte.com'>tucasaodepa@vinte.com</a></p>"
+        %}
+      </div>
 
-        <div class="footer__atencion">
-          {% module "footer_atencion"
-            path="@hubspot/rich_text",
-            label="Atención al cliente",
-            html="<h4>Atención al cliente</h4><p>Lunes a viernes de 8 a 20 hrs. Sábado y domingo de 10 a 17 hrs</p><p>55 5010 7382 &nbsp; <a href='mailto:estrenacasaodepa@vinte.com'>estrenacasaodepa@vinte.com</a></p>"
-          %}
-        </div>
-
-        <div class="footer__legal">
-          {% module "footer_legal"
-            path="@hubspot/rich_text",
-            label="Links legales",
-            html="<p>Copyright {{ year }} todos los derechos reservados | <a href='#'>Aviso de privacidad</a> | <a href='#'>Contrato Profeco</a> | <a href='#'>Pre-apartado digital</a></p>"
-          %}
-        </div>
-
+      {# ── Columna 3: Quejas y sugerencias + RRSS ───────────── #}
+      <div class="footer__col footer__col--quejas">
+        {% module "footer_quejas"
+          path="@hubspot/rich_text",
+          label="Quejas y sugerencias",
+          html="<h4>Quejas y sugerencias</h4><p>Tel. 800 841 3606</p><p>Horario de atención:<br>Lunes a domingo de 09:30 a 19:30 hrs.</p><p>Email: <a href='mailto:hola@vinte.com'>hola@vinte.com</a></p>"
+        %}
+        {% module "footer_social"
+          path="@hubspot/social_follow",
+          label="Redes sociales"
+        %}
       </div>
 
     </div>

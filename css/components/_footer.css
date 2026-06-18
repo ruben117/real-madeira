@@ -1,6 +1,6 @@
 /* ============================================================
    FOOTER
-   Layout: una fila, dos columnas (logos+dir | atención+legal)
+   Layout: 3 columnas (brand | oficina ventas | quejas+rrss)
    ============================================================ */
 
 .footer {
@@ -9,35 +9,34 @@
 }
 
 .footer__inner {
-  padding-top: 28px;
-  padding-bottom: 24px;
+  padding-top: 40px;
+  padding-bottom: 32px;
 }
 
-/* ── Fila única: dos columnas ─────────────────────────────── */
+/* ── Grid de 3 columnas ───────────────────────────────────── */
 
 .footer__row {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
 }
 
-/* ── Columna izquierda ────────────────────────────────────── */
+/* ── Columna 1: Brand ────────────────────────────────────── */
 
-.footer__col--left {
+.footer__col--brand {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
 }
 
 /* Logos lado a lado */
 .footer__logos {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.5rem;
 }
 
-/* Contenedor generado por @hubspot/logo */
 .footer__logos .hs_cos_wrapper {
   display: flex;
   align-items: center;
@@ -59,91 +58,148 @@
   width: 120px;
 }
 
-/* Dirección legal */
+/* Dirección y datos legales */
 .footer__address {
   font-style: normal;
 }
 
 .footer__address p,
 .footer__address .hs_cos_wrapper p {
-  font-size: 11px;
-  font-weight: 300;
-  line-height: 1.3;
-  color: var(--legal-color);
-  margin: 0;
-}
-
-/* ── Columna derecha ──────────────────────────────────────── */
-
-.footer__col--right {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 10px;
-  text-align: right;
-}
-
-/* Atención al cliente */
-.footer__atencion h4,
-.footer__atencion .hs_cos_wrapper h4 {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.65;
   color: var(--secondary-color);
-  margin: 0 0 4px;
-  letter-spacing: 0.01em;
+  margin: 0 0 10px;
 }
 
-.footer__atencion p,
-.footer__atencion .hs_cos_wrapper p {
-  font-size: 13px;
-  font-weight: 300;
-  line-height: 1.7;
-  color: var(--legal-color);
-  margin: 0;
+.footer__address p:last-child,
+.footer__address .hs_cos_wrapper p:last-child {
+  margin-bottom: 0;
 }
 
-.footer__atencion a,
-.footer__atencion .hs_cos_wrapper a {
-  color: #6b7280;
+.footer__address strong { font-weight: 700; }
+
+.footer__address a,
+.footer__address .hs_cos_wrapper a {
+  color: var(--secondary-color);
   text-decoration: none;
 }
 
-.footer__atencion a:hover {
+.footer__address a:hover,
+.footer__address .hs_cos_wrapper a:hover {
   color: var(--primary-color);
   text-decoration: underline;
 }
 
-/* Links legales */
-.footer__legal p,
-.footer__legal .hs_cos_wrapper p {
-  font-size: 11px;
-  font-weight: 300;
-  line-height: 1.6;
-  color: var(--heading-color);
-  margin: 0;
+/* ── Columnas 2 y 3: Contenido ───────────────────────────── */
+
+.footer__col--ventas,
+.footer__col--quejas {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.footer__legal a,
-.footer__legal .hs_cos_wrapper a {
-  color: var(--heading-color);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
-
-.footer__legal a:hover {
+.footer__col--ventas h4,
+.footer__col--ventas .hs_cos_wrapper h4,
+.footer__col--quejas h4,
+.footer__col--quejas .hs_cos_wrapper h4 {
+  font-size: 14px;
+  font-weight: 700;
   color: var(--secondary-color);
+  margin: 0 0 14px;
+  letter-spacing: 0.01em;
 }
 
-/* ── Responsive: mobile ───────────────────────────────────── */
+.footer__col--ventas p,
+.footer__col--ventas .hs_cos_wrapper p,
+.footer__col--quejas p,
+.footer__col--quejas .hs_cos_wrapper p {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--secondary-color);;
+  margin: 0 0 10px;
+}
 
-@media (max-width: 767px) {
+.footer__col--ventas p:last-child,
+.footer__col--ventas .hs_cos_wrapper p:last-child,
+.footer__col--quejas p:last-child,
+.footer__col--quejas .hs_cos_wrapper p:last-child {
+  margin-bottom: 0;
+}
+
+.footer__col--ventas a,
+.footer__col--ventas .hs_cos_wrapper a,
+.footer__col--quejas a,
+.footer__col--quejas .hs_cos_wrapper a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.footer__col--ventas a:hover,
+.footer__col--quejas a:hover {
+  text-decoration: underline;
+}
+
+/* ── Redes sociales (@hubspot/social_follow) ─────────────── */
+
+.footer__col--quejas .hs_cos_wrapper_type_social_follow {
+  margin-top: 20px;
+}
+
+/* El módulo social_follow de HubSpot genera .hs-social-follow */
+.footer__col--quejas .hs-social-follow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__col--quejas .hs-social-follow__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--secondary-color);
+  border-radius: 50%;
+  color: #ffffff;
+  transition: opacity 0.2s;
+  text-decoration: none;
+}
+
+.footer__col--quejas .hs-social-follow__link:hover {
+  opacity: 0.75;
+}
+
+.footer__col--quejas .hs-social-follow__link img,
+.footer__col--quejas .hs-social-follow__link svg {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) invert(1);
+}
+
+/* ── Responsive: tablet (2 cols) ─────────────────────────── */
+
+@media (max-width: 1023px) {
   .footer__row {
-    flex-direction: column;
-    gap: 1.5rem;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 2rem;
   }
 
-  .footer__col--right {
-    align-items: flex-start;
-    text-align: left;
+  .footer__col--brand {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Responsive: mobile (1 col) ──────────────────────────── */
+
+@media (max-width: 599px) {
+  .footer__row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 }
