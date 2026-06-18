@@ -55,7 +55,7 @@
         {% if module.form_titulo %}
           {{ module.form_titulo | escape_html }}
         {% else %}
-          Conoce el {{ module.rec_nombre | default('prototipo') | escape_html }} desde adentro
+          Conoce {{ module.rec_nombre | default('prototipo') | escape_html }} desde adentro
         {% endif %}
       </h3>
 

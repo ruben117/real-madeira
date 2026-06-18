@@ -51,13 +51,21 @@
     "default": "Tour Virtual 360° — Nuestros modelos"
   },
   {
+    "label": "Form GUID de HubSpot ([Madeira] Prototipos)",
+    "name": "form_guid",
+    "type": "text",
+    "required": false,
+    "default": "",
+    "help_text": "GUID del formulario. Visible en la URL al editar el formulario en HubSpot."
+  },
+  {
     "label": "Propiedades del Tour Virtual",
     "name": "tour_properties",
     "type": "group",
     "occurrence": {
       "default": 4,
       "min": 1,
-      "max": 4,
+      "max": 6,
       "sorting_label_field": "tour_properties.titulo"
     },
     "children": [
@@ -92,10 +100,32 @@
         }
       },
       {
-        "label": "Texto del botón",
+        "label": "Texto del botón de la tarjeta",
         "name": "btn_text",
         "type": "text",
         "default": "Ver recorrido 360°"
+      },
+      {
+        "label": "Título del formulario",
+        "name": "form_titulo",
+        "type": "text",
+        "required": false,
+        "default": "",
+        "help_text": "Si se deja vacío se genera automáticamente como \"Conoce el [Nombre] desde adentro\"."
+      },
+      {
+        "label": "Descripción del formulario",
+        "name": "form_descripcion",
+        "type": "text",
+        "required": false,
+        "default": "Déjanos tus datos y te abrimos el recorrido virtual de este modelo."
+      },
+      {
+        "label": "Texto del botón Enviar",
+        "name": "form_btn_texto",
+        "type": "text",
+        "required": false,
+        "default": "Iniciar recorrido 360"
       }
     ],
     "default": [
@@ -103,25 +133,37 @@
         "titulo": "Málaga",
         "imagen": { "src": "", "alt": "Málaga", "loading": "lazy" },
         "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
-        "btn_text": "Ver recorrido 360°"
+        "btn_text": "Ver recorrido 360°",
+        "form_titulo": "",
+        "form_descripcion": "Déjanos tus datos y te abrimos el recorrido virtual de este modelo.",
+        "form_btn_texto": "Iniciar recorrido 360"
       },
       {
         "titulo": "Montesino",
         "imagen": { "src": "", "alt": "Montesino", "loading": "lazy" },
         "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
-        "btn_text": "Ver recorrido 360°"
+        "btn_text": "Ver recorrido 360°",
+        "form_titulo": "",
+        "form_descripcion": "Déjanos tus datos y te abrimos el recorrido virtual de este modelo.",
+        "form_btn_texto": "Iniciar recorrido 360"
       },
       {
         "titulo": "Pontevel / Plus",
         "imagen": { "src": "", "alt": "Pontevel / Plus", "loading": "lazy" },
         "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
-        "btn_text": "Ver recorrido 360°"
+        "btn_text": "Ver recorrido 360°",
+        "form_titulo": "",
+        "form_descripcion": "Déjanos tus datos y te abrimos el recorrido virtual de este modelo.",
+        "form_btn_texto": "Iniciar recorrido 360"
       },
       {
         "titulo": "Castelo",
         "imagen": { "src": "", "alt": "Castelo", "loading": "lazy" },
         "tour_link": { "url": { "href": "", "type": "EXTERNAL" }, "open_in_new_tab": true, "no_follow": false },
-        "btn_text": "Ver recorrido 360°"
+        "btn_text": "Ver recorrido 360°",
+        "form_titulo": "",
+        "form_descripcion": "Déjanos tus datos y te abrimos el recorrido virtual de este modelo.",
+        "form_btn_texto": "Iniciar recorrido 360"
       }
     ]
   }

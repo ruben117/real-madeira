@@ -1,6 +1,18 @@
-{% set has_button = module.button_link.url.href and module.button_text %}
-{% set lightbox_id = "hero-tour-lightbox-" ~ module.unique_id %}
+{% set uid          = module.unique_id %}
+{% set lightbox_id  = "hero-tour-lightbox-" ~ uid %}
+{% set rv_dialog_id = "hero-rv-dialog-" ~ uid %}
+{% set rv_form_id   = "hero-rv-form-" ~ uid %}
+{% set rv_success_id= "hero-rv-success-" ~ uid %}
 {% set fallback_img = get_asset_url("../../images/large-placeholder-image.png") %}
+{% set has_button   = module.button_link.url.href and module.button_text %}
+
+{# ── Config JSON para el formulario de captación ─────────── #}
+<script id="hero-rv-cfg-{{ uid }}" type="application/json">
+{
+  "portalId": "20305420",
+  "formGuid": {{ module.form_guid | default('') | tojson }}
+}
+</script>
 
 <section class="hero-home" aria-label="Hero principal">
 
@@ -51,7 +63,6 @@
           </button>
         {% endif %}
 
-        {# Botón que abre el lightbox #}
         <button class="hero-home__tour"
                 type="button"
                 aria-haspopup="dialog"
@@ -70,7 +81,9 @@
 
   </div>
 
-  {# ── Lightbox ─────────────────────────────────────────── #}
+  {# ══════════════════════════════════════════════════════════
+     LIGHTBOX 1 — Grid de prototipos
+  ══════════════════════════════════════════════════════════ #}
   <div class="hero-lightbox"
        id="{{ lightbox_id }}"
        role="dialog"
@@ -84,7 +97,6 @@
 
     <div class="hero-lightbox__panel">
 
-      {# Header del lightbox #}
       <div class="hero-lightbox__header">
         <div class="hero-lightbox__header-text">
           <span class="hero-lightbox__eyebrow">Tour Virtual</span>
@@ -102,7 +114,6 @@
         </button>
       </div>
 
-      {# Grid de propiedades #}
       <div class="hero-lightbox__grid">
         {% for prop in module.tour_properties %}
           {% set img_src = prop.imagen.src if prop.imagen.src else fallback_img %}
@@ -117,15 +128,18 @@
             <div class="hero-lightbox__card-body">
               <h3 class="hero-lightbox__card-title">{{ prop.titulo }}</h3>
               {% if prop.tour_link.url.href %}
-                <a class="hero-lightbox__card-btn"
-                   href="{{ prop.tour_link.url.href }}"
-                   {% if prop.tour_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-                   {% if prop.tour_link.no_follow %}rel="nofollow"{% endif %}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="13" height="13" aria-hidden="true">
-                    <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                  </svg>
+                {# Botón → abre el formulario de captación (no el tour directo) #}
+                <button class="hero-lightbox__card-btn"
+                        type="button"
+                        data-rv-dialog="{{ rv_dialog_id }}"
+                        data-rv-lb="{{ lightbox_id }}"
+                        data-rv-nombre="{{ prop.titulo | escape_attr }}"
+                        data-rv-url="{{ prop.tour_link.url.href | escape_attr }}"
+                        data-rv-titulo="{{ prop.form_titulo | default('') | escape_attr }}"
+                        data-rv-descripcion="{{ prop.form_descripcion | default('Déjanos tus datos y te abrimos el recorrido virtual de este modelo.') | escape_attr }}"
+                        data-rv-btn-texto="{{ prop.form_btn_texto | default('Iniciar recorrido 360') | escape_attr }}">
                   {{ prop.btn_text or 'Ver recorrido 360°' }}
-                </a>
+                </button>
               {% endif %}
             </div>
           </div>
@@ -134,5 +148,84 @@
 
     </div>
   </div>
+
+  {# ══════════════════════════════════════════════════════════
+     LIGHTBOX 2 — Formulario de captación (dialog nativo)
+     Se puebla por JS con el nombre y URL del prototipo elegido
+  ══════════════════════════════════════════════════════════ #}
+  <dialog class="rv-dialog"
+          id="{{ rv_dialog_id }}"
+          aria-labelledby="rv-dlg-titulo-{{ uid }}"
+          aria-describedby="rv-dlg-desc-{{ uid }}">
+
+    <div class="rv-dialog__panel">
+
+      <button class="rv-dialog__close" type="button" data-rv-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      {# Título y descripción: JS los actualiza por prototipo al abrir #}
+      <h3 class="rv-dialog__titulo" id="rv-dlg-titulo-{{ uid }}" data-rv-titulo>—</h3>
+      <p class="rv-dialog__desc" id="rv-dlg-desc-{{ uid }}" data-rv-desc>—</p>
+
+      <form class="rv-form" id="{{ rv_form_id }}" novalidate>
+
+        <div class="rv-form__row">
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="rv-firstname-{{ uid }}">Nombre</label>
+            <input class="rv-form__input" type="text"
+                   id="rv-firstname-{{ uid }}" name="firstname"
+                   placeholder="Tu nombre" autocomplete="given-name" required>
+            <span class="rv-form__error" data-error="firstname" hidden>Ingresa tu nombre</span>
+          </div>
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="rv-lastname-{{ uid }}">Apellidos</label>
+            <input class="rv-form__input" type="text"
+                   id="rv-lastname-{{ uid }}" name="lastname"
+                   placeholder="Tus apellidos" autocomplete="family-name" required>
+            <span class="rv-form__error" data-error="lastname" hidden>Ingresa tus apellidos</span>
+          </div>
+        </div>
+
+        <div class="rv-form__row">
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="rv-email-{{ uid }}">Correo electrónico</label>
+            <input class="rv-form__input" type="email"
+                   id="rv-email-{{ uid }}" name="email"
+                   placeholder="correo@ejemplo.com" autocomplete="email" required>
+            <span class="rv-form__error" data-error="email" hidden>Ingresa un correo válido</span>
+          </div>
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="rv-phone-{{ uid }}">Teléfono</label>
+            <input class="rv-form__input" type="tel"
+                   id="rv-phone-{{ uid }}" name="phone"
+                   placeholder="55 1234 5678" autocomplete="tel" required>
+            <span class="rv-form__error" data-error="phone" hidden>Ingresa tu teléfono</span>
+          </div>
+        </div>
+
+        <button class="rv-form__submit" type="submit" data-submit-btn>
+          Iniciar recorrido 360
+        </button>
+
+      </form>
+
+      <div class="rv-success" id="{{ rv_success_id }}" hidden aria-live="polite">
+        <span class="rv-success__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="1.6"/>
+            <path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <p class="rv-success__titulo">¡Todo listo!</p>
+        <p class="rv-success__desc">Tu recorrido virtual se está abriendo en una nueva pestaña.</p>
+        <button class="rv-success__cerrar" type="button" data-rv-close>Cerrar</button>
+      </div>
+
+    </div>
+  </dialog>
 
 </section>
