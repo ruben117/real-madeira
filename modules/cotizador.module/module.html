@@ -3,6 +3,7 @@
 {% set prototipos    = module.prototipos %}
 {% set equipamientos = module.equipamientos %}
 {% set enganche_ops  = module.opciones_enganche %}
+{% set rv_dialog_id  = "cot-rv-dialog-" ~ uid %}
 
 {# ── SVG reutilizables ─────────────────────────────────────── #}
 {% set svg_casa %}
@@ -40,8 +41,13 @@
 <script id="cotizador-cfg-{{ uid }}" type="application/json">
 {
   "whatsapp": "{{ module.whatsapp_numero | default('5550107360') }}",
-  "ctaLink": "{{ module.cta_link.url.href | default('#contacto') }}",
-  "ctaNewTab": {{ module.cta_link.open_in_new_tab | default(false) | tojson }},
+  "portalId": "20305420",
+  "formGuid": {{ module.form_guid | default('') | tojson }},
+  "formTitulo": {{ module.form_titulo | default('') | tojson }},
+  "formDescripcion": {{ module.form_descripcion | default('Déjanos tus datos y un asesor se pondrá en contacto contigo para continuar tu trámite.') | tojson }},
+  "btnEnviarTexto": {{ module.btn_enviar_texto | default('Enviar') | tojson }},
+  "graciasTitulo": {{ module.gracias_titulo | default('¡Todo listo!') | tojson }},
+  "graciasMensaje": {{ module.gracias_mensaje | default('Gracias por tu interés. Un asesor de Real Madeira se pondrá en contacto contigo muy pronto para continuar tu trámite.') | tojson }},
   "tiposCredito": [
     {% for t in tipos_credito %}
     {
@@ -252,13 +258,14 @@
           </div>
         </div>
 
-        {# CTA principal #}
-        <a class="rc-btn-cta"
-           href="{{ module.cta_link.url.href | default('#contacto') }}"
-           {% if module.cta_link.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}
-           data-cta-btn>
+        {# CTA principal — abre el formulario de captación #}
+        <button class="rc-btn-cta"
+                type="button"
+                aria-haspopup="dialog"
+                aria-controls="{{ rv_dialog_id }}"
+                data-cta-btn>
           {{ module.cta_texto | default('Iniciar trámite') | escape_html }}
-        </a>
+        </button>
 
       </div>
 
@@ -279,5 +286,86 @@
     </div>
 
   </div>
+
+  {# ══════════════════════════════════════════════════════════
+     DIALOG — Formulario de captación (native <dialog>)
+     Se abre desde el botón "Iniciar trámite"
+  ══════════════════════════════════════════════════════════ #}
+  <dialog class="rv-dialog"
+          id="{{ rv_dialog_id }}"
+          aria-labelledby="cot-rv-titulo-{{ uid }}"
+          aria-describedby="cot-rv-desc-{{ uid }}">
+
+    <div class="rv-dialog__panel">
+
+      <button class="rv-dialog__close" type="button" data-rv-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <h3 class="rv-dialog__titulo" id="cot-rv-titulo-{{ uid }}" data-rv-titulo>—</h3>
+      <p class="rv-dialog__desc" id="cot-rv-desc-{{ uid }}">
+        {{ module.form_descripcion | default('Déjanos tus datos y un asesor se pondrá en contacto contigo para continuar tu trámite.') | escape_html }}
+      </p>
+
+      <form class="rv-form" id="cot-rv-form-{{ uid }}" novalidate>
+
+        <div class="rv-form__row">
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="cot-rv-firstname-{{ uid }}">Nombre</label>
+            <input class="rv-form__input" type="text"
+                   id="cot-rv-firstname-{{ uid }}" name="firstname"
+                   placeholder="Tu nombre" autocomplete="given-name" required>
+            <span class="rv-form__error" data-error="firstname" hidden>Ingresa tu nombre</span>
+          </div>
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="cot-rv-lastname-{{ uid }}">Apellidos</label>
+            <input class="rv-form__input" type="text"
+                   id="cot-rv-lastname-{{ uid }}" name="lastname"
+                   placeholder="Tus apellidos" autocomplete="family-name" required>
+            <span class="rv-form__error" data-error="lastname" hidden>Ingresa tus apellidos</span>
+          </div>
+        </div>
+
+        <div class="rv-form__row">
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="cot-rv-email-{{ uid }}">Correo electrónico</label>
+            <input class="rv-form__input" type="email"
+                   id="cot-rv-email-{{ uid }}" name="email"
+                   placeholder="correo@ejemplo.com" autocomplete="email" required>
+            <span class="rv-form__error" data-error="email" hidden>Ingresa un correo válido</span>
+          </div>
+          <div class="rv-form__field">
+            <label class="rv-form__label" for="cot-rv-phone-{{ uid }}">Teléfono</label>
+            <input class="rv-form__input" type="tel"
+                   id="cot-rv-phone-{{ uid }}" name="phone"
+                   placeholder="55 1234 5678" autocomplete="tel" required>
+            <span class="rv-form__error" data-error="phone" hidden>Ingresa tu teléfono</span>
+          </div>
+        </div>
+
+        <button class="rv-form__submit" type="submit" data-submit-btn>
+          {{ module.btn_enviar_texto | default('Enviar') | escape_html }}
+        </button>
+
+      </form>
+
+      <div class="rv-success" id="cot-rv-success-{{ uid }}" hidden aria-live="polite">
+        <span class="rv-success__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="10" stroke="#22c55e" stroke-width="1.6"/>
+            <path d="M8 12l3 3 5-5" stroke="#22c55e" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <p class="rv-success__titulo" data-rv-gracias-titulo>{{ module.gracias_titulo | default('¡Todo listo!') | escape_html }}</p>
+        <p class="rv-success__desc" data-rv-gracias-mensaje>{{ module.gracias_mensaje | default('Gracias por tu interés. Un asesor de Real Madeira se pondrá en contacto contigo muy pronto para continuar tu trámite.') | escape_html }}</p>
+        <button class="rv-success__cerrar" type="button" data-rv-close>Cerrar</button>
+      </div>
+
+    </div>
+  </dialog>
+
 </section>
 

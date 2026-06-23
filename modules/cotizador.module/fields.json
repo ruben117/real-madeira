@@ -154,11 +154,54 @@
     "default": "Iniciar trámite"
   },
   {
-    "id": "cta_link",
-    "name": "cta_link",
-    "label": "Enlace del botón principal",
-    "type": "link",
-    "required": false
+    "id": "form_guid",
+    "name": "form_guid",
+    "label": "Form GUID de HubSpot",
+    "type": "text",
+    "required": false,
+    "default": "",
+    "help_text": "GUID del formulario. Visible en la URL al editar el formulario en HubSpot."
+  },
+  {
+    "id": "form_titulo",
+    "name": "form_titulo",
+    "label": "Título del formulario",
+    "type": "text",
+    "required": false,
+    "default": "",
+    "help_text": "Si se deja vacío se genera automáticamente como \"Continúa tu trámite para [Prototipo]\"."
+  },
+  {
+    "id": "form_descripcion",
+    "name": "form_descripcion",
+    "label": "Descripción del formulario",
+    "type": "text",
+    "required": false,
+    "default": "Déjanos tus datos y un asesor se pondrá en contacto contigo para continuar tu trámite."
+  },
+  {
+    "id": "btn_enviar_texto",
+    "name": "btn_enviar_texto",
+    "label": "Texto del botón Enviar",
+    "type": "text",
+    "required": false,
+    "default": "Enviar"
+  },
+  {
+    "id": "gracias_titulo",
+    "name": "gracias_titulo",
+    "label": "Título del mensaje de gracias",
+    "type": "text",
+    "required": false,
+    "default": "¡Todo listo!"
+  },
+  {
+    "id": "gracias_mensaje",
+    "name": "gracias_mensaje",
+    "label": "Mensaje de gracias",
+    "type": "text",
+    "required": false,
+    "default": "Gracias por tu interés. Un asesor de Real Madeira se pondrá en contacto contigo muy pronto para continuar tu trámite."
   },
   {
     "id": "whatsapp_numero",

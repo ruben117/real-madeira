@@ -248,6 +248,119 @@
       });
     }
 
+    /* ── CTA principal: abre el formulario de captación ──────── */
+    var ctaBtn  = q('[data-cta-btn]');
+    var rvDialog = root.querySelector('.rv-dialog');
+
+    if (ctaBtn && rvDialog) {
+      var rvForm      = rvDialog.querySelector('.rv-form');
+      var rvSuccess   = rvDialog.querySelector('.rv-success');
+      var rvSubmitBtn = rvDialog.querySelector('[data-submit-btn]');
+      var rvTituloEl  = rvDialog.querySelector('[data-rv-titulo]');
+
+      function rvValidate(form) {
+        var valid = true;
+        ['firstname', 'lastname', 'email', 'phone'].forEach(function (name) {
+          var input = form.querySelector('[name="' + name + '"]');
+          var errEl = form.querySelector('[data-error="' + name + '"]');
+          if (!input) return;
+
+          var ok = input.value.trim().length > 0;
+          if (name === 'email') ok = ok && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+
+          input.classList.toggle('is-error', !ok);
+          if (errEl) errEl.hidden = ok;
+          if (!ok) valid = false;
+        });
+        return valid;
+      }
+
+      function rvResetDialog() {
+        if (rvForm)    { rvForm.hidden = false; rvForm.reset(); }
+        if (rvSuccess) rvSuccess.hidden = true;
+        if (rvForm) {
+          rvForm.querySelectorAll('.is-error').forEach(function (el) { el.classList.remove('is-error'); });
+          rvForm.querySelectorAll('[data-error]').forEach(function (el) { el.hidden = true; });
+        }
+      }
+
+      ctaBtn.addEventListener('click', function () {
+        var proto = cfg.prototipos[state.protoIdx] || {};
+
+        if (rvTituloEl) {
+          rvTituloEl.textContent = cfg.formTitulo
+            || (proto.nombre ? 'Continúa tu trámite para ' + proto.nombre : 'Continúa tu trámite');
+        }
+
+        rvDialog.showModal();
+        document.body.style.overflow = 'hidden';
+        rvDialog.addEventListener('close', function onClose() {
+          document.body.style.overflow = '';
+          rvDialog.removeEventListener('close', onClose);
+        }, { once: true });
+      });
+
+      rvDialog.addEventListener('click', function (e) {
+        if (e.target.closest('[data-rv-close]')) {
+          rvDialog.close();
+          rvResetDialog();
+        }
+      });
+
+      rvDialog.addEventListener('cancel', rvResetDialog);
+
+      if (rvForm) {
+        rvForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          if (!rvValidate(rvForm)) return;
+
+          rvSubmitBtn.disabled = true;
+          rvSubmitBtn.textContent = 'Enviando…';
+
+          var proto = cfg.prototipos[state.protoIdx] || {};
+          var fields = [
+            { name: 'firstname', value: rvForm.querySelector('[name="firstname"]').value.trim() },
+            { name: 'lastname',  value: rvForm.querySelector('[name="lastname"]').value.trim()  },
+            { name: 'email',     value: rvForm.querySelector('[name="email"]').value.trim()     },
+            { name: 'phone',     value: rvForm.querySelector('[name="phone"]').value.trim()     },
+            { name: 'que_prototipo_te_interesa_madeira', value: proto.nombre || '' }
+          ];
+
+          function showSuccess() {
+            if (rvForm)    rvForm.hidden = true;
+            if (rvSuccess) rvSuccess.hidden = false;
+            rvSubmitBtn.disabled = false;
+            rvSubmitBtn.textContent = cfg.btnEnviarTexto || 'Enviar';
+          }
+
+          if (!cfg.portalId || !cfg.formGuid) {
+            console.warn('[Cotizador] Portal ID o Form GUID no configurados');
+            showSuccess();
+            return;
+          }
+
+          fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + cfg.portalId + '/' + cfg.formGuid, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              fields: fields,
+              context: { pageUri: window.location.href, pageName: document.title }
+            })
+          })
+          .then(function (res) {
+            if (res.ok || res.status === 200) { showSuccess(); }
+            else { throw new Error('HTTP ' + res.status); }
+          })
+          .catch(function (err) {
+            console.error('[Cotizador] Error al enviar formulario:', err);
+            rvSubmitBtn.disabled = false;
+            rvSubmitBtn.textContent = cfg.btnEnviarTexto || 'Enviar';
+            alert('Hubo un problema al enviar tus datos. Por favor intenta de nuevo.');
+          });
+        });
+      }
+    }
+
     /* ── Preseleccionar primer equipamiento si existe ────────── */
     if (cfg.equipamientos && cfg.equipamientos.length > 0) {
       state.equipSel = [0];
