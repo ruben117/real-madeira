@@ -31,7 +31,7 @@
 
     /* ── Estado ─────────────────────────────────────────────── */
     var state = {
-      creditType:  'bancario',
+      creditoIdx:  0,
       protoIdx:    0,
       equipSel:    [],
       engancheIdx: 0,
@@ -65,8 +65,7 @@
       var enganchePct    = cfg.opcionesEnganche[state.engancheIdx] || 0;
       var engancheMonto  = totalInversion * enganchePct / 100;
       var credito        = totalInversion - engancheMonto;
-      var tasa           = state.creditType === 'infonavit'
-                           ? cfg.tasaInfonavit : cfg.tasaBancario;
+      var tasa           = (cfg.tiposCredito[state.creditoIdx] || {}).tasa || 1;
       var pagoBase       = credito * (tasa / 100);
 
       q('[data-pago-base]').textContent       = mxn(pagoBase);
@@ -77,10 +76,10 @@
     }
 
     /* ── Tipo de crédito ─────────────────────────────────────── */
-    qa('[data-credito]').forEach(function (btn) {
+    qa('[data-credito-idx]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        state.creditType = btn.getAttribute('data-credito');
-        qa('[data-credito]').forEach(function (b) {
+        state.creditoIdx = parseInt(btn.getAttribute('data-credito-idx'), 10);
+        qa('[data-credito-idx]').forEach(function (b) {
           var active = b === btn;
           b.classList.toggle('is-active', active);
           b.setAttribute('aria-checked', String(active));
@@ -158,14 +157,15 @@
         var total     = basePrice + equipTotal;
         var engMonto  = total * engPct / 100;
         var credito   = total - engMonto;
-        var tasa      = state.creditType === 'infonavit' ? cfg.tasaInfonavit : cfg.tasaBancario;
+        var tipoCredito = cfg.tiposCredito[state.creditoIdx] || {};
+        var tasa      = tipoCredito.tasa || 1;
         var pagoBase  = credito * (tasa / 100);
 
         var msg = [
           'Hola! Me interesa el prototipo *' + (proto.nombre || '') + '* de Real Madeira.',
           '',
-          '📋 Mi simulación:',
-          '• Crédito: ' + (state.creditType === 'bancario' ? 'Bancario' : 'Infonavit'),
+          'Mi simulación:',
+          '• Crédito: ' + (tipoCredito.titulo || '—'),
           '• Inversión Total: ' + mxn(total),
           '• Enganche (' + engPct + '%): ' + mxn(engMonto),
           '• Monto de crédito: ' + mxn(credito),
@@ -195,10 +195,11 @@
         var total    = basePrice + equipTotal;
         var engMonto = total * engPct / 100;
         var credito  = total - engMonto;
-        var tasa     = state.creditType === 'infonavit' ? cfg.tasaInfonavit : cfg.tasaBancario;
+        var tipoCreditoObj = cfg.tiposCredito[state.creditoIdx] || {};
+        var tasa     = tipoCreditoObj.tasa || 1;
         var pago     = credito * (tasa / 100);
         var fecha    = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
-        var tipoCredito = state.creditType === 'bancario' ? 'Bancario' : 'Infonavit';
+        var tipoCredito = tipoCreditoObj.titulo || '—';
 
         var equipRow = equipNames.length
           ? '<tr><td>Equipamiento</td><td>' + equipNames.join(', ') + '</td></tr>'

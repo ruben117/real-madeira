@@ -1,27 +1,47 @@
 [
   {
-    "id": "tasa_bancario",
-    "name": "tasa_bancario",
-    "label": "Tasa mensual — Bancario (%)",
-    "type": "number",
-    "required": false,
-    "default": 1,
-    "help_text": "Porcentaje mensual del monto de crédito (1 = 1%)."
-  },
-  {
-    "id": "tasa_infonavit",
-    "name": "tasa_infonavit",
-    "label": "Tasa mensual — Infonavit (%)",
-    "type": "number",
-    "required": false,
-    "default": 1
+    "id": "tipos_credito",
+    "name": "tipos_credito",
+    "label": "Tipos de crédito",
+    "type": "group",
+    "occurrence": { "min": 1, "max": 6, "default": 2, "sorting_label_field": "tipos_credito.tipo_titulo" },
+    "children": [
+      {
+        "id": "tipo_titulo",
+        "name": "tipo_titulo",
+        "label": "Título",
+        "type": "text",
+        "required": false,
+        "default": "Infonavit"
+      },
+      {
+        "id": "tipo_icono",
+        "name": "tipo_icono",
+        "label": "Ícono (SVG o PNG)",
+        "type": "image",
+        "required": false
+      },
+      {
+        "id": "tipo_tasa",
+        "name": "tipo_tasa",
+        "label": "Tasa mensual (%)",
+        "type": "number",
+        "required": false,
+        "default": 1,
+        "help_text": "Porcentaje mensual del monto de crédito (1 = 1%)."
+      }
+    ],
+    "default": [
+      { "tipo_titulo": "Infonavit", "tipo_icono": { "src": "", "alt": "Infonavit" }, "tipo_tasa": 1 },
+      { "tipo_titulo": "Bancario",  "tipo_icono": { "src": "", "alt": "Bancario" },  "tipo_tasa": 1 }
+    ]
   },
   {
     "id": "opciones_enganche",
     "name": "opciones_enganche",
     "label": "Opciones de enganche",
     "type": "group",
-    "occurrence": { "min": 1, "max": 4, "default": 2 },
+    "occurrence": { "min": 1, "max": 6, "default": 2, "sorting_label_field": "opciones_enganche.eng_pct" },
     "children": [
       {
         "id": "eng_pct",
@@ -38,7 +58,7 @@
     "name": "prototipos",
     "label": "Prototipos",
     "type": "group",
-    "occurrence": { "min": 1, "max": 12, "default": 5 },
+    "occurrence": { "min": 1, "max": 12, "default": 5, "sorting_label_field": "prototipos.proto_nombre" },
     "children": [
       {
         "id": "proto_nombre",
@@ -58,6 +78,13 @@
           ["casa", "Casa"]
         ],
         "default": "departamento"
+      },
+      {
+        "id": "proto_icono",
+        "name": "proto_icono",
+        "label": "Ícono (opcional, sobreescribe el ícono automático)",
+        "type": "image",
+        "required": false
       },
       {
         "id": "proto_metros",

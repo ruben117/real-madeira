@@ -1,4 +1,5 @@
 {% set uid = module.unique_id %}
+{% set tipos_credito = module.tipos_credito %}
 {% set prototipos    = module.prototipos %}
 {% set equipamientos = module.equipamientos %}
 {% set enganche_ops  = module.opciones_enganche %}
@@ -26,14 +27,29 @@
 </svg>
 {% endset %}
 
+{% set svg_credito_default %}
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+  <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+  <line x1="12" y1="12" x2="12" y2="17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+  <line x1="9.5" y1="14.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
+{% endset %}
+
 {# ── Datos JSON para JavaScript ──────────────────────────────── #}
 <script id="cotizador-cfg-{{ uid }}" type="application/json">
 {
-  "tasaBancario": {{ module.tasa_bancario | default(1) }},
-  "tasaInfonavit": {{ module.tasa_infonavit | default(1) }},
   "whatsapp": "{{ module.whatsapp_numero | default('5550107360') }}",
   "ctaLink": "{{ module.cta_link.url.href | default('#contacto') }}",
   "ctaNewTab": {{ module.cta_link.open_in_new_tab | default(false) | tojson }},
+  "tiposCredito": [
+    {% for t in tipos_credito %}
+    {
+      "titulo": {{ t.tipo_titulo | default('') | tojson }},
+      "tasa": {{ t.tipo_tasa | default(1) }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ],
   "opcionesEnganche": [{% for o in enganche_ops %}{{ o.eng_pct | default(10) }}{% if not loop.last %},{% endif %}{% endfor %}],
   "prototipos": [
     {% for p in prototipos %}
@@ -75,33 +91,21 @@
         </div>
         <div class="cot-step__body">
           <div class="credito-grid" role="radiogroup" aria-label="Tipo de crédito">
-
-            <button class="credito-btn"
-                    role="radio" aria-checked="false"
-                    data-credito="infonavit" type="button">
+            {% for t in tipos_credito %}
+            <button class="credito-btn{% if loop.first %} is-active{% endif %}"
+                    role="radio"
+                    aria-checked="{{ 'true' if loop.first else 'false' }}"
+                    data-credito-idx="{{ loop.index0 }}" type="button">
               <span class="credito-btn__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M3 9.5L12 3l9 6.5V21a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  <path d="M9 22V13h6v9" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                </svg>
+                {% if t.tipo_icono.src %}
+                  <img src="{{ t.tipo_icono.src }}" alt="" loading="lazy">
+                {% else %}
+                  {{ svg_credito_default }}
+                {% endif %}
               </span>
-              <span class="credito-btn__label">Infonavit</span>
+              <span class="credito-btn__label">{{ t.tipo_titulo | default('') | escape_html }}</span>
             </button>
-
-            <button class="credito-btn is-active"
-                    role="radio" aria-checked="true"
-                    data-credito="bancario" type="button">
-              <span class="credito-btn__icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <rect x="2" y="7" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
-                  <path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-                  <line x1="12" y1="12" x2="12" y2="17" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                  <line x1="9.5" y1="14.5" x2="14.5" y2="14.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                </svg>
-              </span>
-              <span class="credito-btn__label">Bancario</span>
-            </button>
-
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -122,7 +126,11 @@
                 tabindex="{{ '0' if loop.first else '-1' }}">
 
               <span class="item-row__icon{% if loop.first %} is-active{% endif %}" aria-hidden="true">
-                {{ svg_casa if p.proto_tipo == 'casa' else svg_depto }}
+                {% if p.proto_icono.src %}
+                  <img src="{{ p.proto_icono.src }}" alt="" loading="lazy">
+                {% else %}
+                  {{ svg_casa if p.proto_tipo == 'casa' else svg_depto }}
+                {% endif %}
               </span>
 
               <div class="item-row__info">

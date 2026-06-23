@@ -17,8 +17,10 @@
         path="../modules/cotizador",
         label="Cotizador",
         offset=0, width=12,
-        tasa_bancario=1,
-        tasa_infonavit=1,
+        tipos_credito=[
+          { "tipo_titulo": "Infonavit", "tipo_tasa": 1 },
+          { "tipo_titulo": "Bancario",  "tipo_tasa": 1 }
+        ],
         opciones_enganche=[
           { "eng_pct": 0 },
           { "eng_pct": 10 },
