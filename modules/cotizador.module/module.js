@@ -236,7 +236,11 @@
           + '<footer>*Mensualidad estimada. No incluye gastos notariales ni avalúo. Sujeto a cambios sin previo aviso.</footer>'
           + '</body></html>';
 
-        var win = window.open('', '_blank', 'width=700,height=600,noopener');
+        var win = window.open('', '_blank', 'width=700,height=600');
+        if (!win) {
+          alert('Tu navegador bloqueó la ventana de la cotización. Permite las ventanas emergentes para este sitio e intenta de nuevo.');
+          return;
+        }
         win.document.write(html);
         win.document.close();
         win.focus();

@@ -354,7 +354,7 @@
 .rc-enganche-btn {
   flex: 1;
   padding: 10px 0;
-  border: none;
+  border: none !important;
   border-radius: 8px;
   font-family: var(--font-family-base);
   font-size: 14px;
@@ -410,8 +410,10 @@
 }
 
 .rc-btn-cta:hover {
-  background: #d17e03;
+  background: var(--primary-color-black);
+  color: #ffffff !important;
   transform: translateY(-1px);
+  font-weight: 700;
 }
 
 /* ── Acciones secundarias: PDF + WhatsApp ─────────────────── */
@@ -442,8 +444,9 @@
 }
 
 .rc-btn-pdf:hover {
-  background: #f5f0ea;
+  background: #ffffff;
   transform: translateY(-1px);
+  color: var(--heading-color);
 }
 
 .rc-btn-whatsapp {
