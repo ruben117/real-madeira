@@ -1,14 +1,13 @@
 {
-  "label": "FAQ – Preguntas Frecuentes",
+  "label": "Aviso de Privacidad",
   "css_assets": [],
   "external_js": [],
   "global": false,
-  "host_template_types": ["PAGE", "BLOG_POST", "BLOG_LISTING"],
-  "icon": "",
+  "host_template_types": ["PAGE"],
   "js_assets": [],
   "other_assets": [],
   "smart_type": "NOT_SMART",
-  "tags": ["Real Madeira"],
+  "tags": ["aviso", "privacidad", "legal"],
   "is_available_for_new_content": true,
   "categories": ["body_content"]
 }

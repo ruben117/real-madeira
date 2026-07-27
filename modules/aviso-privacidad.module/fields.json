@@ -1,0 +1,86 @@
+[
+  {
+    "id": "titulo",
+    "name": "titulo",
+    "label": "Título de la página",
+    "type": "text",
+    "required": false,
+    "default": "Avisos de privacidad integral"
+  },
+  {
+    "id": "tab1_label",
+    "name": "tab1_label",
+    "label": "Tab 1 – Etiqueta",
+    "type": "text",
+    "required": false,
+    "default": "CLIENTES"
+  },
+  {
+    "id": "tab1_contenido",
+    "name": "tab1_contenido",
+    "label": "Tab 1 – Contenido",
+    "type": "richtext",
+    "required": false,
+    "default": "<h3>Aviso de Privacidad para clientes</h3><hr><p><strong>FIDEICOMISO CIB/3698</strong>&nbsp;&nbsp;<a href=\"#\">[Leer aquí]</a></p><hr>"
+  },
+  {
+    "id": "tab2_label",
+    "name": "tab2_label",
+    "label": "Tab 2 – Etiqueta",
+    "type": "text",
+    "required": false,
+    "default": "COLABORADORES"
+  },
+  {
+    "id": "tab2_contenido",
+    "name": "tab2_contenido",
+    "label": "Tab 2 – Contenido",
+    "type": "richtext",
+    "required": false,
+    "default": "<h3>Aviso de Privacidad para colaboradores</h3><hr><p><strong>FIDEICOMISO CIB/3698</strong>&nbsp;&nbsp;<a href=\"#\">[Leer aquí]</a></p><hr>"
+  },
+  {
+    "id": "tab3_label",
+    "name": "tab3_label",
+    "label": "Tab 3 – Etiqueta",
+    "type": "text",
+    "required": false,
+    "default": "PROVEEDORES"
+  },
+  {
+    "id": "tab3_contenido",
+    "name": "tab3_contenido",
+    "label": "Tab 3 – Contenido",
+    "type": "richtext",
+    "required": false,
+    "default": "<h3>Aviso de Privacidad para proveedores</h3><hr><p><strong>FIDEICOMISO CIB/3698</strong>&nbsp;&nbsp;<a href=\"#\">[Leer aquí]</a></p><hr>"
+  },
+  {
+    "id": "docs_label",
+    "name": "docs_label",
+    "label": "Documentos – Etiqueta superior",
+    "type": "text",
+    "required": false,
+    "default": "DOCUMENTOS DISPONIBLES PARA DESCARGA"
+  },
+  {
+    "id": "docs_btn_texto",
+    "name": "docs_btn_texto",
+    "label": "Documentos – Texto del botón ARCO",
+    "type": "text",
+    "required": false,
+    "default": "Formato único para el ejercicio de los derechos ARCO"
+  },
+  {
+    "id": "docs_btn_url",
+    "name": "docs_btn_url",
+    "label": "Documentos – URL del archivo ARCO",
+    "type": "url",
+    "required": false,
+    "default": {
+      "type": "EXTERNAL",
+      "href": "#",
+      "content_id": null
+    }
+  }
+]

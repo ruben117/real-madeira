@@ -1,0 +1,190 @@
+/* ============================================================
+   AVISO DE PRIVACIDAD
+   Template: aviso-privacidad.html
+   ============================================================ */
+
+.aviso-privacidad {
+  background: #fff;
+  padding-bottom: 80px;
+}
+
+.aviso-privacidad__inner {
+  padding-top: 70px;
+}
+
+/* ── Título ──────────────────────────────────────────────── */
+
+.aviso-privacidad__titulo {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 300;
+  color: var(--secondary-color);
+  text-align: center;
+  margin: 0 0 40px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Nav sticky ──────────────────────────────────────────── */
+
+.aviso-privacidad__tabs {
+  position: sticky;
+  top: 100px; /* altura del header fijo */
+  z-index: 100;
+  background: #fff;
+  border-bottom: 1px solid #e2ddd7;
+}
+
+.aviso-privacidad__tabs > .content-wrapper {
+  display: flex;
+  gap: 0;
+  padding: 0px;
+}
+
+.aviso-privacidad__tab {
+  background: none;
+  border: none;
+  padding: 14px 32px;
+  font-family: var(--font-family-base);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--secondary-color);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.2s, border-color 0.2s;
+  opacity: 0.45;
+}
+
+.aviso-privacidad__tab:hover {
+  opacity: 0.75;
+  border-radius: 0;
+}
+
+.aviso-privacidad__tab.is-active {
+  border-radius: 0;
+  color: var(--secondary-color);
+  border-bottom-color: var(--primary-color);
+  opacity: 1;
+}
+
+/* ── Secciones ───────────────────────────────────────────── */
+
+.aviso-privacidad__seccion {
+  padding-top: 48px;
+  /* compensa header (70px) + nav (~50px) + margen (16px) al hacer scroll */
+  scroll-margin-top: 150px;
+  max-width: 860px;
+}
+
+/* Heading de cada aviso */
+.aviso-privacidad__seccion h3,
+.aviso-privacidad__seccion .hs_cos_wrapper h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+  margin: 0 0 20px;
+}
+
+/* Separadores */
+.aviso-privacidad__seccion hr,
+.aviso-privacidad__seccion .hs_cos_wrapper hr {
+  border: none;
+  border-top: 1px solid #e2ddd7;
+  margin: 20px 0;
+}
+
+/* Filas "FIDEICOMISO CIB/XXXX  [Leer aquí]" */
+.aviso-privacidad__seccion p,
+.aviso-privacidad__seccion .hs_cos_wrapper p {
+  font-size: 14px;
+  color: var(--secondary-color);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.aviso-privacidad__seccion strong,
+.aviso-privacidad__seccion .hs_cos_wrapper strong {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.aviso-privacidad__seccion a,
+.aviso-privacidad__seccion .hs_cos_wrapper a {
+  color: var(--primary-color);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.aviso-privacidad__seccion a:hover,
+.aviso-privacidad__seccion .hs_cos_wrapper a:hover {
+  text-decoration: underline;
+}
+
+/* ── Documentos disponibles ──────────────────────────────── */
+
+.aviso-privacidad__docs {
+  margin-top: 56px;
+  padding-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.aviso-privacidad__docs .aviso-docs__label,
+.aviso-privacidad__docs .hs_cos_wrapper .aviso-docs__label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--primary-color);
+  margin: 0 0 20px;
+}
+
+.aviso-privacidad__docs .aviso-docs__btn,
+.aviso-privacidad__docs .hs_cos_wrapper .aviso-docs__btn {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.aviso-privacidad__docs .aviso-docs__btn:hover,
+.aviso-privacidad__docs .hs_cos_wrapper .aviso-docs__btn:hover {
+  opacity: 0.85;
+  text-decoration: none;
+}
+
+.aviso-privacidad__docs p,
+.aviso-privacidad__docs .hs_cos_wrapper p {
+  display: block;
+  margin: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────── */
+
+@media (max-width: 767px) {
+  .aviso-privacidad__inner {
+    padding-top: 48px;
+  }
+
+  .aviso-privacidad__tab {
+    padding: 12px 16px;
+    font-size: 11px;
+  }
+
+  .aviso-privacidad__seccion p,
+  .aviso-privacidad__seccion .hs_cos_wrapper p {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

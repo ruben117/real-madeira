@@ -1,0 +1,53 @@
+{% set uid = module.unique_id %}
+
+<section class="aviso-privacidad" id="aviso-privacidad-{{ uid }}">
+  <div class="content-wrapper aviso-privacidad__inner">
+    <h1 class="aviso-privacidad__titulo">{{ module.titulo | default('Avisos de privacidad integral') | escape_html }}</h1>
+  </div>
+
+  {# ── Nav sticky ────────────────────────────────────────── #}
+  <nav class="aviso-privacidad__tabs" aria-label="Secciones de aviso de privacidad">
+    <div class="content-wrapper">
+      <button class="aviso-privacidad__tab is-active" data-aviso-tab="1" type="button">
+        {{ module.tab1_label | default('CLIENTES') | escape_html }}
+      </button>
+      <button class="aviso-privacidad__tab" data-aviso-tab="2" type="button">
+        {{ module.tab2_label | default('COLABORADORES') | escape_html }}
+      </button>
+      <button class="aviso-privacidad__tab" data-aviso-tab="3" type="button">
+        {{ module.tab3_label | default('PROVEEDORES') | escape_html }}
+      </button>
+    </div>
+  </nav>
+
+  <div class="content-wrapper aviso-privacidad__inner">
+
+    {# ── Sección 1 ─────────────────────────────────────────── #}
+    <div class="aviso-privacidad__seccion" id="aviso-seccion-1-{{ uid }}" data-aviso-seccion="1">
+      {{ module.tab1_contenido }}
+    </div>
+
+    {# ── Sección 2 ─────────────────────────────────────────── #}
+    <div class="aviso-privacidad__seccion" id="aviso-seccion-2-{{ uid }}" data-aviso-seccion="2">
+      {{ module.tab2_contenido }}
+    </div>
+
+    {# ── Sección 3 ─────────────────────────────────────────── #}
+    <div class="aviso-privacidad__seccion" id="aviso-seccion-3-{{ uid }}" data-aviso-seccion="3">
+      {{ module.tab3_contenido }}
+    </div>
+
+    {# ── Documentos para descarga ──────────────────────────── #}
+    <div class="aviso-privacidad__docs">
+      <p class="aviso-docs__label">{{ module.docs_label | default('DOCUMENTOS DISPONIBLES PARA DESCARGA') | escape_html }}</p>
+      <p>
+        <a class="aviso-docs__btn" target="_blank" rel="noopener"
+           href="{{ module.docs_btn_url.href | default('#') }}"
+           {% if module.docs_btn_url.open_in_new_tab %}target="_blank" rel="noopener"{% endif %}>
+          &#11015; {{ module.docs_btn_texto | default('Formato único para el ejercicio de los derechos ARCO') | escape_html }}
+        </a>
+      </p>
+    </div>
+
+  </div>
+</section>
