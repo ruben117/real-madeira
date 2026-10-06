@@ -1,0 +1,13 @@
+{
+  "label": "Logos / Certificaciones",
+  "css_assets": [],
+  "external_js": [],
+  "global": false,
+  "host_template_types": ["PAGE", "BLOG_POST", "BLOG_LISTING"],
+  "js_assets": [],
+  "other_assets": [],
+  "smart_type": "NOT_SMART",
+  "tags": ["logos", "certificaciones", "footer"],
+  "is_available_for_new_content": true,
+  "categories": ["body_content"]
+}

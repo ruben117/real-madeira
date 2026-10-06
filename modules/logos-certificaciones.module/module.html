@@ -1,0 +1,44 @@
+{% set uid      = module.unique_id %}
+{% set altura   = module.logo_altura   | default(44) %}
+{% set filtro   = module.logo_filtro   | default('blanco') %}
+{% set opacidad = (module.logo_opacidad | default(85)) / 100 %}
+{% set gap      = module.gap           | default(48) %}
+{% set padding  = module.padding_v     | default(28) %}
+{% set extra    = module.extra_class   | default('') %}
+
+{% set bg = 'transparent' if module.bg_color.opacity == 0
+            else module.bg_color.color | default('#1F140F') %}
+
+<div class="logos-certs{% if extra %} {{ extra | escape_attr }}{% endif %}"
+     id="logos-certs-{{ uid }}"
+     style="
+       --lc-bg:      {{ bg }};
+       --lc-gap:     {{ gap }}px;
+       --lc-pad:     {{ padding }}px;
+       --lc-altura:  {{ altura }}px;
+       --lc-opacity: {{ opacidad }};
+     ">
+  <div class="logos-certs__inner content-wrapper">
+    <ul class="logos-certs__grid" role="list">
+      {% for item in module.logos %}
+        {% if item.logo_imagen.src %}
+          {% set tiene_link = item.logo_enlace.url.href and item.logo_enlace.url.href != '' %}
+          <li class="logos-certs__item">
+            {% if tiene_link %}
+              <a class="logos-certs__link"
+                 href="{{ item.logo_enlace.url.href }}"
+                 {% if item.logo_enlace.open_in_new_tab %}target="_blank" rel="noopener noreferrer"{% endif %}>
+            {% endif %}
+              <img class="logos-certs__img logos-certs__img--{{ filtro }}"
+                   src="{{ item.logo_imagen.src }}"
+                   alt="{{ item.logo_alt | default('') | escape_attr }}"
+                   loading="lazy">
+            {% if tiene_link %}
+              </a>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

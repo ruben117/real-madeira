@@ -1,0 +1,112 @@
+[
+  {
+    "id": "logos",
+    "name": "logos",
+    "label": "Logos",
+    "type": "group",
+    "occurrence": {
+      "min": 1,
+      "max": 12,
+      "default": 3,
+      "sorting_label_field": "logos.logo_alt"
+    },
+    "children": [
+      {
+        "id": "logo_imagen",
+        "name": "logo_imagen",
+        "label": "Imagen del logo",
+        "type": "image",
+        "responsive": false,
+        "resizable": false,
+        "show_loading": false,
+        "default": { "src": "", "alt": "" }
+      },
+      {
+        "id": "logo_alt",
+        "name": "logo_alt",
+        "label": "Texto alternativo",
+        "type": "text",
+        "default": "Certificación"
+      },
+      {
+        "id": "logo_enlace",
+        "name": "logo_enlace",
+        "label": "Enlace (opcional)",
+        "type": "link",
+        "supported_types": ["EXTERNAL", "CONTENT"],
+        "default": {
+          "url": { "href": "", "type": "EXTERNAL" },
+          "open_in_new_tab": true,
+          "no_follow": true
+        }
+      }
+    ],
+    "default": [
+      { "logo_alt": "Certificación 1", "logo_imagen": { "src": "", "alt": "" } },
+      { "logo_alt": "Certificación 2", "logo_imagen": { "src": "", "alt": "" } },
+      { "logo_alt": "Certificación 3", "logo_imagen": { "src": "", "alt": "" } }
+    ]
+  },
+  {
+    "id": "logo_altura",
+    "name": "logo_altura",
+    "label": "Altura de logos (px)",
+    "type": "number",
+    "min": 20,
+    "max": 120,
+    "default": 44
+  },
+  {
+    "id": "logo_filtro",
+    "name": "logo_filtro",
+    "label": "Color de logos",
+    "type": "choice",
+    "choices": [
+      ["original", "Original (sin filtro)"],
+      ["blanco",   "Blanco (sobre fondos oscuros)"],
+      ["negro",    "Negro (sobre fondos claros)"]
+    ],
+    "default": "blanco"
+  },
+  {
+    "id": "logo_opacidad",
+    "name": "logo_opacidad",
+    "label": "Opacidad de logos (1–100)",
+    "type": "number",
+    "min": 10,
+    "max": 100,
+    "default": 85
+  },
+  {
+    "id": "gap",
+    "name": "gap",
+    "label": "Separación entre logos (px)",
+    "type": "number",
+    "min": 0,
+    "max": 120,
+    "default": 48
+  },
+  {
+    "id": "padding_v",
+    "name": "padding_v",
+    "label": "Padding vertical (px)",
+    "type": "number",
+    "min": 0,
+    "max": 120,
+    "default": 28
+  },
+  {
+    "id": "bg_color",
+    "name": "bg_color",
+    "label": "Color de fondo",
+    "type": "color",
+    "default": { "color": "#1F140F", "opacity": 100 }
+  },
+  {
+    "id": "extra_class",
+    "name": "extra_class",
+    "label": "Clase CSS extra (para targeting)",
+    "type": "text",
+    "default": ""
+  }
+]

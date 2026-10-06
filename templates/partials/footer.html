@@ -3,6 +3,27 @@
   label: Footer
 -->
 <footer class="footer" aria-label="Pie de página">
+
+  {# ── Footer top: logos de certificaciones ─────────────────── #}
+  {% module "footer_certificaciones"
+    path="../../modules/logos-certificaciones",
+    label="Logos de certificaciones",
+    logo_altura=70,
+    logo_filtro="blanco",
+    logo_opacidad=85,
+    gap=48,
+    padding_v=28,
+    bg_color={ "color": "#1F140F", "opacity": 100 },
+    logos=[
+      { "logo_alt": "Grupo Vinte",               "logo_imagen": { "src": get_asset_url("../../images/certificaciones-vinte.png"),              "alt": "Grupo Vinte" } },
+      { "logo_alt": "Great Place To Work",        "logo_imagen": { "src": get_asset_url("../../images/certificaciones-vinte-great-to-place-to-work.png"), "alt": "Great Place To Work" } },
+      { "logo_alt": "ESR",                        "logo_imagen": { "src": get_asset_url("../../images/certificaciones-vinte-esr.png"),                "alt": "ESR" } },
+      { "logo_alt": "Edge",                       "logo_imagen": { "src": get_asset_url("../../images/certificaciones-vinte-edge.png"),               "alt": "Edge" } },
+      { "logo_alt": "Súper Empresas 2025",        "logo_imagen": { "src": get_asset_url("../../images/certificaciones-vinte-super-empresas.png"),     "alt": "Súper Empresas 2025" } },
+      { "logo_alt": "Mejores Empresas Mexicanas", "logo_imagen": { "src": get_asset_url("../../images/certificaciones-vinte-mejores-empresas.png"),   "alt": "Mejores Empresas Mexicanas" } }
+    ]
+  %}
+
   <div class="footer__inner content-wrapper">
 
     <div class="footer__row">
@@ -39,7 +60,7 @@
           {% module "footer_address"
             path="@hubspot/rich_text",
             label="Dirección y datos legales",
-            html="<p>PROMOTORA DE VIVIENDAS INTEGRALES SA DE CV<br>No. Reg. 3697-2022 de fecha 23 de agosto 2022<br>Av Real del Sol, Mz.16, Lt. 1, Real del Sol, Ojo de Agua, 55770, Tecámac, Estado de México</p><p><a href="https://www.vinte.com.mx/privacidad?hsLang=es-mx"><strong>Aviso de privacidad</strong></a></p><p>Copyright {{ year }} todos los derechos reservados</p>"
+            html="<p>URBANIZACIONES INMOBILIARIAS DEL CENTRO, S.A. DE C.V.<br>No. Reg. 3697-2022 de fecha 23 de agosto 2022<br>Av Real del Sol, Mz.16, Lt. 1, Real del Sol, Ojo de Agua, 55770, Tecámac, Estado de México</p><p><a href='https://www.realmadeira.mx/aviso-de-privacidad' rel='noopener' target='_blank'><strong>Aviso de privacidad</strong></a></p><p>Copyright {{ year }} todos los derechos reservados</p>"
           %}
         </address>
 
@@ -50,7 +71,7 @@
         {% module "footer_ventas"
           path="@hubspot/rich_text",
           label="Oficina de Ventas",
-          html="<h4>Oficina de Ventas</h4><p>Av. Paseo del Mayab Mz. 22 Lt.2<br>Playa del Carmen, Quintana Roo<br>C.P. 77714<br>Tel. (55) 984 110 5050</p><p>Horario de atención:<br>Lunes a domingo de 09:00 a 19:00 hrs.</p><p>Email: <a href='mailto:tucasaodepa@vinte.com'>tucasaodepa@vinte.com</a></p>"
+          html="<h4>Oficina de Ventas</h4><p>Real Madeira #191, Blvd. Santa Catarina<br>Pachuca de Soto, Hidalgo<br>CP. 42082<br>Tel. 55-2139-7220</p><p>Horario de atención:<br>Lunes a domingo de 09:00 a 19:00 hrs.</p><p>Email: <a href='mailto:alejandra.ortiz@vinte.com'>alejandra.ortiz@vinte.com</a></p>"
         %}
       </div>
 
@@ -59,7 +80,7 @@
         {% module "footer_quejas"
           path="@hubspot/rich_text",
           label="Quejas y sugerencias",
-          html="<h4>Quejas y sugerencias</h4><p>Tel. 800 841 3606</p><p>Horario de atención:<br>Lunes a domingo de 09:30 a 19:30 hrs.</p><p>Email: <a href='mailto:hola@vinte.com'>hola@vinte.com</a></p>"
+          html="<h4>Quejas y sugerencias</h4><p>Tel. 800 841 3606</p><p>Horario de atención:<br>Lunes a domingo de 09:00&nbsp;a 19:00 hrs&nbsp;y Sábado de 09:00 a 14:00 hrs.</p><p>Email: <a href='mailto:hola@vinte.com'>hola@vinte.com</a></p>"
         %}
         {% module "footer_social"
           path="@hubspot/social_follow",
