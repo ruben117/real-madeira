@@ -1,0 +1,30 @@
+[ {
+  "id" : "eyebrow",
+  "name" : "eyebrow",
+  "label" : "Eyebrow (Modelo)",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Modelo Castelo"
+}, {
+  "id" : "titulo",
+  "name" : "titulo",
+  "label" : "Título principal (H1)",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "La armonía perfecta entre diseño y privacidad"
+}, {
+  "id" : "cuerpo",
+  "name" : "cuerpo",
+  "label" : "Descripción",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<p>Con 91.71 m² de construcción, el Modelo Castelo redefine la vivienda en Pachuca. Gracias a su pasillo de separación, disfruta de la independencia que solo una casa sin muros compartidos puede ofrecer.</p>"
+} ]

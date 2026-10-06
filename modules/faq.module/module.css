@@ -1,0 +1,121 @@
+/* ── Contenedor ────────────────────────────────────────────── */
+
+.faq {
+  background-color: #F5F3EF;
+  border-radius: 0;
+  overflow: hidden;
+  width: 85%;
+  margin: 0px auto;
+  padding: 0px 20px;
+}
+
+/* ── Item ──────────────────────────────────────────────────── */
+
+.faq__item {
+  border-bottom: 1px solid rgba(55, 92, 161, 0.15);
+}
+
+.faq__item:last-child {
+  border-bottom: none;
+}
+
+/* ── Trigger (botón pregunta) ──────────────────────────────── */
+
+.faq__trigger {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px 0px;
+  text-align: left;
+}
+
+.faq__pregunta {
+  color: var(--heading-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-heading);
+  line-height: 1.4;
+}
+
+.faq__trigger:hover,
+.faq__trigger:focus {
+  background-color:  #F5F3EF;
+  border: none;
+  border-radius: 0;
+}
+
+/* ── Chevron icon ──────────────────────────────────────────── */
+
+.faq__icon {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.faq__icon::before,
+.faq__icon::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 9px;
+  height: 2px;
+  background-color: var(--heading-color);
+  border-radius: 2px;
+  transition: transform 0.3s ease;
+}
+
+.faq__icon::before {
+  right: calc(50% + -2px);
+  transform: translateY(-50%) rotate(-45deg);
+  transform-origin: right center;
+}
+
+.faq__icon::after {
+  left: calc(50% + 1px);
+  transform: translateY(-50%) rotate(45deg);
+  transform-origin: left center;
+}
+
+/* Chevron abierto → apunta hacia arriba */
+.faq__item.is-open .faq__icon::before {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.faq__item.is-open .faq__icon::after {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* ── Respuesta (accordion panel) ──────────────────────────── */
+
+.faq__respuesta {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease;
+}
+
+.faq__item.is-open .faq__respuesta {
+  max-height: 600px;
+}
+
+.faq__respuesta-inner {
+  padding: 0 0.5rem 0.25rem;
+}
+
+.faq__respuesta-inner p {
+  color: var(--text-color);
+  font-size: clamp(13px, 0.9vw, 15px);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 767px) {
+  .faq {
+    width: 100%;
+  }
+}

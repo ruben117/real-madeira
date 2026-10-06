@@ -1,0 +1,38 @@
+[ {
+  "id" : "items",
+  "name" : "items",
+  "label" : "Preguntas frecuentes",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 20,
+    "sorting_label_field" : null,
+    "default" : 10
+  },
+  "children" : [ {
+    "id" : "faq_pregunta",
+    "name" : "faq_pregunta",
+    "label" : "Pregunta",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "¿Pregunta frecuente?"
+  }, {
+    "id" : "faq_respuesta",
+    "name" : "faq_respuesta",
+    "label" : "Respuesta",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Respuesta a la pregunta frecuente.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

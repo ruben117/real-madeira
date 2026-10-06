@@ -1,0 +1,13 @@
+<div class="prototipo-hero__wrap">
+  {% if module.eyebrow %}
+    <p class="prototipo-hero__eyebrow">{{ module.eyebrow | escape_html }}</p>
+  {% endif %}
+
+  {% if module.titulo %}
+    <h1 class="prototipo-hero__titulo">{{ module.titulo | escape_html }}</h1>
+  {% endif %}
+
+  {% if module.cuerpo %}
+    <div class="prototipo-hero__cuerpo">{{ module.cuerpo }}</div>
+  {% endif %}
+</div>
